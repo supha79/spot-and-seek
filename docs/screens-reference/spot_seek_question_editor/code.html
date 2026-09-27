@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary": "#ffffff", "on-error-container": "#93000a", "on-secondary-fixed": "#002118", "on-tertiary-container": "#6d404f", "tertiary": "#805160", "on-primary-fixed-variant": "#004d67", "surface-container-high": "#e5e9eb", "inverse-primary": "#84d0f8", "on-secondary-container": "#316d5b", "on-tertiary-fixed": "#320f1d", "surface": "#f6fafc", "inverse-on-surface": "#edf1f3", "inverse-surface": "#2c3133", "error-container": "#ffdad6", "secondary-fixed": "#b1efd8", "on-error": "#ffffff", "on-tertiary": "#ffffff", "tertiary-fixed": "#ffd9e3", "on-primary-fixed": "#001e2c", "on-primary-container": "#005471", "secondary-fixed-dim": "#96d3bd", "on-secondary-fixed-variant": "#0d503f", "outline-variant": "#bfc8ce", "surface-variant": "#dfe3e5", "surface-container": "#eaeef0", "primary": "#006688", "on-tertiary-fixed-variant": "#653a48", "surface-bright": "#f6fafc", "surface-container-highest": "#dfe3e5", "surface-container-low": "#f0f4f6", "primary-container": "#7cc8f0", "secondary-container": "#aeedd5", "secondary": "#2c6956", "on-surface": "#171c1e", "surface-dim": "#d6dbdd", "tertiary-fixed-dim": "#f2b6c8", "surface-tint": "#006688", "surface-container-lowest": "#ffffff", "on-surface-variant": "#3f484d", "error": "#ba1a1a", "primary-fixed": "#c2e8ff", "on-background": "#171c1e", "outline": "#70787e", "primary-fixed-dim": "#84d0f8", "on-primary": "#ffffff", "tertiary-container": "#eaafc1", "background": "#f6fafc" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xs": "0.25rem", "margin-md": "1.5rem", "margin-lg": "2.5rem", "space-xl": "2rem", "gutter-lg": "1.5rem", "margin": "1rem", "space-lg": "1.5rem", "gutter": "1rem", "space-2xl": "3rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-lg-mobile": [ "Prompt" ], "label-sm": [ "Prompt" ], "label-lg": [ "Prompt" ], "body-md": [ "Prompt" ], "body-lg": [ "Prompt" ], "label-md": [ "Prompt" ], "headline-sm": [ "Prompt" ], "headline-md": [ "Prompt" ], "display-hero-mobile": [ "Prompt" ], "display-hero": [ "Prompt" ], "body-sm": [ "Prompt" ], "headline-lg": [ "Prompt" ] }, "fontSize": { "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "700" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "label-lg": [ "16px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "500" } ], "label-md": [ "14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "600" } ], "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "display-hero": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex items-center justify-between px-margin-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shadow-[0_3px_0_#2b8bc6]"><span class="material-symbols-outlined text-primary text-[22px]">search</span></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight flex items-center gap-1">Spot <span class="text-tertiary font-bold">&amp;</span> Seek</span></div><span class="bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-3 py-1 rounded-full">Admin</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-full shadow-[0_2px_0_#dfe3e5]"><div class="relative"><div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-headline-sm text-[16px]">🦊</div><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary ring-2 ring-surface-container-lowest"></span></div><span class="font-label-md text-label-md text-on-surface">admin_sky</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_2px_0_#004d67]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-40 pt-20 pb-space-lg flex flex-col justify-between px-space-md"><div class="flex flex-col gap-space-xs"><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-md shadow-[0_4px_0_#2b8bc6]"><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="dashboard" href="#">Dashboard</a><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="games" href="#">Games</a><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="levels" href="#">Levels</a><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="questions" href="#">Questions</a></nav></div><div class="p-space-md bg-surface-container-lowest rounded-lg shadow-[0_4px_12px_rgba(43,139,198,0.06)] flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">arrow_back_ios_new</span>Live Sync Active</div><p class="font-body-sm text-body-sm text-on-surface-variant">Ready to review differences and puzzle assets.</p></div></aside><div class="pl-64 flex flex-col min-h-screen"><main class="relative pt-16 flex-1 w-full px-space-xl py-space-xl bg-background"><div class="flex flex-col w-full gap-space-lg pb-space-2xl">
+<!-- Top Context Header & Breadcrumbs -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<!-- Cute Breadcrumb Pill -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[18px]">quiz</span>
+          Questions
+        </a>
+<span class="material-symbols-outlined text-outline-variant text-[16px]">chevron_right</span>
+<span class="font-label-md text-label-md text-primary bg-primary-fixed/50 px-3 py-0.5 rounded-full shadow-[0_2px_0_#84d0f8]">New Question</span>
+</nav>
+<div class="flex items-baseline gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-center gap-2">
+          Question Editor <span class="text-[28px]">🎨</span>
+</h1>
+<span class="font-body-md text-body-md text-on-surface-variant">สร้างจุดจับผิดภาพใหม่และกำหนดพิกัดความต่าง</span>
+</div>
+</div>
+<!-- Quick Status Pill Badge -->
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-md py-2.5 rounded-full shadow-[0_4px_16px_rgba(43,139,198,0.08)] self-start md:self-auto">
+<span class="w-3 h-3 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface">Level 1 — Cozy Cat Corner</span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed-variant px-2.5 py-0.5 rounded-full">Easy · 3 Diff Req</span>
+</div>
+</div>
+<!-- Soft Blush Validation Alert Banner -->
+<div class="bg-tertiary-fixed/60 rounded-lg p-space-md shadow-[0_4px_0_#eaafc1] flex items-start gap-space-md transition-all">
+<div class="w-11 h-11 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0 shadow-[0_3px_0_#eaafc1] text-tertiary">
+<span class="material-symbols-outlined text-[24px]">troubleshoot</span>
+</div>
+<div class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-tertiary-container">Easy ต้องมีจุดที่แตกต่าง 3 จุด</span>
+<span class="bg-tertiary text-on-tertiary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full shadow-[0_2px_0_#653a48]">ตอนนี้มี 2 / 3</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-tertiary-container/90">
+          กรุณากำหนดตำแหน่งจุดแตกต่างให้ครบ 3 จุดก่อนบันทึกข้อสอบ (คลิกลากสี่เหลี่ยมบนภาพเพื่อกำหนดจุดที่ 3)
+        </p>
+</div>
+<button class="shrink-0 self-start md:self-auto bg-surface-container-lowest text-tertiary hover:bg-surface-container font-label-md text-label-md px-space-md py-2 rounded-full shadow-[0_3px_0_#eaafc1] active:translate-y-0.5 active:shadow-[0_1px_0_#eaafc1] transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+        Add Diff #3
+      </button>
+</div>
+</div>
+<!-- 3-Column Studio Workspace -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Setup & Puzzle Assets (~300px on xl) -->
+<div class="xl:col-span-3 flex flex-col gap-space-lg">
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_rgba(43,139,198,0.06)] flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[0_2px_0_#84d0f8]">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Configuration</h2>
+</div>
+<!-- Level Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between">
+<span>Assign Level</span>
+<span class="text-secondary font-label-sm text-label-sm">Cozy Mode</span>
+</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-md text-body-md rounded-full px-space-md py-3 pr-10 shadow-[0_2px_0_#dfe3e5] focus:outline-none focus:ring-2 focus:ring-primary-container cursor-pointer transition-all">
+<option selected="">Level 1 — Cozy Cat Corner (Easy · 120s)</option>
+<option>Level 2 — Afternoon Teatime (Medium · 90s)</option>
+<option>Level 3 — Garden Hideaway (Hard · 60s)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Question Title -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Question Title / ชื่อด่าน</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-label-lg text-label-lg rounded-full px-space-md py-2.5 shadow-[0_2px_0_#dfe3e5] focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" type="text" value="Q1: Cozy Cat Nap Spot">
+<span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">edit</span>
+</div>
+</div>
+<!-- Image 1 Dropzone (Original) -->
+<div class="flex flex-col gap-1.5 pt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+              Image 1 (Original / ต้นฉบับ)
+            </span>
+<button class="font-label-sm text-label-sm text-primary hover:underline font-semibold">Change image</button>
+</div>
+<div class="bg-surface-container-low/70 rounded-lg p-space-sm flex flex-col gap-space-sm">
+<div class="relative aspect-square w-full rounded-md overflow-hidden bg-surface-container shadow-inner group">
+<img class="w-full h-full object-cover" data-alt="A tranquil hand-drawn cozy pastel watercolor children book illustration of a fluffy orange sleeping tabby cat on a quilted patchwork bed next to a sunny garden window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwPMTRT1O3rMlYC9bnZSzsruYZI86GszzQVR6vWA17PeIf14pii5kUE933BQQXTt9czarb7J7kFoJSfUtiCL2mSifanB3ScDs440TZErHqFh7p_tvFqI94CqNJC1afmKLenJfFaV_Gk9ZrnqaDi_QQE4AeUetuwCdRjuVhWYRPXeluJuWC1nZedEMoqjHu7jISjaxxmkireABuJeUdOTsGSu08lfGGOzPblSxmgrg9bQFZvctF3BYfow">
+<div class="absolute inset-0 bg-inverse-surface/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-surface-container-lowest text-on-surface font-label-sm text-label-sm px-3 py-1.5 rounded-full shadow-md">Preview Full</span>
+</div>
+</div>
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm text-on-surface truncate">cat_original.png</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">800 × 800</span>
+</div>
+</div>
+</div>
+<!-- Image 2 Dropzone (Differences) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Image 2 (Differences / จุดต่าง)
+            </span>
+<button class="font-label-sm text-label-sm text-secondary hover:underline font-semibold">Change image</button>
+</div>
+<div class="bg-surface-container-low/70 rounded-lg p-space-sm flex flex-col gap-space-sm">
+<div class="relative aspect-square w-full rounded-md overflow-hidden bg-surface-container shadow-inner group">
+<img class="w-full h-full object-cover" data-alt="A tranquil hand-drawn cozy pastel watercolor children book illustration matching the cat bedroom scene with subtle playful differences in tea steam and cat collar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoK16-1JuQVObVJUKXRL7onnGQxQb6mpsXju9VT9rj9H95kqHuC-yra2FwL4H4OWCaRCop52DGRFJzCxv3gzaGFNBwC_09yLxwPQPX2bTSCPe-Y5ogmDahPsDpioTRSkJ5Woz8bm1hzBjhcwdCJeAB1wupMCzbsSpv6ZiJw1FpSgvRYdlN5NQmDohgMhZE557QvDD5g5gkrkWgIIHlEzDqDDRwG5kro7vDNMjgxQOThQMGTz9gO5o9lQ">
+<div class="absolute inset-0 bg-inverse-surface/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-surface-container-lowest text-on-surface font-label-sm text-label-sm px-3 py-1.5 rounded-full shadow-md">Preview Full</span>
+</div>
+</div>
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm text-on-surface truncate">cat_diff_v1.png</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">800 × 800</span>
+</div>
+</div>
+</div>
+<!-- Thai Note Helper -->
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            อัปโหลดภาพที่มีขนาดเท่ากันทั้งสองรูป (แนะนำขนาด 800x800 px, ไฟล์ PNG หรือ JPG คมชัด)
+          </p>
+</div>
+</div>
+</div>
+<!-- CENTER COLUMN: Interactive Annotation Canvas (Primary Focus) -->
+<div class="xl:col-span-6 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_12px_32px_rgba(43,139,198,0.08)] flex flex-col gap-space-md">
+<!-- Canvas Header Bar with Controls -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<!-- Cute Drag Instruction Badge -->
+<div class="inline-flex items-center gap-space-xs bg-secondary-fixed/50 px-3.5 py-1.5 rounded-full shadow-[0_2px_0_#96d3bd]">
+<span class="material-symbols-outlined text-secondary text-[18px]">drag_pan</span>
+<span class="font-label-md text-label-md text-on-secondary-fixed-variant">ลากเมาส์บนภาพเพื่อกำหนดพื้นที่จุดแตกต่าง</span>
+</div>
+<!-- Canvas Tool Buttons -->
+<div class="flex items-center gap-space-xs shrink-0 self-end sm:self-auto">
+<button class="bg-surface-container-low text-on-surface-variant hover:text-on-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm shadow-[0_2px_0_#dfe3e5] active:translate-y-0.5 active:shadow-none flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[16px]">zoom_in</span> 100%
+            </button>
+<button class="bg-surface-container-low text-on-surface-variant hover:text-on-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm shadow-[0_2px_0_#dfe3e5] active:translate-y-0.5 active:shadow-none flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span> Reset
+            </button>
+<button class="bg-primary-fixed/60 text-on-primary-fixed-variant px-3 py-1.5 rounded-full font-label-sm text-label-sm shadow-[0_2px_0_#84d0f8] active:translate-y-0.5 active:shadow-none flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[16px]">view_column</span> Side-by-side
+            </button>
+</div>
+</div>
+<!-- Puzzle Annotation Viewport with Extruded Outer Shell -->
+<div class="relative w-full aspect-square rounded-lg bg-surface-container-low p-2 shadow-inner">
+<div class="relative w-full h-full rounded-md overflow-hidden select-none cursor-crosshair">
+<!-- Canvas Base Image -->
+<img class="w-full h-full object-cover pointer-events-none" data-alt="Warm watercolor room with an orange tabby sleeping peacefully on a quilt patchwork bed, sunlit window behind, botanical houseplants on bookshelf, nightstand with tea cup and saucer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrfoJp4BT-tNSxLKgttLZkNJU6oFxUeMiN-OURkihbDXsGM6Y5oq27LbANvTYCeO2IA9Aybq2fFRwiXirZTo38pC-eim2tatwaQlRUdVhE0wpbarb2wpyVJog-Mdrad13ZiVhK-HGZjbh2Yra3DVVWgrSUPaTLZOfoyS1K5lRE7BRlOUPkQ3roJIlm5J5hJWGYgjLjG_79PU6faYNLWleQ8s7Ltjm3B-3g_C6XpvPNgMWsaJMTMlLPvw">
+<!-- Difference Zone 1: Cat Collar Bell -->
+<div class="absolute left-[38%] top-[56%] w-[15%] h-[15%] rounded-md bg-secondary-container/40 shadow-[0_0_0_2px_#2c6956] flex flex-col justify-between p-1 group transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm flex items-center justify-center shadow-[0_2px_0_#0d503f]">
+                  1
+                </span>
+<span class="bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm opacity-90">
+                  Bell collar
+                </span>
+</div>
+<div class="self-end w-2.5 h-2.5 bg-secondary rounded-full shadow-sm"></div>
+</div>
+<!-- Difference Zone 2: Teacup Steam -->
+<div class="absolute right-[17%] top-[50%] w-[13%] h-[17%] rounded-md bg-secondary-container/40 shadow-[0_0_0_2px_#2c6956] flex flex-col justify-between p-1 group transition-transform hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm flex items-center justify-center shadow-[0_2px_0_#0d503f]">
+                  2
+                </span>
+<span class="bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded shadow-sm opacity-90">
+                  Teacup steam
+                </span>
+</div>
+<div class="self-end w-2.5 h-2.5 bg-secondary rounded-full shadow-sm"></div>
+</div>
+<!-- Pulsing Placeholder Region for Difference #3 -->
+<div class="absolute left-[20%] top-[24%] w-[18%] h-[16%] rounded-md bg-tertiary-fixed/30 shadow-[0_0_0_2px_#805160] flex flex-col items-center justify-center p-2 text-center animate-pulse">
+<span class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm flex items-center justify-center shadow-[0_2px_0_#320f1d] mb-1">
+                3
+              </span>
+<span class="font-label-sm text-label-sm text-on-tertiary-container bg-surface-container-lowest/85 px-2 py-0.5 rounded-full shadow-sm">
+                + Drag to define #3
+              </span>
+</div>
+<!-- Floating Magnifier Widget (Interactive Toy Accessory) -->
+<div class="absolute bottom-4 right-4 flex items-center gap-2 bg-surface-container-lowest/95 backdrop-blur-md px-3.5 py-2 rounded-full shadow-[0_6px_0_#2b8bc6] text-primary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span class="font-label-sm text-label-sm text-on-surface">Inspection Mode Active</span>
+</div>
+</div>
+</div>
+<!-- Coordinate Helper HUD -->
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm px-2 pt-1">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Active Canvas Grid: 800 x 800 px</span>
+</div>
+<span class="text-outline">Cursor: X: 420px, Y: 310px</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Differences List & Coordinate Inspector (~320px) -->
+<div class="xl:col-span-3 flex flex-col gap-space-lg">
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_rgba(43,139,198,0.06)] flex flex-col gap-space-md">
+<!-- Inspector Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Differences</h2>
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed-variant px-2.5 py-0.5 rounded-full">
+              2 / 3 defined
+            </span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">checklist</span>
+</div>
+<!-- Coordinate Item Rows -->
+<div class="flex flex-col gap-space-sm">
+<!-- Item Card #1 -->
+<div class="bg-surface-container-low/80 rounded-lg p-space-md shadow-[0_2px_0_#dfe3e5] flex flex-col gap-space-sm transition-all hover:bg-surface-container-low">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed font-headline-sm text-[14px] flex items-center justify-center shadow-[0_2px_0_#96d3bd]">
+                  1
+                </span>
+<span class="font-label-md text-label-md text-on-surface">Cat Collar Bell</span>
+</div>
+<button class="w-7 h-7 rounded-full bg-tertiary-fixed text-tertiary hover:bg-tertiary-container flex items-center justify-center shadow-[0_2px_0_#eaafc1] active:translate-y-0.5 active:shadow-none transition-all" title="Remove point">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+<!-- Coordinate Grid Inputs -->
+<div class="grid grid-cols-4 gap-1.5">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">X</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="120">
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">Y</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="80">
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">W</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="60">
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">H</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="60">
+</div>
+</div>
+</div>
+<!-- Item Card #2 -->
+<div class="bg-surface-container-low/80 rounded-lg p-space-md shadow-[0_2px_0_#dfe3e5] flex flex-col gap-space-sm transition-all hover:bg-surface-container-low">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed font-headline-sm text-[14px] flex items-center justify-center shadow-[0_2px_0_#96d3bd]">
+                  2
+                </span>
+<span class="font-label-md text-label-md text-on-surface">Morning Teacup Steam</span>
+</div>
+<button class="w-7 h-7 rounded-full bg-tertiary-fixed text-tertiary hover:bg-tertiary-container flex items-center justify-center shadow-[0_2px_0_#eaafc1] active:translate-y-0.5 active:shadow-none transition-all" title="Remove point">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+<!-- Coordinate Grid Inputs -->
+<div class="grid grid-cols-4 gap-1.5">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">X</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="340">
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">Y</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="145">
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">W</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="50">
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline px-1">H</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-md text-label-md text-center py-1 rounded-full shadow-inner focus:outline-none focus:ring-1 focus:ring-primary" type="number" value="70">
+</div>
+</div>
+</div>
+<!-- Add Difference Tactile Mint Button -->
+<button class="w-full bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-label-lg text-label-lg py-3 rounded-full shadow-[0_5px_0_#2ba678] active:translate-y-1 active:shadow-[0_1px_0_#2ba678] transition-all flex items-center justify-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[20px]">add_location_alt</span>
+            + Add Difference #3
+          </button>
+</div>
+<!-- Tactile Friendly Pro Tip Box -->
+<div class="bg-primary-fixed/30 rounded-lg p-space-md flex items-start gap-2.5">
+<span class="text-[20px] shrink-0">💡</span>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-primary font-semibold">Inspector Tip</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              คุณสามารถคลิกลากที่มุมของกรอบบนรูปภาพเพื่อปรับขนาดและตำแหน่งพิกัดได้โดยตรงแบบเรียลไทม์
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Bar for Question Save & Autosave Status -->
+<div class="sticky bottom-4 z-30 w-full bg-surface-container-lowest/90 backdrop-blur-xl rounded-lg p-space-md shadow-[0_10px_30px_rgba(43,139,198,0.12)] flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Left Autosave Status -->
+<div class="flex items-center gap-space-sm">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+        Changes saved to draft 10s ago · <span class="text-secondary font-medium">บันทึกแบบร่างอัตโนมัติ</span>
+</span>
+</div>
+<!-- Right Action Buttons -->
+<div class="flex items-center gap-space-md w-full sm:w-auto justify-end">
+<button class="px-space-lg py-2.5 rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high transition-colors">
+        Cancel
+      </button>
+<!-- Chunky Tactile Sky Blue Save Button -->
+<button class="bg-primary-container hover:bg-primary-fixed text-on-primary-container font-headline-sm text-[16px] px-space-xl py-3 rounded-full shadow-[0_6px_0_#2b8bc6] active:translate-y-1 active:shadow-[0_2px_0_#2b8bc6] transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">check</span>
+        Save Question
+      </button>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-low py-space-md px-space-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm"><p class="text-center w-full">Spot &amp; Seek · Admin Console · Crafted with care</p></footer></div></body></html>

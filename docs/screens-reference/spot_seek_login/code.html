@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_blank" name="shell-type"><title>Spot &amp; Seek</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary-fixed-variant": "#0d503f", "surface-container-high": "#e5e9eb", "surface-container-lowest": "#ffffff", "on-surface-variant": "#3f484d", "inverse-surface": "#2c3133", "on-primary-fixed-variant": "#004d67", "on-error": "#ffffff", "outline-variant": "#bfc8ce", "on-surface": "#171c1e", "surface-bright": "#f6fafc", "surface-variant": "#dfe3e5", "surface-container": "#eaeef0", "on-tertiary-fixed-variant": "#653a48", "inverse-on-surface": "#edf1f3", "on-tertiary-container": "#6d404f", "on-tertiary-fixed": "#320f1d", "background": "#f6fafc", "surface": "#f6fafc", "outline": "#70787e", "surface-container-highest": "#dfe3e5", "primary-container": "#7cc8f0", "surface-tint": "#006688", "primary-fixed": "#c2e8ff", "tertiary-fixed": "#ffd9e3", "on-error-container": "#93000a", "tertiary-fixed-dim": "#f2b6c8", "on-secondary-container": "#316d5b", "error": "#ba1a1a", "primary-fixed-dim": "#84d0f8", "inverse-primary": "#84d0f8", "on-secondary": "#ffffff", "secondary": "#2c6956", "on-background": "#171c1e", "on-primary": "#ffffff", "secondary-fixed-dim": "#96d3bd", "on-primary-fixed": "#001e2c", "primary": "#006688", "surface-dim": "#d6dbdd", "tertiary-container": "#eaafc1", "on-secondary-fixed": "#002118", "error-container": "#ffdad6", "secondary-fixed": "#b1efd8", "on-tertiary": "#ffffff", "on-primary-container": "#005471", "surface-container-low": "#f0f4f6", "tertiary": "#805160", "secondary-container": "#aeedd5" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "margin": "1rem", "gutter": "1rem", "margin-md": "1.5rem", "gutter-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2rem", "space-lg": "1.5rem", "margin-lg": "2.5rem", "space-sm": "0.5rem", "space-md": "1rem", "space-2xl": "3rem" }, fontFamily: { "label-lg": ["Prompt"], "headline-lg-mobile": ["Prompt"], "display-hero": ["Prompt"], "headline-md": ["Prompt"], "headline-sm": ["Prompt"], "body-lg": ["Prompt"], "body-sm": ["Prompt"], "body-md": ["Prompt"], "label-md": ["Prompt"], "display-hero-mobile": ["Prompt"], "label-sm": ["Prompt"], "headline-lg": ["Prompt"] }, fontSize: { "label-lg": ["16px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "700" }], "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }], "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen relative flex items-center justify-center"><div class="fixed inset-0 pointer-events-none overflow-hidden z-0"><div class="absolute -top-20 left-1/4 w-80 h-80 rounded-full bg-secondary-container/40 blur-3xl"></div><div class="absolute bottom-10 right-1/4 w-96 h-96 rounded-full bg-primary-container/30 blur-3xl"></div><div class="absolute top-1/2 left-10 w-72 h-72 rounded-full bg-tertiary-container/30 blur-3xl"></div></div><main class="relative z-10 w-full max-w-[1200px] mx-auto px-margin-lg py-space-xl flex items-center justify-center"><div class="flex flex-col w-full relative select-none">
+<!-- Top Left Logo Container -->
+<header class="w-full flex items-center justify-between py-space-sm mb-space-md">
+<div class="flex items-center gap-2 group cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95">
+<img alt="Spot &amp; Seek Logo" class="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_4px_12px_rgba(124,200,240,0.25)]" src="https://lh3.googleusercontent.com/aida/AEtjO1UtHrXHEdRErG5Y3iJSQB2aOuLilP76K2qRzn4gfRSXZp99DRDwp8dSjVVXNq0o4VOZxa_yorOxbKIttly1JtXVpu0IJV9V3rhX-7rWs7TTiGp771vbx6h0ql85taHunGAL8NhqkzFn8CNq5nk148eqDqZbLIKtjUGhS_L3BItpmsgu7xBkn0y77I9dqDiWX3KvZjlW_S3DRyTwqN95Sb2UKrN78bkHLaXteUrKU5YsL6hTPacXNoNN3-7z">
+</div>
+<div class="hidden sm:flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-low shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Daily Puzzle Ready!</span>
+</div>
+</header>
+<!-- Central Gameplay Login Realm -->
+<section class="w-full relative flex items-center justify-center py-space-md sm:py-space-xl">
+<!-- Ambient Floating Sparkles & Soft Game Bubbles -->
+<div class="absolute inset-0 pointer-events-none -z-10 overflow-visible">
+<!-- Top Left Bubble -->
+<div class="absolute -top-10 -left-6 sm:left-12 w-16 h-16 rounded-full bg-secondary-container/60 blur-xs animate-bounce" style="animation-duration: 4s;"></div>
+<!-- Top Right Blush Particle -->
+<div class="absolute -top-6 right-8 sm:right-24 w-12 h-12 rounded-full bg-tertiary-fixed/70 blur-xs animate-pulse" style="animation-duration: 3s;"></div>
+<!-- Bottom Sparkle Cluster -->
+<div class="absolute bottom-4 left-1/4 w-8 h-8 rounded-full bg-primary-fixed blur-xs animate-ping" style="animation-duration: 5s;"></div>
+<!-- Tactile Star SVG Floating -->
+<div class="absolute top-1/3 -left-4 sm:left-4 text-tertiary-container transform -rotate-12 transition-transform duration-300 hover:rotate-12">
+<svg fill="currentColor" height="34" viewBox="0 0 24 24" width="34">
+<path d="M12 2l2.6 6.8L22 9.5l-5.4 4.8 1.6 7.2-6.2-3.8-6.2 3.8 1.6-7.2L2 9.5l7.4-0.7L12 2z"></path>
+</svg>
+</div>
+<!-- Sparkle SVG Right -->
+<div class="absolute bottom-16 -right-2 sm:right-6 text-primary-container transform rotate-12 transition-transform duration-300 hover:scale-125">
+<svg fill="currentColor" height="40" viewBox="0 0 24 24" width="40">
+<path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"></path>
+</svg>
+</div>
+</div>
+<!-- FLOATING DECORATION: Left Mini Difference Card (Tilted -6deg) -->
+<aside class="hidden lg:flex flex-col items-center absolute -left-12 xl:left-2 top-1/2 -translate-y-12 transform -rotate-6 transition-all duration-300 hover:rotate-0 hover:scale-105 z-20">
+<div class="w-44 bg-surface-container-lowest rounded-lg p-3 shadow-xl ring-0 relative flex flex-col gap-2">
+<div class="w-full h-32 rounded-DEFAULT bg-gradient-to-br from-tertiary-fixed via-tertiary-container/30 to-surface-container relative overflow-hidden flex items-center justify-center">
+<!-- Mini Strawberry Game Element -->
+<div class="relative group cursor-pointer">
+<!-- Strawberry body -->
+<div class="w-14 h-16 bg-[#e05268] rounded-[36px_36px_22px_22px] flex items-center justify-center relative shadow-sm">
+<span class="absolute top-2 w-1.5 h-1.5 rounded-full bg-white/70"></span>
+<span class="absolute bottom-4 left-3 w-1.5 h-1.5 rounded-full bg-white/50"></span>
+<span class="absolute bottom-5 right-3 w-1.5 h-1.5 rounded-full bg-white/60"></span>
+<!-- Green strawberry leafy stem -->
+<div class="absolute -top-3 w-7 h-4 bg-secondary rounded-full"></div>
+</div>
+<!-- Found Difference Ring (Pulsing Spot) -->
+<div class="absolute -inset-2.5 rounded-full border-4 border-dashed border-secondary animate-spin" style="animation-duration: 9s;"></div>
+<div class="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-md">
+              1
+            </div>
+</div>
+</div>
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Stage 12-A</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">FOUND!</span>
+</div>
+</div>
+</aside>
+<!-- FLOATING DECORATION: Right Mini Difference Card (Tilted +6deg) -->
+<aside class="hidden lg:flex flex-col items-center absolute -right-12 xl:right-2 top-1/2 -translate-y-8 transform rotate-6 transition-all duration-300 hover:rotate-0 hover:scale-105 z-20">
+<div class="w-44 bg-surface-container-lowest rounded-lg p-3 shadow-xl ring-0 relative flex flex-col gap-2">
+<div class="w-full h-32 rounded-DEFAULT bg-gradient-to-br from-primary-fixed via-primary-container/30 to-surface-container relative overflow-hidden flex items-center justify-center">
+<!-- Mini Floating Star Clue Element -->
+<div class="relative group cursor-pointer">
+<div class="w-14 h-14 bg-gradient-to-tr from-[#f3a63b] to-[#fde047] rounded-2xl rotate-12 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<!-- Found Difference Highlighter Ring -->
+<div class="absolute -inset-3 rounded-full border-4 border-primary-container bg-primary-container/20 animate-pulse"></div>
+<div class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-label-sm font-bold shadow-md">
+              ✓
+            </div>
+</div>
+</div>
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Difference</span>
+<div class="flex items-center gap-1 text-on-tertiary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-sm text-label-sm font-bold">4 / 5</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- CENTER LOGIN CARD WRAPPER WITH PEEKING MASCOT -->
+<div class="w-full max-w-[470px] relative z-30 flex flex-col items-center">
+<!-- PEEKING MASCOT "SEEKY" OVER CARD TOP -->
+<div class="relative w-48 h-28 flex justify-center -mb-8 pointer-events-auto group cursor-pointer">
+<!-- Floating Mini Flag Held by Mascot -->
+<div class="absolute -top-3 -right-2 transform rotate-12 transition-transform duration-300 group-hover:rotate-45 group-hover:scale-110">
+<div class="flex items-center">
+<div class="w-1 h-14 bg-[#8b6540] rounded-full shadow-xs"></div>
+<div class="h-6 px-2.5 bg-[#ffd166] rounded-r-lg shadow-sm flex items-center justify-center gap-1 -ml-0.5">
+<span class="material-symbols-outlined text-on-surface text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-tighter">FIND!</span>
+</div>
+</div>
+</div>
+<!-- Mascot Round Magnifying Head -->
+<div class="w-28 h-28 rounded-full bg-gradient-to-b from-primary-container to-primary-fixed p-2.5 shadow-md flex items-center justify-center relative transform transition-transform duration-300 group-hover:-translate-y-2">
+<!-- Glass Inset / Face -->
+<div class="w-full h-full rounded-full bg-white relative flex flex-col items-center justify-center shadow-inner overflow-hidden">
+<!-- Glass Shimmer Reflex -->
+<div class="absolute -top-4 -right-2 w-16 h-10 bg-primary-fixed/40 rounded-full rotate-45 pointer-events-none"></div>
+<!-- Eyes & Cheeks Row -->
+<div class="flex items-center justify-center gap-4 mt-2">
+<!-- Left Eye -->
+<div class="relative w-3.5 h-4 bg-[#23414F] rounded-full flex items-start justify-end p-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+</div>
+<!-- Right Eye -->
+<div class="relative w-3.5 h-4 bg-[#23414F] rounded-full flex items-start justify-end p-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+</div>
+</div>
+<!-- Rosy Blush Cheeks -->
+<div class="w-full flex items-center justify-between px-3 -mt-1.5">
+<span class="w-3.5 h-2 rounded-full bg-tertiary-fixed-dim/90"></span>
+<span class="w-3.5 h-2 rounded-full bg-tertiary-fixed-dim/90"></span>
+</div>
+<!-- Happy Curved Mouth -->
+<div class="w-4 h-2 border-b-2 border-[#23414F] rounded-full -mt-0.5"></div>
+</div>
+</div>
+<!-- Mascot Tiny White Peeking Paws Resting on Card Rim -->
+<div class="absolute bottom-2 left-10 w-6 h-5 rounded-full bg-white shadow-sm transform -rotate-12 group-hover:translate-y-0.5 transition-transform"></div>
+<div class="absolute bottom-2 right-10 w-6 h-5 rounded-full bg-white shadow-sm transform rotate-12 group-hover:translate-y-0.5 transition-transform"></div>
+</div>
+<!-- MAIN TACTILE CARD -->
+<div class="w-full bg-surface-container-lowest rounded-lg p-6 sm:p-10 shadow-[0_20px_50px_rgba(124,200,240,0.22)] relative overflow-hidden">
+<!-- Header Text -->
+<div class="flex flex-col items-center text-center mt-2 mb-6">
+<h1 class="font-display-hero-mobile sm:font-display-hero text-display-hero-mobile sm:text-display-hero text-[#23414F] tracking-tight mb-1.5">
+            Welcome back
+          </h1>
+<p class="font-body-sm text-body-sm text-[#587B8D] font-medium max-w-xs">
+            ยินดีต้อนรับกลับมา เข้าสู่ระบบเพื่อเล่นต่อได้เลย
+          </p>
+</div>
+<!-- Interactive Form -->
+<form class="flex flex-col gap-4.5" id="loginForm" onsubmit="event.preventDefault(); handleLoginSubmit();">
+<!-- Input Group 1: Username -->
+<div class="flex flex-col text-left">
+<label class="font-label-sm text-label-sm font-bold text-[#23414F] uppercase tracking-wider mb-2 flex items-center gap-1.5" for="usernameInput">
+<span>Username</span>
+<span class="text-tertiary font-bold">•</span>
+</label>
+<div class="relative w-full flex items-center">
+<div class="absolute left-4 text-[#587B8D] flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-lg">search</span>
+</div>
+<input class="w-full rounded-DEFAULT bg-surface-container-low pl-11 pr-4 py-3.5 text-on-surface font-body-sm text-body-sm placeholder:text-outline outline-none transition-all duration-200 focus:bg-surface-container-lowest focus:shadow-[0_0_0_3px_rgba(124,200,240,0.4)]" id="usernameInput" placeholder="Seeker name or email..." required="" type="text">
+</div>
+</div>
+<!-- Input Group 2: Password -->
+<div class="flex flex-col text-left mt-1">
+<label class="font-label-sm text-label-sm font-bold text-[#23414F] uppercase tracking-wider mb-2 flex items-center gap-1.5" for="passwordInput">
+<span>Password</span>
+<span class="text-tertiary font-bold">•</span>
+</label>
+<div class="relative w-full flex items-center">
+<div class="absolute left-4 text-[#587B8D] flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-lg">key</span>
+</div>
+<input class="w-full rounded-DEFAULT bg-surface-container-low pl-11 pr-12 py-3.5 text-on-surface font-body-sm text-body-sm placeholder:text-outline outline-none transition-all duration-200 focus:bg-surface-container-lowest focus:shadow-[0_0_0_3px_rgba(124,200,240,0.4)]" id="passwordInput" placeholder="Your secret passcode..." required="" type="password">
+<!-- Interactive Eye Toggle Button -->
+<button class="absolute right-3 p-1.5 rounded-full text-[#587B8D] hover:text-[#23414F] hover:bg-surface-container transition-colors focus:outline-none flex items-center justify-center" id="passwordToggleBtn" onclick="togglePasswordVisibility()" title="Toggle password view" type="button">
+<span class="material-symbols-outlined text-xl" id="eyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex items-center justify-end -mt-1">
+<a class="font-label-sm text-label-sm font-medium text-primary hover:text-on-primary-container transition-colors cursor-pointer hover:underline" href="#">
+              Forgot password?
+            </a>
+</div>
+<!-- Big Primary Pill 3D Push Button -->
+<button class="w-full rounded-full py-4 px-6 text-on-primary font-headline-sm text-headline-sm bg-primary-container hover:bg-[#68bee8] active:translate-y-1 shadow-[0_6px_0_#2B8BC6] active:shadow-[0_2px_0_#2B8BC6] transition-all cursor-pointer flex items-center justify-center gap-2 mt-4 select-none relative overflow-hidden" id="loginSubmitBtn" type="submit">
+<!-- Gloss Highlight Bar -->
+<div class="absolute inset-x-0 top-0 h-1/2 bg-white/25 rounded-t-full pointer-events-none"></div>
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="tracking-wide">Log in</span>
+</button>
+</form>
+<!-- Signup Prompt Footer -->
+<div class="text-center mt-6 pt-2">
+<p class="font-body-sm text-body-sm text-[#587B8D] font-medium">
+            ยังไม่มีบัญชี? 
+            <a class="font-bold text-[#FF85A2] hover:text-[#e85b88] hover:underline cursor-pointer ml-1 transition-colors" href="#">
+              Sign up
+            </a>
+</p>
+</div>
+</div>
+<!-- Quick Casual Stage Badges below Card -->
+<div class="flex items-center justify-center gap-3 mt-6">
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-secondary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span>No rush mode</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span>Cloud save sync</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Client-side Logic -->
+<script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('passwordInput');
+      const eyeIcon = document.getElementById('eyeIcon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    }
+
+    function handleLoginSubmit() {
+      const submitBtn = document.getElementById('loginSubmitBtn');
+      const originalContent = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = `
+        <span class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+        <span>Entering world...</span>
+      `;
+      
+      setTimeout(() => {
+        submitBtn.innerHTML = `
+          <span class="material-symbols-outlined text-2xl">check_circle</span>
+          <span>Ready!</span>
+        `;
+        setTimeout(() => {
+          submitBtn.innerHTML = originalContent;
+        }, 1500);
+      }, 1000);
+    }
+  </script>
+</div></main></body></html>

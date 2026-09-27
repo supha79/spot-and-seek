@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-fixed-variant":"#0d503f","secondary-fixed-dim":"#96d3bd","tertiary-container":"#eaafc1","on-surface-variant":"#3f484d","on-tertiary":"#ffffff","primary":"#006688","outline":"#70787e","on-error":"#ffffff","surface-container-low":"#f0f4f6","inverse-on-surface":"#edf1f3","surface":"#f6fafc","secondary-container":"#aeedd5","on-tertiary-container":"#6d404f","surface-dim":"#d6dbdd","tertiary-fixed-dim":"#f2b6c8","on-primary-container":"#005471","on-primary-fixed-variant":"#004d67","on-tertiary-fixed":"#320f1d","error-container":"#ffdad6","outline-variant":"#bfc8ce","secondary":"#2c6956","primary-fixed":"#c2e8ff","surface-container-high":"#e5e9eb","surface-container":"#eaeef0","on-error-container":"#93000a","on-primary":"#ffffff","surface-bright":"#f6fafc","tertiary-fixed":"#ffd9e3","secondary-fixed":"#b1efd8","surface-container-lowest":"#ffffff","on-surface":"#171c1e","on-primary-fixed":"#001e2c","primary-fixed-dim":"#84d0f8","inverse-surface":"#2c3133","background":"#f6fafc","primary-container":"#7cc8f0","on-background":"#171c1e","tertiary":"#805160","on-secondary":"#ffffff","surface-container-highest":"#dfe3e5","inverse-primary":"#84d0f8","on-tertiary-fixed-variant":"#653a48","on-secondary-container":"#316d5b","on-secondary-fixed":"#002118","surface-tint":"#006688","error":"#ba1a1a","surface-variant":"#dfe3e5"},borderRadius:{DEFAULT:"1rem",lg:"2rem",xl:"3rem",full:"9999px"},spacing:{"space-xl":"2rem","space-lg":"1.5rem",margin:"1rem","space-md":"1rem","space-sm":"0.5rem","margin-lg":"2.5rem","space-xs":"0.25rem","margin-md":"1.5rem",gutter:"1rem","space-2xl":"3rem","gutter-lg":"1.5rem"},fontFamily:{"display-hero":["Prompt"],"label-lg":["Prompt"],"body-md":["Prompt"],"label-md":["Prompt"],"headline-sm":["Prompt"],"headline-lg-mobile":["Prompt"],"headline-md":["Prompt"],"headline-lg":["Prompt"],"display-hero-mobile":["Prompt"],"body-lg":["Prompt"],"body-sm":["Prompt"],"label-sm":["Prompt"]},fontSize:{"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-lg":["16px",{lineHeight:"22px",letterSpacing:"0.01em",fontWeight:"600"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"label-md":["14px",{lineHeight:"18px",letterSpacing:"0.02em",fontWeight:"600"}],"headline-sm":["20px",{lineHeight:"28px",fontWeight:"600"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"0em",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.01em",fontWeight:"700"}],"display-hero-mobile":["36px",{lineHeight:"44px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"500"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-sm":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface relative min-h-screen selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden"><div class="fixed inset-0 pointer-events-none z-0 overflow-hidden"><div class="absolute -top-24 -left-20 w-96 h-96 rounded-full bg-primary-container/20 blur-3xl"></div><div class="absolute top-1/3 -right-24 w-[30rem] h-[30rem] rounded-full bg-secondary-container/30 blur-3xl"></div><div class="absolute -bottom-20 left-1/4 w-[28rem] h-[28rem] rounded-full bg-tertiary-fixed/40 blur-3xl"></div><div class="absolute top-28 left-16 text-primary-container opacity-40 select-none"><span class="material-symbols-outlined text-[32px]">auto_awesome</span></div><div class="absolute top-44 right-28 text-tertiary-fixed-dim opacity-50 select-none"><span class="material-symbols-outlined text-[28px]">arrow_back_ios_new</span></div><div class="absolute bottom-32 left-32 text-secondary-fixed-dim opacity-60 select-none"><span class="material-symbols-outlined text-[24px]">hotel_class</span></div><div class="absolute top-3/4 right-20 text-primary-fixed-dim opacity-50 select-none"><span class="material-symbols-outlined text-[30px]">star</span></div></div><header class="fixed top-0 left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_4px_20px_-4px_rgba(43,139,198,0.08)]"><div class="h-20 max-w-7xl mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="Brand logo. - Primary color: #7cc8f0
+- Font: publicSans
+- Mode: light
+- Roundness: rounded-full
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UtHrXHEdRErG5Y3iJSQB2aOuLilP76K2qRzn4gfRSXZp99DRDwp8dSjVVXNq0o4VOZxa_yorOxbKIttly1JtXVpu0IJV9V3rhX-7rWs7TTiGp771vbx6h0ql85taHunGAL8NhqkzFn8CNq5nk148eqDqZbLIKtjUGhS_L3BItpmsgu7xBkn0y77I9dqDiWX3KvZjlW_S3DRyTwqN95Sb2UKrN78bkHLaXteUrKU5YsL6hTPacXNoNN3-7z"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Spot &amp; Seek</span><span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase font-bold mt-space-xs">Cozy Spotting</span></div></div><div class="hidden md:flex items-center"><nav class="bg-surface-container-lowest p-space-xs rounded-full shadow-[0_4px_16px_rgba(43,139,198,0.06)] flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container shadow-[0_4px_0_#2B8BC6]"><a class="px-space-lg py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all duration-200" data-path="home" href="#">Home</a><a class="px-space-lg py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all duration-200" data-path="play" href="#">Play</a><a class="px-space-lg py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all duration-200" data-path="history" href="#">History</a></nav></div><div class="flex items-center gap-space-md"><div class="bg-surface-container-lowest py-space-xs px-space-md rounded-full shadow-[0_4px_14px_rgba(43,139,198,0.06)] flex items-center gap-space-sm hover:shadow-[0_6px_18px_rgba(43,139,198,0.1)] transition-shadow"><div class="relative flex items-center justify-center"><div class="w-9 h-9 rounded-full bg-tertiary-fixed p-0.5 flex items-center justify-center"><div class="w-full h-full rounded-full bg-surface-container-lowest flex items-center justify-center text-tertiary overflow-hidden"><span class="material-symbols-outlined text-[20px]">cruelty_free</span></div></div><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary-fixed-dim ring-2 ring-surface-container-lowest"></span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">mint_saki</span></div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative z-10 w-full pt-20 bg-transparent min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full">
+<section class="w-full max-w-6xl mx-auto px-margin md:px-margin-md lg:px-margin-lg pb-space-2xl pt-space-lg">
+<!-- Header with Cozy Mascot & Summary Stats -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg pb-space-xl">
+<div class="flex items-start gap-space-md">
+<!-- Seeky Mascot Record Keeper Avatar -->
+<div class="relative flex-shrink-0 group">
+<div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary-container/40 p-1.5 shadow-[0_8px_20px_rgba(43,139,198,0.15)] flex items-center justify-center transition-transform duration-300 hover:scale-105">
+<div class="w-full h-full rounded-full bg-surface-container-lowest flex items-center justify-center relative overflow-hidden shadow-inner">
+<span class="material-symbols-outlined text-primary text-[44px] md:text-[52px] select-none" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="absolute bottom-1 right-2 text-tertiary material-symbols-outlined text-[18px] animate-bounce">edit</span>
+</div>
+</div>
+<div class="absolute -top-1 -right-1 bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-label-sm font-label-sm shadow-[0_2px_0_#2BA678] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span>Seeky</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-display-hero text-display-hero md:text-[44px] text-on-surface tracking-tight leading-tight">
+              History
+            </h1>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+              mint_saki's logs
+            </span>
+</div>
+<p class="font-headline-sm text-headline-sm text-secondary font-medium flex items-center gap-space-xs">
+<span>ผลการเล่นทั้งหมดของคุณ</span>
+<span class="material-symbols-outlined text-[22px] text-primary-container">cruelty_free</span>
+</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            A cozy scrapbook of past spot-and-seek journeys. Relax and review your sharp-eyed moments.
+          </p>
+</div>
+</div>
+<!-- Quick 3 Summary Chips: Tactile Pill Cards -->
+<div class="grid grid-cols-3 gap-space-sm w-full md:w-auto">
+<!-- Chip 1: Plays -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-[0_8px_20px_-4px_rgba(43,139,198,0.1)] flex flex-col items-center justify-center text-center relative overflow-hidden group hover:-translate-y-1 transition-transform">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed mb-1 shadow-[inset_0_2px_0_rgba(255,255,255,0.7)]">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Plays</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">12</span>
+</div>
+<!-- Chip 2: Best Score -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-[0_8px_20px_-4px_rgba(234,175,193,0.2)] flex flex-col items-center justify-center text-center relative overflow-hidden group hover:-translate-y-1 transition-transform">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed mb-1 shadow-[inset_0_2px_0_rgba(255,255,255,0.7)]">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Best Score</span>
+<span class="font-headline-md text-headline-md text-tertiary font-bold">2,450</span>
+</div>
+<!-- Chip 3: Avg Time -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-[0_8px_20px_-4px_rgba(43,166,120,0.12)] flex flex-col items-center justify-center text-center relative overflow-hidden group hover:-translate-y-1 transition-transform">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed mb-1 shadow-[inset_0_2px_0_rgba(255,255,255,0.7)]">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Avg. Time</span>
+<span class="font-headline-md text-headline-md text-secondary font-bold">48s</span>
+</div>
+</div>
+</div>
+<!-- Filter Bar: Tactile Chunky Pill Segments -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md mb-space-lg bg-surface-container-low/70 p-space-xs rounded-full shadow-sm">
+<div class="flex items-center gap-1.5 p-1 w-full sm:w-auto overflow-x-auto" id="filter-container">
+<!-- Filter: All (Active) -->
+<button class="filter-btn active flex items-center gap-1.5 px-space-lg py-2 rounded-full font-label-md text-label-md transition-all duration-150 bg-primary-container text-on-primary-container shadow-[0_5px_0_#005471] -translate-y-0.5" data-filter="all" type="button">
+<span>All Records</span>
+<span class="bg-surface-container-lowest/80 text-on-primary-container text-label-sm px-1.5 py-0.2 rounded-full">6</span>
+</button>
+<!-- Filter: Easy -->
+<button class="filter-btn flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-lowest/70 transition-all duration-150" data-filter="easy" type="button">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container ring-2 ring-secondary-fixed-dim"></span>
+<span>Easy</span>
+</button>
+<!-- Filter: Medium -->
+<button class="filter-btn flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-lowest/70 transition-all duration-150" data-filter="medium" type="button">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container ring-2 ring-primary-fixed-dim"></span>
+<span>Medium</span>
+</button>
+<!-- Filter: Hard -->
+<button class="filter-btn flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-lowest/70 transition-all duration-150" data-filter="hard" type="button">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container ring-2 ring-tertiary-fixed-dim"></span>
+<span>Hard</span>
+</button>
+</div>
+<!-- Quick Search / Sort Note -->
+<div class="hidden md:flex items-center gap-space-sm pr-space-md">
+<span class="material-symbols-outlined text-[18px] text-outline">sort</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Newest First (เรียงล่าสุด)</span>
+</div>
+</div>
+<!-- GAME HISTORY LIST (Chunky Rounded Cards, 2-Column Responsive Bento Mosaics) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg" id="history-card-grid">
+<!-- CARD 1: Easy · Level 3 | Balloon Hills -->
+<article class="history-item bg-surface-container-lowest rounded-lg p-space-md md:p-space-lg shadow-[0_10px_26px_-4px_rgba(43,139,198,0.09)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_32px_-6px_rgba(43,139,198,0.14)] flex flex-col justify-between relative group" data-category="easy">
+<div class="flex items-start gap-space-md">
+<!-- Square Illustration Thumbnail -->
+<div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden flex-shrink-0 shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Whimsical pastel hot air balloons drifting gently across a rolling countryside of wildflower hills with miniature cottage roofs under a dreamy morning sun" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk_Aj5RdVbWu23hEvWOYoJntHiywQyJjiPI-F3Nk0q-wL1xiYPRVed38jV1aKMpFhvxByU8iRaUYj3MWcyvClaEIs9UTz80uL6mw9xD00iD2ZkDRuApsgKEsEwgKnIIgOaCcdlx5q9950x_hTZK7DiQHRxgZLTDJc78sxJ_J0OYblj59t54sTX8-MUxOOR2tOB3qkenSrtELk59rkQ3fyovUp9PlVmhBs1iCs6hvY9tJA5tqj81B6kDQ">
+<span class="absolute top-1.5 left-1.5 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface shadow-xs">Lv.3</span>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<!-- Difficulty Badge & Date -->
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<div class="inline-flex items-center gap-1.5 bg-secondary-container/40 text-on-secondary-container px-2.5 py-0.5 rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Easy</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">20 Sep 2026</span>
+</div>
+<!-- Stage Title -->
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">
+              Balloon Hills
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">เนินเขาลูกโป่งลม</p>
+<!-- Star Rating Badges -->
+<div class="flex items-center gap-0.5 mt-2 text-tertiary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold ml-1.5">3/3 Stars</span>
+</div>
+</div>
+</div>
+<!-- Metrics Grid Footbar -->
+<div class="mt-space-md pt-space-md bg-surface-container-low/60 rounded-xl p-space-sm flex items-center justify-between text-center gap-1">
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Score</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">1,850</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Time</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">00:58</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Wrong</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">2</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Hints</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">1</span>
+</div>
+</div>
+</article>
+<!-- CARD 2: Easy · Level 1 | Cozy Cat Corner -->
+<article class="history-item bg-surface-container-lowest rounded-lg p-space-md md:p-space-lg shadow-[0_10px_26px_-4px_rgba(43,139,198,0.09)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_32px_-6px_rgba(43,139,198,0.14)] flex flex-col justify-between relative group" data-category="easy">
+<div class="flex items-start gap-space-md">
+<!-- Square Illustration Thumbnail -->
+<div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden flex-shrink-0 shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Charming sunlit cozy cottage bedroom with an orange tabby cat curled asleep on a vintage quilted bedspread near lush potted houseplants and a window garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB26r9PANycwyZO--0ao6mR32FtHK_pTvxZQhH6OFcYRL2-1fLazTokhzCztz-FHubrJB4IIkXJ5F9k9INOxHffz9VpavT00kMwS_mP6VtvZX0E2NmLH8rU3heyOC2uvIlzslJA-SZRngKxJSiBYuHnVVTbc1P_i9CrzD6CrjYs4-YD4ewWyFKAj7PY1pZuCbAQFnLx3dDw1Aqw12ld2pKoSpFPsjcOoOf7Lpcxf4D1nDqnJmltgHTSkQ">
+<span class="absolute top-1.5 left-1.5 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface shadow-xs">Lv.1</span>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<!-- Difficulty Badge & Date -->
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<div class="inline-flex items-center gap-1.5 bg-secondary-container/40 text-on-secondary-container px-2.5 py-0.5 rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Easy</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">20 Sep 2026</span>
+</div>
+<!-- Stage Title -->
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">
+              Cozy Cat Corner
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">มุมอบอุ่นของเจ้าเหมียว</p>
+<!-- Star Rating Badges -->
+<div class="flex items-center gap-0.5 mt-2 text-tertiary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold ml-1.5">Perfect Run ✨</span>
+</div>
+</div>
+</div>
+<!-- Metrics Grid Footbar -->
+<div class="mt-space-md pt-space-md bg-surface-container-low/60 rounded-xl p-space-sm flex items-center justify-between text-center gap-1">
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Score</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">2,100</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Time</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">00:42</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Wrong</span>
+<span class="font-label-lg text-label-lg text-secondary font-semibold">0</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Hints</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">0</span>
+</div>
+</div>
+</article>
+<!-- CARD 3: Medium · Level 2 | Sunny Picnic Meadow -->
+<article class="history-item bg-surface-container-lowest rounded-lg p-space-md md:p-space-lg shadow-[0_10px_26px_-4px_rgba(43,139,198,0.09)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_32px_-6px_rgba(43,139,198,0.14)] flex flex-col justify-between relative group" data-category="medium">
+<div class="flex items-start gap-space-md">
+<!-- Square Illustration Thumbnail -->
+<div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden flex-shrink-0 shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Delightful warm summer afternoon picnic on a gingham blanket spread across flower-filled green meadow overlooking a sparkling river valley and sleepy village" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU8AKddOXCOirw0wSFfgJJmlQOcNd5BFqw-msmZwDyds6zjK1DopJ7_QfymhAOPXFpGa4Yl30TUtzkMMtYNvFyrL6UmDAhhSvqW8JdLWLneU9jquhS6PynSPoHbzT9d-0wruxwT8vXPmNkHYts_s_cetJ5MijMot0KM-zzNNSjvsPZIupL8ApvsClwW9Sx5anI6nwUsV1ysjtiuZVfwKj98wrE9T0tlM7AzKsYQ_SXoyFg8j_rKBM0mA">
+<span class="absolute top-1.5 left-1.5 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface shadow-xs">Lv.2</span>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<!-- Difficulty Badge & Date -->
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<div class="inline-flex items-center gap-1.5 bg-primary-fixed/60 text-on-primary-fixed-variant px-2.5 py-0.5 rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Medium</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">19 Sep 2026</span>
+</div>
+<!-- Stage Title -->
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">
+              Sunny Picnic Meadow
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">ปิกนิกทุ่งดอกไม้สายรุ้ง</p>
+<!-- Star Rating Badges -->
+<div class="flex items-center gap-0.5 mt-2 text-tertiary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px] text-outline-variant">star</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium ml-1.5">2/3 Stars</span>
+</div>
+</div>
+</div>
+<!-- Metrics Grid Footbar -->
+<div class="mt-space-md pt-space-md bg-surface-container-low/60 rounded-xl p-space-sm flex items-center justify-between text-center gap-1">
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Score</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">1,920</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Time</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">01:15</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Wrong</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">1</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Hints</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">2</span>
+</div>
+</div>
+</article>
+<!-- CARD 4: Hard · Level 1 | Starlit Night Market (Time's Up special card) -->
+<article class="history-item bg-surface-container-lowest rounded-lg p-space-md md:p-space-lg shadow-[0_10px_26px_-4px_rgba(234,175,193,0.18)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_32px_-6px_rgba(234,175,193,0.25)] flex flex-col justify-between relative group" data-category="hard">
+<div class="flex items-start gap-space-md">
+<!-- Square Illustration Thumbnail -->
+<div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden flex-shrink-0 shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Bustling cozy night festival market illuminated with glowing soft paper lanterns, steam rising from sweet snack stalls and whimsical twilight stars in a deep violet sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXrHPe5MvUshiAw5LDYYfXumsejq1Fr-14Xdh-VXK-Nyv67f2wMy1A6FRoSFGP9AN8A5mLTQApsWuiNInutbNC1m9vzg_Rr9Q99hapRUCQnt8tyy8ejS58g_I7W2pySrf1vGWMUkndceNKOBVYG8OA_nBLMySzYwYx7amRHaq7OlXRc4Kw2SzSeXeoPRUNW6tU_pyebJ6vDzW4nqiThxkfZFFVh4bdvrPvdpchQG1uVf3SortfNy6HCw">
+<span class="absolute top-1.5 left-1.5 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface shadow-xs">Lv.1</span>
+<!-- Sweat Drop Mascot / Alert overlay badge -->
+<div class="absolute inset-0 bg-error/10 flex items-center justify-center backdrop-blur-[0.5px]">
+<div class="bg-surface-container-lowest/90 text-tertiary rounded-full px-2 py-0.5 text-label-sm font-label-sm shadow flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">sentiment_worried</span>
+<span>Sweat!</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<!-- Difficulty Badge & Date -->
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<div class="inline-flex items-center gap-1.5 bg-tertiary-fixed text-on-tertiary-fixed-variant px-2.5 py-0.5 rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Hard</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">18 Sep 2026</span>
+</div>
+<!-- Stage Title -->
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-tertiary transition-colors">
+              Starlit Night Market
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">ตลาดนัดใต้แสงดาว</p>
+<!-- Time's Up Pill Alert -->
+<div class="inline-flex items-center gap-1 mt-2 px-2.5 py-1 rounded-full bg-error-container/60 text-on-error-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">hourglass_bottom</span>
+<span>Time's Up · 5/7 found</span>
+</div>
+</div>
+</div>
+<!-- Metrics Grid Footbar with Soft Pink Tone -->
+<div class="mt-space-md pt-space-md bg-tertiary-fixed/30 rounded-xl p-space-sm flex items-center justify-between text-center gap-1">
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Score</span>
+<span class="font-label-lg text-label-lg text-tertiary font-bold">1,150</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/40"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Time</span>
+<span class="font-label-lg text-label-lg text-error font-semibold">02:00</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/40"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Wrong</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">4</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/40"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Hints</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">2</span>
+</div>
+</div>
+</article>
+<!-- CARD 5: Easy · Level 2 | Afternoon Tea Corner (High Score Best) -->
+<article class="history-item bg-surface-container-lowest rounded-lg p-space-md md:p-space-lg shadow-[0_10px_26px_-4px_rgba(43,139,198,0.09)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_32px_-6px_rgba(43,139,198,0.14)] flex flex-col justify-between relative group" data-category="easy">
+<!-- Golden / Mint Best Pill Sticker -->
+<div class="absolute -top-3 right-6 bg-secondary text-on-secondary px-3 py-0.5 rounded-full font-label-sm text-label-sm shadow-[0_3px_0_#0d503f] flex items-center gap-1 z-10 animate-pulse">
+<span class="material-symbols-outlined text-[14px]">trophy</span>
+<span>Personal Best!</span>
+</div>
+<div class="flex items-start gap-space-md">
+<!-- Square Illustration Thumbnail -->
+<div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden flex-shrink-0 shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A vintage porcelain tea set with steaming Earl Grey tea, warm freshly baked scones with clotted cream, delicate pastel macaroons, and blooming peonies on a lace tablecloth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz9c9Z_pRtiSVRDpQbyxc6D3WEKI_W6cixZ3oNYqR2fMfbhFMMkaCBW1yKVlTYNi1SFfiYWrzol5GfdAwHjVBpqo8DCGCWgqKsnGfh_FSQPt6hvSOAcvPCXVXDxuEXH-VM4PfoP5ONff97gNyb3c7qq6tbwHLITmqlZH66nuu3fKJuDd6mQEaBFJmB7XJq851dBt13gRo0bSmVz09EzpBQ7yWrzlH1PYdmQbwxgTKjH5DPPaRxT-p9QQ">
+<span class="absolute top-1.5 left-1.5 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface shadow-xs">Lv.2</span>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<!-- Difficulty Badge & Date -->
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<div class="inline-flex items-center gap-1.5 bg-secondary-container/40 text-on-secondary-container px-2.5 py-0.5 rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Easy</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">18 Sep 2026</span>
+</div>
+<!-- Stage Title -->
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">
+              Afternoon Tea Corner
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">ชานมยามบ่ายแสนสุข</p>
+<!-- Star Rating Badges -->
+<div class="flex items-center gap-0.5 mt-2 text-tertiary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold ml-1.5">Speed Master ⚡</span>
+</div>
+</div>
+</div>
+<!-- Metrics Grid Footbar -->
+<div class="mt-space-md pt-space-md bg-secondary-container/20 rounded-xl p-space-sm flex items-center justify-between text-center gap-1">
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Score</span>
+<span class="font-label-lg text-label-lg text-secondary font-bold">2,450</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/40"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Time</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">00:36</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/40"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Wrong</span>
+<span class="font-label-lg text-label-lg text-secondary font-semibold">0</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/40"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Hints</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">1</span>
+</div>
+</div>
+</article>
+<!-- CARD 6: Medium · Level 1 | Breezy Windmill Hill -->
+<article class="history-item bg-surface-container-lowest rounded-lg p-space-md md:p-space-lg shadow-[0_10px_26px_-4px_rgba(43,139,198,0.09)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_32px_-6px_rgba(43,139,198,0.14)] flex flex-col justify-between relative group" data-category="medium">
+<div class="flex items-start gap-space-md">
+<!-- Square Illustration Thumbnail -->
+<div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden flex-shrink-0 shadow-md">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Whimsical wooden Dutch windmill on a breezy grassy bluff surrounded by vibrant lavender blossoms under a bright blue morning sky with soft puffy clouds" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrIs_lXdklzwDh87SAOu2NP7WtzszCdxCP7dWShegbch3NGa1Lt1rFp1fRm78JuiDr-RP3Sw2e7rA1UpBYs8i2eoBNT0FAahWUxrKID1dUkRUZ1EOrFOBirKkb2K3WcEQujX1b-fZ-hzKU4Z5PqLEma6zs6YXsf8Fo_KVB4m9fgvZdcuIwSNcFqNToJ8VCb9A5rx8bCBmaAFS6X4_JIRGJ-8hCrmJszbi6mdtzCvv1eDg2qnqIIEoK4Q">
+<span class="absolute top-1.5 left-1.5 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-0.5 rounded-full font-label-sm text-label-sm text-on-surface shadow-xs">Lv.1</span>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<!-- Difficulty Badge & Date -->
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<div class="inline-flex items-center gap-1.5 bg-primary-fixed/60 text-on-primary-fixed-variant px-2.5 py-0.5 rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Medium</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">17 Sep 2026</span>
+</div>
+<!-- Stage Title -->
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate group-hover:text-primary transition-colors">
+              Breezy Windmill Hill
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">กังหันสายลมแห่งเนินเขา</p>
+<!-- Star Rating Badges -->
+<div class="flex items-center gap-0.5 mt-2 text-tertiary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px] text-outline-variant">star</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium ml-1.5">2/3 Stars</span>
+</div>
+</div>
+</div>
+<!-- Metrics Grid Footbar -->
+<div class="mt-space-md pt-space-md bg-surface-container-low/60 rounded-xl p-space-sm flex items-center justify-between text-center gap-1">
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Score</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">1,780</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Time</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">01:05</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Wrong</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">2</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/50"></div>
+<div class="flex-1">
+<span class="block font-label-sm text-label-sm text-outline">Hints</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">1</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Empty State Container (Hidden by default, used when filter produces zero cards) -->
+<div class="hidden flex-col items-center justify-center p-space-2xl bg-surface-container-lowest rounded-xl shadow-sm text-center my-space-lg" id="empty-state">
+<div class="w-20 h-20 rounded-full bg-secondary-container/50 flex items-center justify-center text-on-secondary-container mb-space-md">
+<span class="material-symbols-outlined text-[40px]">sentiment_satisfied</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No records found here yet</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-sm">
+        ยังไม่มีประวัติการเล่นในโหมดนี้ ลองกดเล่นเพื่อบันทึกความทรงจำน่ารัก ๆ กันเถอะ!
+      </p>
+<a class="mt-space-md px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-[0_4px_0_#005471] hover:brightness-105 active:translate-y-1" href="#">
+        Play a Round
+      </a>
+</div>
+<!-- Tactile Pagination Section -->
+<div class="flex items-center justify-center gap-space-sm pt-space-2xl">
+<!-- Prev Button -->
+<button class="px-space-md py-2.5 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant shadow-[0_4px_0_#dfe3e5] hover:bg-surface-container-low active:translate-y-0.5 transition-all flex items-center gap-1 cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span class="hidden sm:inline">Prev</span>
+</button>
+<!-- Number Pills -->
+<div class="flex items-center gap-2">
+<!-- Active Page 1 -->
+<button class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-[0_4px_0_#005471] flex items-center justify-center -translate-y-0.5" type="button">
+          1
+        </button>
+<!-- Page 2 -->
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-[0_4px_0_#dfe3e5] hover:bg-surface-container-low active:translate-y-0.5 flex items-center justify-center transition-all" type="button">
+          2
+        </button>
+<!-- Page 3 -->
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-[0_4px_0_#dfe3e5] hover:bg-surface-container-low active:translate-y-0.5 flex items-center justify-center transition-all" type="button">
+          3
+        </button>
+</div>
+<!-- Next Button -->
+<button class="px-space-md py-2.5 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant shadow-[0_4px_0_#dfe3e5] hover:bg-surface-container-low active:translate-y-0.5 transition-all flex items-center gap-1 cursor-pointer" type="button">
+<span class="hidden sm:inline">Next</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Interactive Client-side Script for Difficulty Filter & Pill States -->
+<script>
+    (function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.history-item');
+      const emptyState = document.getElementById('empty-state');
+      const grid = document.getElementById('history-card-grid');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active styles
+          filterButtons.forEach(b => {
+            b.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-[0_5px_0_#005471]', '-translate-y-0.5');
+            b.classList.add('text-on-surface-variant');
+          });
+
+          btn.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-[0_5px_0_#005471]', '-translate-y-0.5');
+          btn.classList.remove('text-on-surface-variant');
+
+          const category = btn.getAttribute('data-filter');
+          let visibleCount = 0;
+
+          cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (category === 'all' || cardCat === category) {
+              card.style.display = 'flex';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          if (visibleCount === 0) {
+            emptyState.classList.remove('hidden');
+            emptyState.classList.add('flex');
+            grid.classList.add('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+            emptyState.classList.remove('flex');
+            grid.classList.remove('hidden');
+          }
+        });
+      });
+    })();
+  </script>
+</div></main><footer class="relative z-10 w-full bg-surface-container-low/70 py-space-lg"><div class="max-w-7xl mx-auto px-margin md:px-margin-md lg:px-margin-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-center md:text-left"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container"><span class="material-symbols-outlined text-[16px]">search_check</span></div><div><p class="font-label-md text-label-md text-on-surface">Spot &amp; Seek • Cozy Puzzle Haven</p><p class="font-body-sm text-body-sm text-on-surface-variant">Take a deep breath, spot tiny cozy wonders, and relax.</p></div></div><div class="flex items-center gap-space-lg"><span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-tertiary">favorite</span>Handcrafted with warmth</span><span class="font-body-sm text-body-sm text-outline">© 2024 Spot &amp; Seek. All differences reserved.</span></div></div></footer>
+</body></html>

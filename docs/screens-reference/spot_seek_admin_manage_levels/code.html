@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error": "#ba1a1a", "background": "#f6fafc", "surface-dim": "#d6dbdd", "on-surface-variant": "#3f484d", "on-tertiary-fixed-variant": "#653a48", "surface-container-low": "#f0f4f6", "surface-bright": "#f6fafc", "primary-container": "#7cc8f0", "tertiary-container": "#eaafc1", "surface-variant": "#dfe3e5", "on-primary-fixed-variant": "#004d67", "inverse-surface": "#2c3133", "on-tertiary-fixed": "#320f1d", "on-error": "#ffffff", "primary": "#006688", "surface-container": "#eaeef0", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary": "#2c6956", "inverse-primary": "#84d0f8", "outline-variant": "#bfc8ce", "secondary-fixed": "#b1efd8", "secondary-fixed-dim": "#96d3bd", "secondary-container": "#aeedd5", "on-primary-container": "#005471", "surface": "#f6fafc", "tertiary": "#805160", "on-secondary-fixed": "#002118", "tertiary-fixed": "#ffd9e3", "on-tertiary-container": "#6d404f", "inverse-on-surface": "#edf1f3", "tertiary-fixed-dim": "#f2b6c8", "on-error-container": "#93000a", "on-primary-fixed": "#001e2c", "surface-container-highest": "#dfe3e5", "on-secondary-fixed-variant": "#0d503f", "primary-fixed": "#c2e8ff", "surface-container-high": "#e5e9eb", "primary-fixed-dim": "#84d0f8", "on-secondary-container": "#316d5b", "surface-tint": "#006688", "error-container": "#ffdad6", "surface-container-lowest": "#ffffff", "on-background": "#171c1e", "on-secondary": "#ffffff", "on-surface": "#171c1e", "outline": "#70787e" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "gutter": "1rem", "margin-lg": "2.5rem", "gutter-lg": "1.5rem", "space-sm": "0.5rem", "margin-md": "1.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-xl": "2rem", "margin": "1rem", "space-xs": "0.25rem" }, "fontFamily": { "headline-sm": [ "Prompt" ], "label-lg": [ "Prompt" ], "body-sm": [ "Prompt" ], "body-md": [ "Prompt" ], "label-md": [ "Prompt" ], "display-hero-mobile": [ "Prompt" ], "label-sm": [ "Prompt" ], "headline-md": [ "Prompt" ], "display-hero": [ "Prompt" ], "headline-lg-mobile": [ "Prompt" ], "headline-lg": [ "Prompt" ], "body-lg": [ "Prompt" ] }, "fontSize": { "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "label-lg": [ "16px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-md": [ "14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "600" } ], "display-hero": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "700" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "500" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex items-center justify-between px-margin-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shadow-[0_3px_0_#2b8bc6]"><span class="material-symbols-outlined text-primary text-[22px]">search</span></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight flex items-center gap-1">Spot <span class="text-tertiary font-bold">&amp;</span> Seek</span></div><span class="bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-3 py-1 rounded-full">Admin</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-full shadow-[0_2px_0_#dfe3e5]"><div class="relative"><div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-headline-sm text-[16px]">🦊</div><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary ring-2 ring-surface-container-lowest"></span></div><span class="font-label-md text-label-md text-on-surface">admin_sky</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_2px_0_#004d67]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-40 pt-20 pb-space-lg flex flex-col justify-between px-space-md"><div class="flex flex-col gap-space-xs"><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-md shadow-[0_4px_0_#2b8bc6]"><a class="flex items-center gap-space-sm px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard</a><a class="flex items-center gap-space-sm px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="games" href="#"><span class="material-symbols-outlined text-[20px]">sports_esports</span>Games</a><a class="flex items-center gap-space-sm px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="levels" href="#"><span class="material-symbols-outlined text-[20px]">layers</span>Levels</a><a class="flex items-center gap-space-sm px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="questions" href="#"><span class="material-symbols-outlined text-[20px]">quiz</span>Questions</a></nav></div><div class="p-space-md bg-surface-container-lowest rounded-lg shadow-[0_4px_12px_rgba(43,139,198,0.06)] flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">arrow_back_ios_new</span>Live Sync Active</div><p class="font-body-sm text-body-sm text-on-surface-variant">Ready to review differences and puzzle assets.</p></div></aside><div class="pl-64 flex flex-col min-h-screen"><main class="relative pt-16 flex-1 w-full px-space-xl py-space-xl bg-background"><div class="flex flex-col w-full">
+<div class="relative w-full max-w-7xl mx-auto space-y-space-xl">
+<!-- Top Action & Title Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-3 h-8 rounded-full bg-primary-container shadow-[0_3px_0_#2b8bc6]"></div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Levels</h1>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">auto_stories</span>
+            ชุดข้อมูลด่าน
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant pl-space-md">
+          จัดการด่านทั้งหมดในแต่ละชุดเกม · Manage, organize, and fine-tune game stages
+        </p>
+</div>
+<!-- Action Area with 3D Primary Button -->
+<div class="flex items-center gap-space-md">
+<button class="group relative px-space-lg py-3 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_6px_0_#2b8bc6,inset_0_2px_0_rgba(255,255,255,0.6)] hover:brightness-105 active:translate-y-[4px] active:shadow-[0_2px_0_#2b8bc6] transition-all flex items-center gap-space-xs cursor-pointer" id="open-modal-btn">
+<span class="material-symbols-outlined text-[22px] transition-transform group-hover:rotate-90">add_circle</span>
+<span>+ New level</span>
+</button>
+</div>
+</div>
+<!-- Filter Bar Component -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08)] flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Game Dropdown Pill Card -->
+<div class="relative flex items-center bg-surface-container-low hover:bg-surface-container transition-all px-space-md py-2.5 rounded-full shadow-[0_3px_0_#dfe3e5] cursor-pointer">
+<span class="material-symbols-outlined text-primary text-[20px] mr-2">sports_esports</span>
+<span class="font-label-md text-label-md text-on-surface">Spot &amp; Seek — Find the Differences</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] ml-2">expand_more</span>
+</div>
+<!-- Pill Segmented Difficulty Filters -->
+<div class="flex items-center gap-space-xs bg-surface-container-low p-1.5 rounded-full shadow-[0_3px_0_#dfe3e5]">
+<button class="filter-pill active px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-[0_3px_0_#2b8bc6] transition-all flex items-center gap-1.5">
+<span>All (9)</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-fixed-dim shadow-[0_1px_0_#2ba678]"></span>
+<span>Easy (3)</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_1px_0_#2b8bc6]"></span>
+<span>Medium (3)</span>
+</button>
+<button class="filter-pill px-space-md py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container shadow-[0_1px_0_#e85b88]"></span>
+<span>Hard (3)</span>
+</button>
+</div>
+</div>
+<!-- Right Info Chip -->
+<div class="flex items-center gap-2 px-space-md py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]">
+<span class="material-symbols-outlined text-[16px] text-primary">layers</span>
+<span>9 Levels total · ทั้งหมด 9 ด่าน</span>
+</div>
+</div>
+<!-- Levels Mosaic / Chunky Rounded Cards List -->
+<div class="space-y-space-md">
+<!-- ROW 1: Easy · Level 1 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-secondary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#2ba678] shrink-0">
+            🐱
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-secondary-fixed/70 text-on-secondary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Easy
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 1
+              </span>
+<span class="bg-secondary-container/60 text-secondary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> Active
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Cozy Cat Corner</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>120s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<!-- Edit / Delete Extruded Action Bubbles -->
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer" title="Edit Level">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer" title="Delete Level">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 2: Easy · Level 2 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-secondary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#2ba678] shrink-0">
+            🫖
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-secondary-fixed/70 text-on-secondary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Easy
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 2
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Afternoon Tea Corner</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>120s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 3: Easy · Level 3 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-secondary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#2ba678] shrink-0">
+            🎈
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-secondary-fixed/70 text-on-secondary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Easy
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 3
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Balloon Hills</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>120s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 4: Medium · Level 1 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-primary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#2b8bc6] shrink-0">
+            🌾
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-primary-fixed/70 text-on-primary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Medium
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 1
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Breezy Windmill Hill</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>90s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 5: Medium · Level 2 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-primary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#2b8bc6] shrink-0">
+            🧺
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-primary-fixed/70 text-on-primary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Medium
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 2
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Sunny Picnic Meadow</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>90s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 6: Medium · Level 3 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-primary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#2b8bc6] shrink-0">
+            🪷
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-primary-fixed/70 text-on-primary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Medium
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 3
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Secret Garden Pond</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>90s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 7: Hard · Level 1 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#e85b88] shrink-0">
+            🏮
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-tertiary-fixed/70 text-on-tertiary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Hard
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 1
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Starlit Night Market</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>60s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 8: Hard · Level 2 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#e85b88] shrink-0">
+            📚
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-tertiary-fixed/70 text-on-tertiary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Hard
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 2
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Enchanted Attic Library</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>60s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ROW 9: Hard · Level 3 -->
+<div class="group bg-surface-container-lowest p-space-md md:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(43,139,198,0.08),0_2px_6px_0_rgba(43,139,198,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(43,139,198,0.14)] hover:-translate-y-0.5 transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-[26px] shadow-[0_4px_0_#e85b88] shrink-0">
+            🕰️
+          </div>
+<div class="space-y-1 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="bg-tertiary-fixed/70 text-on-tertiary-fixed-variant font-label-sm text-label-sm px-3 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Hard
+              </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">
+                Level 3
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">Clockwork Toy Workshop</h3>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-space-lg shrink-0">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<span>60s</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lightbulb</span>
+<span>3 Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#2b8bc6] active:translate-y-[2px] active:shadow-[0_1px_0_#2b8bc6] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-tertiary-fixed hover:bg-tertiary-container text-on-tertiary-fixed-variant flex items-center justify-center shadow-[0_3px_0_#e85b88] active:translate-y-[2px] active:shadow-[0_1px_0_#e85b88] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Indicator Bar / Subtle Floating Badge -->
+<div class="pt-space-md flex items-center justify-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Live Stage Registry · ข้อมูลด่านเชื่อมต่อกับระบบเกมแบบเรียลไทม์</span>
+</div>
+</div>
+<!-- Modal Backdrop & Window -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-space-md bg-on-surface/30 backdrop-blur-md opacity-100 transition-opacity" id="new-level-modal">
+<div class="relative w-full max-w-xl bg-surface-container-lowest rounded-xl shadow-[0_24px_48px_-12px_rgba(35,65,79,0.25)] p-space-xl space-y-space-lg transform transition-all">
+<!-- Modal Header -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="relative w-14 h-14 rounded-2xl bg-primary-fixed flex items-center justify-center shadow-[0_4px_0_#2b8bc6]">
+<span class="text-[28px]">🦊</span>
+<div class="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[14px]">square_foot</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">New level</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">สร้างด่านใหม่ในชุดเกม · Create a new puzzle stage</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-all cursor-pointer shadow-sm" id="close-modal-btn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Form Inputs Area -->
+<div class="space-y-space-md">
+<!-- Field 1: Game select -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between">
+<span>Game · ชุดเกม</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">บังคับเลือก</span>
+</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-md text-body-md px-space-md py-3 rounded-full shadow-[0_2px_0_#dfe3e5] focus:outline-none focus:ring-2 focus:ring-primary-container cursor-pointer pr-10">
+<option selected="">Spot &amp; Seek — Find the Differences</option>
+<option>Spot &amp; Seek — Hidden Animals Quest</option>
+<option>Spot &amp; Seek — Microscopic World</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Field 2: Difficulty Selection Pills -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface">
+            Difficulty · ระดับความยาก
+          </label>
+<div class="grid grid-cols-3 gap-space-sm" id="difficulty-selector">
+<label class="cursor-pointer">
+<input class="peer sr-only" name="difficulty" type="radio" value="easy">
+<div class="py-2.5 px-space-sm rounded-full text-center font-label-md text-label-md bg-surface-container-low text-on-surface-variant peer-checked:bg-secondary-fixed peer-checked:text-on-secondary-fixed-variant peer-checked:shadow-[0_4px_0_#2ba678] hover:bg-surface-container transition-all flex items-center justify-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span>Easy</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="difficulty" type="radio" value="medium">
+<div class="py-2.5 px-space-sm rounded-full text-center font-label-md text-label-md bg-surface-container-low text-on-surface-variant peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:shadow-[0_4px_0_#2b8bc6] hover:bg-surface-container transition-all flex items-center justify-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span>Medium</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="difficulty" type="radio" value="hard">
+<div class="py-2.5 px-space-sm rounded-full text-center font-label-md text-label-md bg-surface-container-low text-on-surface-variant peer-checked:bg-tertiary-fixed peer-checked:text-on-tertiary-fixed-variant peer-checked:shadow-[0_4px_0_#e85b88] hover:bg-surface-container transition-all flex items-center justify-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span>Hard</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Two Columns for Numeric Inputs -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Field 3: Level number -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface">
+              Level number · ลำดับด่าน
+            </label>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-space-md py-2.5 rounded-full shadow-[0_2px_0_#dfe3e5] focus:outline-none focus:ring-2 focus:ring-primary-container" type="text" value="4">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">pin</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant pl-2">แนะนำลำดับถัดไปอัตโนมัติ</p>
+</div>
+<!-- Field 4: Time limit with Soft Pink Validation Error -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface">
+              Time limit (sec) · เวลา (วินาที)
+            </label>
+<div class="relative">
+<input class="w-full bg-error-container/30 text-error font-headline-sm text-headline-sm px-space-md py-2.5 rounded-full shadow-[0_2px_0_#ffdad6] focus:outline-none focus:ring-2 focus:ring-error" type="number" value="-10">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-error text-[20px]">warning</span>
+</div>
+</div>
+</div>
+<!-- Prominent Soft Pink Validation Badge -->
+<div class="bg-error-container/60 p-space-md rounded-2xl flex items-start gap-space-sm shadow-[0_3px_0_#ffdad6]">
+<div class="w-7 h-7 rounded-full bg-error/10 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-error text-[18px]">error</span>
+</div>
+<div class="space-y-0.5">
+<p class="font-label-md text-label-md text-on-error-container">
+              กรุณาระบุเวลาให้ถูกต้อง · เวลาต้องเป็นจำนวนเต็มบวก
+            </p>
+<p class="font-body-sm text-body-sm text-on-error-container/80">
+              Please enter a valid positive duration in seconds (e.g. 60, 90, 120).
+            </p>
+</div>
+</div>
+</div>
+<!-- Action Buttons Modal Footer -->
+<div class="pt-space-sm flex items-center justify-end gap-space-md">
+<button class="px-space-lg py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md shadow-[0_4px_0_#dfe3e5] active:translate-y-[2px] active:shadow-[0_2px_0_#dfe3e5] transition-all cursor-pointer" id="cancel-modal-btn">
+          Cancel · ยกเลิก
+        </button>
+<button class="px-space-xl py-3 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_6px_0_#2b8bc6,inset_0_2px_0_rgba(255,255,255,0.6)] hover:brightness-105 active:translate-y-[4px] active:shadow-[0_2px_0_#2b8bc6] transition-all flex items-center gap-space-xs cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Save · บันทึกข้อมูล</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+    // Simple micro-interactions for modal toggling
+    const modal = document.getElementById('new-level-modal');
+    const openBtn = document.getElementById('open-modal-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const cancelBtn = document.getElementById('cancel-modal-btn');
+
+    const showModal = () => {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    };
+
+    const hideModal = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    };
+
+    openBtn.addEventListener('click', showModal);
+    closeBtn.addEventListener('click', hideModal);
+    cancelBtn.addEventListener('click', hideModal);
+
+    // Pill Segmented Filter Interaction
+    const filterPills = document.querySelectorAll('.filter-pill');
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => {
+          p.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-[0_3px_0_#2b8bc6]');
+          p.classList.add('text-on-surface-variant');
+        });
+        pill.classList.remove('text-on-surface-variant');
+        pill.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-[0_3px_0_#2b8bc6]');
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low py-space-md px-space-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm"><p class="text-center w-full">Spot &amp; Seek · Admin Console · Crafted with care</p></footer></div></body></html>

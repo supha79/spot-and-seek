@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_blank" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-container":"#eaafc1","on-background":"#171c1e","secondary-container":"#aeedd5","surface-container-lowest":"#ffffff","on-tertiary":"#ffffff","on-secondary-container":"#316d5b","on-error":"#ffffff","on-primary-fixed-variant":"#004d67","inverse-on-surface":"#edf1f3","tertiary":"#805160","on-error-container":"#93000a","on-tertiary-fixed-variant":"#653a48","on-tertiary-fixed":"#320f1d","surface-container-high":"#e5e9eb","outline-variant":"#bfc8ce","surface-container":"#eaeef0","on-primary-fixed":"#001e2c","secondary-fixed":"#b1efd8","on-tertiary-container":"#6d404f","secondary-fixed-dim":"#96d3bd","background":"#f6fafc","on-secondary":"#ffffff","inverse-surface":"#2c3133","secondary":"#2c6956","surface-tint":"#006688","tertiary-fixed-dim":"#f2b6c8","primary":"#006688","outline":"#70787e","on-surface":"#171c1e","surface":"#f6fafc","primary-fixed-dim":"#84d0f8","error":"#ba1a1a","error-container":"#ffdad6","primary-fixed":"#c2e8ff","surface-dim":"#d6dbdd","on-primary":"#ffffff","surface-bright":"#f6fafc","on-surface-variant":"#3f484d","surface-container-highest":"#dfe3e5","surface-variant":"#dfe3e5","on-primary-container":"#005471","tertiary-fixed":"#ffd9e3","on-secondary-fixed":"#002118","surface-container-low":"#f0f4f6","on-secondary-fixed-variant":"#0d503f","inverse-primary":"#84d0f8","primary-container":"#7cc8f0"},borderRadius:{DEFAULT:"1rem",lg:"2rem",xl:"3rem",full:"9999px"},spacing:{"space-lg":"1.5rem","space-md":"1rem","margin-md":"1.5rem","space-xl":"2rem","space-2xl":"3rem","gutter-lg":"1.5rem",gutter:"1rem","space-sm":"0.5rem","space-xs":"0.25rem",margin:"1rem","margin-lg":"2.5rem"},fontFamily:{"headline-sm":["Prompt"],"headline-md":["Prompt"],"label-md":["Prompt"],"body-lg":["Prompt"],"body-md":["Prompt"],"display-hero-mobile":["Prompt"],"body-sm":["Prompt"],"headline-lg-mobile":["Prompt"],"display-hero":["Prompt"],"headline-lg":["Prompt"],"label-sm":["Prompt"],"label-lg":["Prompt"]},fontSize:{"headline-sm":["20px",{lineHeight:"28px",fontWeight:"600"}],"headline-md":["24px",{lineHeight:"32px",fontWeight:"600"}],"label-md":["14px",{lineHeight:"18px",letterSpacing:"0.02em",fontWeight:"600"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"500"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"display-hero-mobile":["36px",{lineHeight:"44px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"0em",fontWeight:"700"}],"display-hero":["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.01em",fontWeight:"700"}],"label-sm":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"label-lg":["16px",{lineHeight:"22px",letterSpacing:"0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container"><div class="fixed inset-0 pointer-events-none overflow-hidden z-0"><div class="absolute -top-24 -left-20 w-96 h-96 rounded-full bg-primary-fixed/40 blur-3xl"></div><div class="absolute top-1/4 -right-24 w-80 h-80 rounded-full bg-tertiary-fixed/40 blur-3xl"></div><div class="absolute -bottom-20 left-1/3 w-96 h-96 rounded-full bg-secondary-fixed/40 blur-3xl"></div><div class="absolute top-36 left-12 w-4 h-4 rounded-full bg-primary-container/60"></div><div class="absolute top-1/2 left-8 w-3 h-3 rounded-full bg-tertiary-container/70"></div><div class="absolute top-28 right-24 w-5 h-5 rounded-full bg-secondary-container/80"></div><div class="absolute bottom-32 right-16 w-4 h-4 rounded-full bg-primary-fixed-dim/60"></div><div class="absolute bottom-16 left-1/4 w-3 h-3 rounded-full bg-tertiary-fixed-dim/70"></div></div><div class="relative z-10 w-full min-h-screen flex flex-col justify-between"><header class="w-full max-w-[1200px] mx-auto px-margin-md md:px-margin-lg pt-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Brand logo. - Primary color: #7cc8f0
+- Font: publicSans
+- Mode: light
+- Roundness: rounded-full
+" class="h-9 w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,102,136,0.1)]" src="https://lh3.googleusercontent.com/aida/AEtjO1UtHrXHEdRErG5Y3iJSQB2aOuLilP76K2qRzn4gfRSXZp99DRDwp8dSjVVXNq0o4VOZxa_yorOxbKIttly1JtXVpu0IJV9V3rhX-7rWs7TTiGp771vbx6h0ql85taHunGAL8NhqkzFn8CNq5nk148eqDqZbLIKtjUGhS_L3BItpmsgu7xBkn0y77I9dqDiWX3KvZjlW_S3DRyTwqN95Sb2UKrN78bkHLaXteUrKU5YsL6hTPacXNoNN3-7z"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold hidden sm:inline-block">Spot &amp; Seek</span></div><div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-lowest shadow-[0_2px_8px_rgba(0,102,136,0.06)] border-2 border-surface-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Casual Play</span></div></header><main class="flex-1 flex items-center justify-center w-full max-w-[1200px] mx-auto px-margin-md md:px-margin-lg py-space-xl"><div class="flex flex-col w-full items-center justify-center relative">
+<!-- Subtle decorative floating mini stickers / ambient tags -->
+<div class="hidden lg:flex absolute -left-12 top-10 flex-col items-center rotate-[-8deg] pointer-events-none transition-transform hover:rotate-0 duration-300">
+<div class="bg-surface-container-lowest p-3 rounded-lg shadow-[0_12px_28px_rgba(43,139,198,0.14)] flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl animate-bounce">celebration</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Buddy Perks</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Free Hints +1</span>
+</div>
+</div>
+<div class="hidden lg:flex absolute -right-10 top-20 flex-col items-center rotate-[7deg] pointer-events-none transition-transform hover:rotate-0 duration-300">
+<div class="bg-surface-container-lowest px-4 py-3 rounded-lg shadow-[0_12px_28px_rgba(128,81,96,0.12)] flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary-container animate-ping"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">New Buddy Unlocked!</span>
+</div>
+</div>
+<!-- Main Card Container -->
+<div class="relative w-full max-w-[640px] bg-surface-container-lowest rounded-[32px] p-6 sm:p-9 shadow-[0_20px_50px_rgba(124,200,240,0.22)] flex flex-col items-center">
+<!-- Mascot / Cheerful Badge peeking from top -->
+<div class="absolute -top-7 left-1/2 -translate-x-1/2 flex items-center justify-center">
+<div class="flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-primary-fixed to-secondary-fixed shadow-[0_6px_16px_rgba(43,139,198,0.2)]">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">pets</span>
+<span class="font-label-md text-label-md text-on-primary-fixed-variant font-bold tracking-wide">Seeky says: “Hello New Friend!”</span>
+</div>
+</div>
+<!-- Step Progress Dots -->
+<div class="w-full flex items-center justify-between mt-3 mb-6">
+<div class="flex items-center gap-2">
+<!-- Step 1 Complete -->
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container">
+<span class="material-symbols-outlined text-[16px] text-secondary font-bold">check_circle</span>
+<span class="font-label-sm text-label-sm font-semibold">Step 1: Account</span>
+</div>
+<span class="text-outline-variant font-bold">›</span>
+<!-- Step 2 Active -->
+<div class="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold">Step 2 of 2: Pick Buddy</span>
+</div>
+</div>
+<!-- Tiny Badge -->
+<span class="hidden sm:inline-flex px-3 py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant font-medium">Casual Mode</span>
+</div>
+<!-- Title & Bilingual Subtitle -->
+<div class="text-center w-full mb-6">
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight mb-1">
+        Pick your buddy
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant font-normal">
+        เลือกอวาตาร์ที่ชอบ เปลี่ยนภายหลังได้ที่หน้า Profile
+      </p>
+</div>
+<!-- 4x2 Avatar Selection Grid -->
+<div class="w-full grid grid-cols-4 gap-3 sm:gap-4.5 mb-8" id="avatarGrid">
+<!-- 1. Cat -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1" data-buddy="Cat">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-tertiary-fixed/30 flex items-center justify-center p-1.5 transition-all duration-200 group-hover:shadow-md">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Ears -->
+<polygon fill="#eaafc1" points="20,40 32,8 50,30" stroke="#d599ab" stroke-linejoin="round" stroke-width="2"></polygon>
+<polygon fill="#eaafc1" points="80,40 68,8 50,30" stroke="#d599ab" stroke-linejoin="round" stroke-width="2"></polygon>
+<polygon fill="#ffd9e3" points="26,35 34,18 46,30"></polygon>
+<polygon fill="#ffd9e3" points="74,35 66,18 54,30"></polygon>
+<!-- Head -->
+<circle cx="50" cy="55" fill="#ffffff" r="38" stroke="#eaafc1" stroke-width="2"></circle>
+<!-- Eyes happy closed -->
+<path d="M34,50 Q40,42 46,50" fill="none" stroke="#653a48" stroke-linecap="round" stroke-width="3.5"></path>
+<path d="M54,50 Q60,42 66,50" fill="none" stroke="#653a48" stroke-linecap="round" stroke-width="3.5"></path>
+<!-- Cheeks -->
+<circle cx="30" cy="59" fill="#f2b6c8" opacity="0.6" r="6"></circle>
+<circle cx="70" cy="59" fill="#f2b6c8" opacity="0.6" r="6"></circle>
+<!-- Nose & Mouth -->
+<polygon fill="#e85b88" points="50,56 46,52 54,52"></polygon>
+<path d="M45,61 Q50,65 50,58 Q50,65 55,61" fill="none" stroke="#653a48" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Whiskers -->
+<line stroke="#653a48" stroke-linecap="round" stroke-width="2" x1="22" x2="12" y1="53" y2="50"></line>
+<line stroke="#653a48" stroke-linecap="round" stroke-width="2" x1="22" x2="10" y1="58" y2="60"></line>
+<line stroke="#653a48" stroke-linecap="round" stroke-width="2" x1="78" x2="88" y1="53" y2="50"></line>
+<line stroke="#653a48" stroke-linecap="round" stroke-width="2" x1="78" x2="90" y1="58" y2="60"></line>
+</svg>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">Cat</span>
+</div>
+<!-- 2. Bunny (SELECTED) -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 -translate-y-1" data-buddy="Bunny">
+<!-- Floating Checkmark Pill Badge -->
+<div class="absolute -top-1 right-2 z-20 w-6 h-6 rounded-full bg-primary-container text-on-primary-container shadow-[0_2px_8px_rgba(0,102,136,0.3)] flex items-center justify-center animate-bounce">
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+</div>
+<!-- Highlighted Sky-Blue Ring & Halo -->
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-fixed/40 flex items-center justify-center p-1.5 ring-4 ring-primary-container shadow-[0_8px_24px_rgba(124,200,240,0.55)]">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Long Tall Ears -->
+<ellipse cx="37" cy="24" fill="#ffffff" rx="10" ry="24" stroke="#c2e8ff" stroke-width="2"></ellipse>
+<ellipse cx="63" cy="24" fill="#ffffff" rx="10" ry="24" stroke="#c2e8ff" stroke-width="2"></ellipse>
+<ellipse cx="37" cy="25" fill="#ffd9e3" rx="5.5" ry="17"></ellipse>
+<ellipse cx="63" cy="25" fill="#ffd9e3" rx="5.5" ry="17"></ellipse>
+<!-- Head -->
+<circle cx="50" cy="58" fill="#ffffff" r="35" stroke="#c2e8ff" stroke-width="2"></circle>
+<!-- Wide Sparkly Eyes -->
+<circle cx="38" cy="54" fill="#001e2c" r="4.5"></circle>
+<circle cx="36.5" cy="52" fill="#ffffff" r="1.5"></circle>
+<circle cx="62" cy="54" fill="#001e2c" r="4.5"></circle>
+<circle cx="60.5" cy="52" fill="#ffffff" r="1.5"></circle>
+<!-- Rosy Blush Cheeks -->
+<ellipse cx="28" cy="62" fill="#ffc2d4" opacity="0.8" rx="7" ry="4.5"></ellipse>
+<ellipse cx="72" cy="62" fill="#ffc2d4" opacity="0.8" rx="7" ry="4.5"></ellipse>
+<!-- Sweet Little Nose & Smiling Mouth -->
+<ellipse cx="50" cy="59" fill="#e85b88" rx="3.5" ry="2.5"></ellipse>
+<path d="M46,63 Q50,67 50,61 Q50,67 54,63" fill="none" stroke="#004d67" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<!-- Name Label with Glow Indicator -->
+<span class="mt-2 font-label-md text-label-md text-primary font-bold px-2 py-0.5 rounded-full bg-primary-fixed/50">Bunny</span>
+</div>
+<!-- 3. Bear -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1" data-buddy="Bear">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-surface-container-high flex items-center justify-center p-1.5 transition-all duration-200 group-hover:shadow-md">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Round Bear Ears -->
+<circle cx="28" cy="30" fill="#dfbe9f" r="14" stroke="#c49b78" stroke-width="2"></circle>
+<circle cx="72" cy="30" fill="#dfbe9f" r="14" stroke="#c49b78" stroke-width="2"></circle>
+<circle cx="28" cy="30" fill="#eed9c4" r="8"></circle>
+<circle cx="72" cy="30" fill="#eed9c4" r="8"></circle>
+<!-- Head -->
+<circle cx="50" cy="57" fill="#dfbe9f" r="37" stroke="#c49b78" stroke-width="2"></circle>
+<!-- Cozy Snout Circle -->
+<ellipse cx="50" cy="64" fill="#fff5ec" rx="16" ry="12"></ellipse>
+<!-- Little Friendly Eyes -->
+<circle cx="37" cy="50" fill="#422918" r="4"></circle>
+<circle cx="36" cy="49" fill="#ffffff" r="1.2"></circle>
+<circle cx="63" cy="50" fill="#422918" r="4"></circle>
+<circle cx="62" cy="49" fill="#ffffff" r="1.2"></circle>
+<!-- Rosy Cheeks -->
+<circle cx="28" cy="58" fill="#f2b6c8" opacity="0.6" r="5.5"></circle>
+<circle cx="72" cy="58" fill="#f2b6c8" opacity="0.6" r="5.5"></circle>
+<!-- Bear Nose & Mouth -->
+<ellipse cx="50" cy="60" fill="#422918" rx="4.5" ry="3"></ellipse>
+<path d="M46,65 Q50,69 54,65" fill="none" stroke="#422918" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">Bear</span>
+</div>
+<!-- 4. Fox -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1" data-buddy="Fox">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary-fixed/30 flex items-center justify-center p-1.5 transition-all duration-200 group-hover:shadow-md">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Pointy Fox Ears -->
+<polygon fill="#f6995c" points="18,42 28,10 50,32" stroke="#e07d3c" stroke-width="2"></polygon>
+<polygon fill="#f6995c" points="82,42 72,10 50,32" stroke="#e07d3c" stroke-width="2"></polygon>
+<polygon fill="#40281b" points="24,36 31,18 45,31"></polygon>
+<polygon fill="#40281b" points="76,36 69,18 55,31"></polygon>
+<!-- Head Base -->
+<path d="M 16,52 Q 50,22 84,52 Q 86,75 50,88 Q 14,75 16,52 Z" fill="#f6995c"></path>
+<!-- Cream Cheeks / Muzzle -->
+<path d="M 22,60 Q 36,48 50,64 Q 64,48 78,60 Q 64,84 50,88 Q 36,84 22,60 Z" fill="#fffbf7"></path>
+<!-- Playful Winking Eyes -->
+<circle cx="36" cy="52" fill="#2d1c12" r="4"></circle>
+<circle cx="35" cy="51" fill="#ffffff" r="1.2"></circle>
+<path d="M 60,52 Q 65,48 70,52" fill="none" stroke="#2d1c12" stroke-linecap="round" stroke-width="3"></path>
+<!-- Nose & Blush -->
+<circle cx="28" cy="62" fill="#f2b6c8" opacity="0.6" r="5"></circle>
+<circle cx="72" cy="62" fill="#f2b6c8" opacity="0.6" r="5"></circle>
+<ellipse cx="50" cy="74" fill="#2d1c12" rx="4" ry="3"></ellipse>
+</svg>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">Fox</span>
+</div>
+<!-- 5. Panda -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1" data-buddy="Panda">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary-container/40 flex items-center justify-center p-1.5 transition-all duration-200 group-hover:shadow-md">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Round Black Ears -->
+<circle cx="26" cy="28" fill="#2c3133" r="13"></circle>
+<circle cx="74" cy="28" fill="#2c3133" r="13"></circle>
+<!-- Tiny Bamboo Leaf Accent -->
+<ellipse cx="78" cy="18" fill="#2ba678" rx="6" ry="2.5" transform="rotate(-30 78 18)"></ellipse>
+<!-- White Face -->
+<circle cx="50" cy="57" fill="#ffffff" r="37" stroke="#eaeef0" stroke-width="2"></circle>
+<!-- Panda Eye Patches (Angled) -->
+<ellipse cx="36" cy="52" fill="#2c3133" rx="9" ry="11" transform="rotate(-15 36 52)"></ellipse>
+<ellipse cx="64" cy="52" fill="#2c3133" rx="9" ry="11" transform="rotate(15 64 52)"></ellipse>
+<!-- Sparkly Pupils -->
+<circle cx="36" cy="52" fill="#ffffff" r="3.2"></circle>
+<circle cx="64" cy="52" fill="#ffffff" r="3.2"></circle>
+<!-- Cheeks -->
+<circle cx="26" cy="62" fill="#f2b6c8" opacity="0.6" r="5.5"></circle>
+<circle cx="74" cy="62" fill="#f2b6c8" opacity="0.6" r="5.5"></circle>
+<!-- Nose & Mouth -->
+<ellipse cx="50" cy="64" fill="#2c3133" rx="4.5" ry="3"></ellipse>
+<path d="M46,69 Q50,73 54,69" fill="none" stroke="#2c3133" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">Panda</span>
+</div>
+<!-- 6. Penguin -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1" data-buddy="Penguin">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-fixed/30 flex items-center justify-center p-1.5 transition-all duration-200 group-hover:shadow-md">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Tiny Flippers -->
+<ellipse cx="14" cy="60" fill="#314757" rx="6" ry="14" transform="rotate(15 14 60)"></ellipse>
+<ellipse cx="86" cy="60" fill="#314757" rx="6" ry="14" transform="rotate(-15 86 60)"></ellipse>
+<!-- Black/Navy Head -->
+<ellipse cx="50" cy="54" fill="#314757" rx="36" ry="38"></ellipse>
+<!-- White Heart Face / Belly -->
+<path d="M 50,42 C 38,30 22,40 22,60 C 22,76 34,88 50,88 C 66,88 78,76 78,60 C 78,40 62,30 50,42 Z" fill="#ffffff"></path>
+<!-- Cheerful Eyes -->
+<circle cx="38" cy="50" fill="#171c1e" r="4"></circle>
+<circle cx="37" cy="49" fill="#ffffff" r="1.2"></circle>
+<circle cx="62" cy="50" fill="#171c1e" r="4"></circle>
+<circle cx="61" cy="49" fill="#ffffff" r="1.2"></circle>
+<!-- Cheeks -->
+<circle cx="28" cy="58" fill="#f2b6c8" opacity="0.7" r="5"></circle>
+<circle cx="72" cy="58" fill="#f2b6c8" opacity="0.7" r="5"></circle>
+<!-- Bright Yellow Beak -->
+<polygon fill="#ffb703" points="50,56 42,63 58,63"></polygon>
+</svg>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">Penguin</span>
+</div>
+<!-- 7. Frog -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1" data-buddy="Frog">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary-container/40 flex items-center justify-center p-1.5 transition-all duration-200 group-hover:shadow-md">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Big Round Eyes on Top -->
+<circle cx="32" cy="30" fill="#8edcb9" r="15" stroke="#68c49d" stroke-width="2"></circle>
+<circle cx="68" cy="30" fill="#8edcb9" r="15" stroke="#68c49d" stroke-width="2"></circle>
+<circle cx="32" cy="30" fill="#ffffff" r="9"></circle>
+<circle cx="68" cy="30" fill="#ffffff" r="9"></circle>
+<circle cx="34" cy="30" fill="#1b4d3e" r="5"></circle>
+<circle cx="33" cy="28" fill="#ffffff" r="1.5"></circle>
+<circle cx="66" cy="30" fill="#1b4d3e" r="5"></circle>
+<circle cx="65" cy="28" fill="#ffffff" r="1.5"></circle>
+<!-- Minty Green Body -->
+<ellipse cx="50" cy="62" fill="#8edcb9" rx="38" ry="32" stroke="#68c49d" stroke-width="2"></ellipse>
+<!-- Rosy Cheeks -->
+<circle cx="24" cy="60" fill="#f2b6c8" opacity="0.6" r="6"></circle>
+<circle cx="76" cy="60" fill="#f2b6c8" opacity="0.6" r="6"></circle>
+<!-- Nostril Dots -->
+<circle cx="47" cy="54" fill="#316d5b" r="1.5"></circle>
+<circle cx="53" cy="54" fill="#316d5b" r="1.5"></circle>
+<!-- Wide Happy Grin -->
+<path d="M 32,64 Q 50,78 68,64" fill="none" stroke="#1b4d3e" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">Frog</span>
+</div>
+<!-- 8. Duck -->
+<div class="avatar-card group relative flex flex-col items-center p-2 rounded-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1" data-buddy="Duck">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-tertiary-fixed/30 flex items-center justify-center p-1.5 transition-all duration-200 group-hover:shadow-md">
+<svg aria-hidden="true" class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+<!-- Little Tuft of Feathers -->
+<path d="M 48,22 Q 50,12 55,16 Q 52,24 50,26" fill="#ffd166"></path>
+<!-- Pastel Yellow Body/Head -->
+<circle cx="50" cy="55" fill="#ffe28a" r="37" stroke="#ffd166" stroke-width="2"></circle>
+<!-- Sweet Happy Eyes -->
+<circle cx="36" cy="49" fill="#4d3800" r="4"></circle>
+<circle cx="35" cy="48" fill="#ffffff" r="1.2"></circle>
+<circle cx="64" cy="49" fill="#4d3800" r="4"></circle>
+<circle cx="63" cy="48" fill="#ffffff" r="1.2"></circle>
+<!-- Soft Rosy Cheeks -->
+<circle cx="27" cy="57" fill="#f2b6c8" opacity="0.7" r="5.5"></circle>
+<circle cx="73" cy="57" fill="#f2b6c8" opacity="0.7" r="5.5"></circle>
+<!-- Bright Cute Orange Beak -->
+<ellipse cx="50" cy="62" fill="#ff9f1c" rx="14" ry="8"></ellipse>
+<path d="M 42,62 Q 50,65 58,62" fill="none" stroke="#d67b00" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+</div>
+<span class="mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface">Duck</span>
+</div>
+</div>
+<!-- Actions Section -->
+<div class="w-full flex flex-col items-center gap-3">
+<!-- Primary Tactile 3D Button -->
+<button class="w-full h-[54px] rounded-full bg-gradient-to-b from-[#7cc8f0] to-[#5bbbea] text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-[0_6px_0_#2b8bc6] flex items-center justify-center gap-2 transition-all duration-150 active:translate-y-[4px] active:shadow-[0_2px_0_#2b8bc6] cursor-pointer group" id="continueBtn">
+<span id="btnText">Continue with Bunny</span>
+<span class="material-symbols-outlined text-2xl transition-transform group-hover:translate-x-1" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+<!-- Secondary Link -->
+<button class="py-2 px-4 rounded-full text-on-surface-variant font-label-md text-label-md font-medium hover:text-on-surface transition-colors cursor-pointer">
+        Skip for now
+      </button>
+</div>
+<!-- Reassuring Feature Badges Pill Strip -->
+<div class="w-full mt-7 pt-5 border-t border-surface-container flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm">
+<span class="text-primary font-bold">✨</span>
+<span>Change anytime in Profile</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm">
+<span class="text-secondary font-bold">🐾</span>
+<span>8 Free Buddies</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm">
+<span class="text-tertiary font-bold">🎨</span>
+<span>Custom colors soon</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const cards = document.querySelectorAll('.avatar-card');
+    const continueBtn = document.getElementById('continueBtn');
+    const btnText = document.getElementById('btnText');
+    let selectedBuddy = 'Bunny';
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const buddy = card.getAttribute('data-buddy');
+        if (!buddy) return;
+        selectedBuddy = buddy;
+        btnText.textContent = `Continue with ${selectedBuddy}`;
+
+        // Reset all cards
+        cards.forEach(c => {
+          c.classList.remove('-translate-y-1');
+          const circle = c.querySelector('.relative.w-16');
+          if (circle) {
+            circle.classList.remove('ring-4', 'ring-primary-container', 'shadow-[0_8px_24px_rgba(124,200,240,0.55)]');
+          }
+          const badge = c.querySelector('.absolute.-top-1');
+          if (badge) badge.remove();
+
+          const label = c.querySelector('span:last-child');
+          if (label) {
+            label.className = 'mt-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface';
+          }
+        });
+
+        // Apply selected state
+        card.classList.add('-translate-y-1');
+        const targetCircle = card.querySelector('.relative.w-16');
+        if (targetCircle) {
+          targetCircle.classList.add('ring-4', 'ring-primary-container', 'shadow-[0_8px_24px_rgba(124,200,240,0.55)]');
+        }
+
+        // Add checkmark badge
+        const checkBadge = document.createElement('div');
+        checkBadge.className = 'absolute -top-1 right-2 z-20 w-6 h-6 rounded-full bg-primary-container text-on-primary-container shadow-[0_2px_8px_rgba(0,102,136,0.3)] flex items-center justify-center animate-bounce';
+        checkBadge.innerHTML = '<span class="material-symbols-outlined text-[15px] font-bold">check</span>';
+        card.appendChild(checkBadge);
+
+        // Update label
+        const targetLabel = card.querySelector('span:last-child');
+        if (targetLabel) {
+          targetLabel.className = 'mt-2 font-label-md text-label-md text-primary font-bold px-2 py-0.5 rounded-full bg-primary-fixed/50';
+        }
+      });
+    });
+  })();
+</script></main><footer class="w-full max-w-[1200px] mx-auto px-margin-md md:px-margin-lg pb-space-lg text-center"><p class="font-label-sm text-label-sm text-on-surface-variant">© Spot &amp; Seek • Cozy Sensory Puzzle Adventure</p></footer></div></body></html>

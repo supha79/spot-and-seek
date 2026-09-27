@@ -1,0 +1,462 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary": "#ffffff", "on-error-container": "#93000a", "on-secondary-fixed": "#002118", "on-tertiary-container": "#6d404f", "tertiary": "#805160", "on-primary-fixed-variant": "#004d67", "surface-container-high": "#e5e9eb", "inverse-primary": "#84d0f8", "on-secondary-container": "#316d5b", "on-tertiary-fixed": "#320f1d", "surface": "#f6fafc", "inverse-on-surface": "#edf1f3", "inverse-surface": "#2c3133", "error-container": "#ffdad6", "secondary-fixed": "#b1efd8", "on-error": "#ffffff", "on-tertiary": "#ffffff", "tertiary-fixed": "#ffd9e3", "on-primary-fixed": "#001e2c", "on-primary-container": "#005471", "secondary-fixed-dim": "#96d3bd", "on-secondary-fixed-variant": "#0d503f", "outline-variant": "#bfc8ce", "surface-variant": "#dfe3e5", "surface-container": "#eaeef0", "primary": "#006688", "on-tertiary-fixed-variant": "#653a48", "surface-bright": "#f6fafc", "surface-container-highest": "#dfe3e5", "surface-container-low": "#f0f4f6", "primary-container": "#7cc8f0", "secondary-container": "#aeedd5", "secondary": "#2c6956", "on-surface": "#171c1e", "surface-dim": "#d6dbdd", "tertiary-fixed-dim": "#f2b6c8", "surface-tint": "#006688", "surface-container-lowest": "#ffffff", "on-surface-variant": "#3f484d", "error": "#ba1a1a", "primary-fixed": "#c2e8ff", "on-background": "#171c1e", "outline": "#70787e", "primary-fixed-dim": "#84d0f8", "on-primary": "#ffffff", "tertiary-container": "#eaafc1", "background": "#f6fafc" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xs": "0.25rem", "margin-md": "1.5rem", "margin-lg": "2.5rem", "space-xl": "2rem", "gutter-lg": "1.5rem", "margin": "1rem", "space-lg": "1.5rem", "gutter": "1rem", "space-2xl": "3rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-lg-mobile": [ "Prompt" ], "label-sm": [ "Prompt" ], "label-lg": [ "Prompt" ], "body-md": [ "Prompt" ], "body-lg": [ "Prompt" ], "label-md": [ "Prompt" ], "headline-sm": [ "Prompt" ], "headline-md": [ "Prompt" ], "display-hero-mobile": [ "Prompt" ], "display-hero": [ "Prompt" ], "body-sm": [ "Prompt" ], "headline-lg": [ "Prompt" ] }, "fontSize": { "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "700" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "label-lg": [ "16px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "500" } ], "label-md": [ "14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "600" } ], "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "display-hero": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex items-center justify-between px-margin-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shadow-[0_3px_0_#2b8bc6]"><span class="material-symbols-outlined text-primary text-[22px]">search</span></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight flex items-center gap-1">Spot <span class="text-tertiary font-bold">&amp;</span> Seek</span></div><span class="bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-3 py-1 rounded-full">Admin</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-full shadow-[0_2px_0_#dfe3e5]"><div class="relative"><div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-headline-sm text-[16px]">🦊</div><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary ring-2 ring-surface-container-lowest"></span></div><span class="font-label-md text-label-md text-on-surface">admin_sky</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_2px_0_#004d67]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-40 pt-20 pb-space-lg flex flex-col justify-between px-space-md"><div class="flex flex-col gap-space-xs"><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-md shadow-[0_4px_0_#2b8bc6]"><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="dashboard" href="#">Dashboard</a><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="games" href="#">Games</a><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="levels" href="#">Levels</a><a class="flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all" data-path="questions" href="#">Questions</a></nav></div><div class="p-space-md bg-surface-container-lowest rounded-lg shadow-[0_4px_12px_rgba(43,139,198,0.06)] flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">arrow_back_ios_new</span>Live Sync Active</div><p class="font-body-sm text-body-sm text-on-surface-variant">Ready to review differences and puzzle assets.</p></div></aside><div class="pl-64 flex flex-col min-h-screen"><main class="relative pt-16 flex-1 w-full px-space-xl py-space-xl bg-background"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Banner / Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-md flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight flex items-center gap-space-sm">
+          Questions
+          <span class="text-tertiary font-bold text-headline-md">✨</span>
+</h1>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-3.5 py-1.5 rounded-full shadow-[0_2px_0_#96d3bd] flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          Total 27 questions · ทั้งหมด 27 ข้อ
+        </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">auto_stories</span>
+        จัดการจุดจับผิดภาพและเฉลยในแต่ละด่าน
+        <span class="text-outline-variant">|</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant/80">Manage spot-the-difference puzzle pairs &amp; clues</span>
+</p>
+</div>
+<!-- Action Button with Tactile Extrusion -->
+<div class="flex items-center gap-space-sm">
+<button class="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_5px_0_#004d67] active:translate-y-1 active:shadow-[0_1px_0_#004d67] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">add_circle</span>
+<span>+ New question</span>
+</button>
+</div>
+</div>
+<!-- Filter & Search Toolbar (Pillowy Tactile Bar) -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_-4px_rgba(0,102,136,0.06)] flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md flex-1">
+<!-- Select Level -->
+<div class="relative min-w-[260px]">
+<label class="sr-only">Select Level</label>
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+</div>
+<select class="w-full bg-surface-container-low text-on-surface font-label-md text-label-md pl-10 pr-10 py-3 rounded-full shadow-[0_2px_0_#dfe3e5] focus:outline-none focus:bg-surface-container-lowest appearance-none cursor-pointer">
+<option value="all">All Levels (ด่านทั้งหมด)</option>
+<option selected="" value="cat">Level 1 — Cozy Cat Corner (Easy)</option>
+<option value="tea">Level 2 — Afternoon Tea Corner (Easy)</option>
+<option value="balloon">Level 3 — Balloon Hills (Easy)</option>
+<option value="windmill">Level 1 — Breezy Windmill Hill (Medium)</option>
+<option value="picnic">Level 2 — Sunny Picnic Meadow (Medium)</option>
+<option value="night">Level 1 — Starlit Night Market (Hard)</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Search Input -->
+<div class="relative flex-1">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md pl-11 pr-4 py-2.5 rounded-full shadow-[0_2px_0_#dfe3e5] placeholder:text-on-surface-variant/60 focus:outline-none focus:bg-surface-container-lowest transition-all" placeholder="ค้นหาชื่อภาพ หรือจุดต่าง เช่น 'cat bowl', 'pillow'..." type="text">
+</div>
+</div>
+<!-- Right count badge & filter pill -->
+<div class="flex items-center justify-between sm:justify-end gap-space-sm">
+<div class="bg-surface-container-high/60 text-on-surface-variant font-label-sm text-label-sm px-4 py-2 rounded-full flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">filter_list</span>
+        Showing 6 of 27 puzzle pairs
+      </div>
+<button class="w-10 h-10 rounded-full bg-surface-container-low text-on-surface-variant flex items-center justify-center shadow-[0_2px_0_#dfe3e5] hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Cards Grid (6 Distinct Question Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg">
+<!-- Card 1: Easy Cozy Cat Corner Q1 -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_-4px_rgba(0,102,136,0.08)] flex flex-col justify-between gap-space-md hover:-translate-y-1 transition-all">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 self-start px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shadow-[0_2px_0_#96d3bd]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Easy · Level 1 (Cozy Cat Corner)
+          </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-1">Q1: Ginger Cat Collar Bell</h2>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[0_2px_0_#84d0f8] hover:bg-primary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-[0_2px_0_#f2b6c8] hover:bg-tertiary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Side-by-side Comparison Visualizer -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-2">
+<div class="grid grid-cols-2 gap-2">
+<!-- Left: Original -->
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Original Ginger Cat" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UKRwQ00WguGNaqjMduKIwoUPiixFW7ADPwcWAE0R9ijJJuWa-5PDPwoLhFo1_lPyQPsoDNIZ_fuktLYwYRz6-YFx7j8baFzdWlClJxHCthdeufRFILFOpV9kKKPcaqlS40j6WwSdwAf0duewVHDNigwLm0rcSHJtpYF-LDaNxLwMZK4NLb8Qu9XtTr0yyhLZhrbyCim_EKoTBGxIBeFTSNwlccfhtz7xB_aSV95y65tnUigluqv05V_R5V">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Original (ต้นฉบับ)</span>
+</div>
+<!-- Right: Difference with Clue Ring -->
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Difference Clue Cat" class="w-full h-full object-cover filter contrast-[1.02]" src="https://lh3.googleusercontent.com/aida/AEtjO1UKRwQ00WguGNaqjMduKIwoUPiixFW7ADPwcWAE0R9ijJJuWa-5PDPwoLhFo1_lPyQPsoDNIZ_fuktLYwYRz6-YFx7j8baFzdWlClJxHCthdeufRFILFOpV9kKKPcaqlS40j6WwSdwAf0duewVHDNigwLm0rcSHJtpYF-LDaNxLwMZK4NLb8Qu9XtTr0yyhLZhrbyCim_EKoTBGxIBeFTSNwlccfhtz7xB_aSV95y65tnUigluqv05V_R5V">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Difference (จุดต่าง)</span>
+<!-- Cute highlight dashed circle -->
+<div class="absolute top-[48%] left-[44%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-2 border-dashed border-tertiary animate-pulse bg-tertiary/10 flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center shadow-sm">1</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[12px] px-1 pt-1">
+<span class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> จุดระฆังคอแมวสีทอง
+          </span>
+<span class="text-on-surface-variant/60">Tap to inspect</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full shadow-[0_1px_0_#84d0f8]">
+<span class="material-symbols-outlined text-[15px]">search_check</span>
+            3 differences
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm px-2.5 py-1 rounded-full">
+            Active · ใช้งานอยู่
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant/70">20 Sep 2026</span>
+</div>
+</div>
+<!-- Card 2: Easy Cozy Cat Corner Q2 -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_-4px_rgba(0,102,136,0.08)] flex flex-col justify-between gap-space-md hover:-translate-y-1 transition-all">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 self-start px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shadow-[0_2px_0_#96d3bd]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Easy · Level 1 (Cozy Cat Corner)
+          </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-1">Q2: Morning Tea Cup Steam</h2>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[0_2px_0_#84d0f8] hover:bg-primary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-[0_2px_0_#f2b6c8] hover:bg-tertiary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Side-by-side Comparison Visualizer -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-2">
+<div class="grid grid-cols-2 gap-2">
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Original Tea Cup Scene" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UKRwQ00WguGNaqjMduKIwoUPiixFW7ADPwcWAE0R9ijJJuWa-5PDPwoLhFo1_lPyQPsoDNIZ_fuktLYwYRz6-YFx7j8baFzdWlClJxHCthdeufRFILFOpV9kKKPcaqlS40j6WwSdwAf0duewVHDNigwLm0rcSHJtpYF-LDaNxLwMZK4NLb8Qu9XtTr0yyhLZhrbyCim_EKoTBGxIBeFTSNwlccfhtz7xB_aSV95y65tnUigluqv05V_R5V">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Original (ต้นฉบับ)</span>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Difference Tea Cup Scene" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UKRwQ00WguGNaqjMduKIwoUPiixFW7ADPwcWAE0R9ijJJuWa-5PDPwoLhFo1_lPyQPsoDNIZ_fuktLYwYRz6-YFx7j8baFzdWlClJxHCthdeufRFILFOpV9kKKPcaqlS40j6WwSdwAf0duewVHDNigwLm0rcSHJtpYF-LDaNxLwMZK4NLb8Qu9XtTr0yyhLZhrbyCim_EKoTBGxIBeFTSNwlccfhtz7xB_aSV95y65tnUigluqv05V_R5V">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Difference (จุดต่าง)</span>
+<div class="absolute top-[28%] right-[22%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-2 border-dashed border-tertiary animate-pulse bg-tertiary/10 flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center shadow-sm">2</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[12px] px-1 pt-1">
+<span class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> ลวดลายควันแก้วชา
+          </span>
+<span class="text-on-surface-variant/60">Tap to inspect</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full shadow-[0_1px_0_#84d0f8]">
+<span class="material-symbols-outlined text-[15px]">search_check</span>
+            3 differences
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm px-2.5 py-1 rounded-full">
+            Active · ใช้งานอยู่
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant/70">20 Sep 2026</span>
+</div>
+</div>
+<!-- Card 3: Easy Balloon Hills Q1 -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_-4px_rgba(0,102,136,0.08)] flex flex-col justify-between gap-space-md hover:-translate-y-1 transition-all">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 self-start px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shadow-[0_2px_0_#96d3bd]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Easy · Level 3 (Balloon Hills)
+          </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-1">Q1: Rainbow Striped Balloon</h2>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[0_2px_0_#84d0f8] hover:bg-primary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-[0_2px_0_#f2b6c8] hover:bg-tertiary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Side-by-side Comparison Visualizer -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-2">
+<div class="grid grid-cols-2 gap-2">
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Original Balloons" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UoRuzZwy6ZtFX8cWoBOPx8EIryDS_cWiEsppDRQzsvjYiuzBmeM2qnhUcfUpPLKUIkBJ0sgxnOgM02GQoS7-eMHO5LCs7m1QVb0Nrlr8g3-nUQJFNpnUlJ8lgHvd8DGm0nsz15BfZ8d7zHU3bj2dB80_BFwNlA6FMUJMxjrSP21FQXKvPdN23dbctBQTJ2W1T7L7gatpd-bTr2B7GSLwtd7XZWeNVUbdtfMQvHULXjj_tyYvSVioWiAcua">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Original (ต้นฉบับ)</span>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Difference Balloons" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UoRuzZwy6ZtFX8cWoBOPx8EIryDS_cWiEsppDRQzsvjYiuzBmeM2qnhUcfUpPLKUIkBJ0sgxnOgM02GQoS7-eMHO5LCs7m1QVb0Nrlr8g3-nUQJFNpnUlJ8lgHvd8DGm0nsz15BfZ8d7zHU3bj2dB80_BFwNlA6FMUJMxjrSP21FQXKvPdN23dbctBQTJ2W1T7L7gatpd-bTr2B7GSLwtd7XZWeNVUbdtfMQvHULXjj_tyYvSVioWiAcua">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Difference (จุดต่าง)</span>
+<div class="absolute top-[32%] left-[36%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-2 border-dashed border-tertiary animate-pulse bg-tertiary/10 flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center shadow-sm">1</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[12px] px-1 pt-1">
+<span class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> สีริ้วบอลลูนลูกใหญ่
+          </span>
+<span class="text-on-surface-variant/60">Tap to inspect</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full shadow-[0_1px_0_#84d0f8]">
+<span class="material-symbols-outlined text-[15px]">search_check</span>
+            3 differences
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm px-2.5 py-1 rounded-full">
+            Active · ใช้งานอยู่
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant/70">19 Sep 2026</span>
+</div>
+</div>
+<!-- Card 4: Medium Sunny Picnic Meadow Q1 -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_-4px_rgba(0,102,136,0.08)] flex flex-col justify-between gap-space-md hover:-translate-y-1 transition-all">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 self-start px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm shadow-[0_2px_0_#84d0f8]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            Medium · Level 2 (Sunny Picnic)
+          </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-1">Q1: Picnic Basket Bread Roll</h2>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[0_2px_0_#84d0f8] hover:bg-primary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-[0_2px_0_#f2b6c8] hover:bg-tertiary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Side-by-side Comparison Visualizer -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-2">
+<div class="grid grid-cols-2 gap-2">
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Original Picnic Meadow" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1Vr45IgXtLlyzcL2GeTWeBRn2XweYGNPpxktGtWGKmkuMHY8DX3TiRluSNKXyafeQfBZj5gBMwkqCWsM1ETn8ptfTyROauy4JNNG-O6jlZh71928lmIrtAVF96333F2ShQGYUEbM27T5AsiF2uUIw0tV3n973sjB-Bhn8_ZQiC2LLsShU3mq1xJ8EBrENCgKnp3A5bkGZstuQWtI5ZqcziITWd_bB1CFfh-OGrkL2g4wRik7bUvvoJbcRO3">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Original (ต้นฉบับ)</span>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img alt="Difference Picnic Meadow" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1Vr45IgXtLlyzcL2GeTWeBRn2XweYGNPpxktGtWGKmkuMHY8DX3TiRluSNKXyafeQfBZj5gBMwkqCWsM1ETn8ptfTyROauy4JNNG-O6jlZh71928lmIrtAVF96333F2ShQGYUEbM27T5AsiF2uUIw0tV3n973sjB-Bhn8_ZQiC2LLsShU3mq1xJ8EBrENCgKnp3A5bkGZstuQWtI5ZqcziITWd_bB1CFfh-OGrkL2g4wRik7bUvvoJbcRO3">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Difference (จุดต่าง)</span>
+<div class="absolute top-[62%] right-[30%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-2 border-dashed border-tertiary animate-pulse bg-tertiary/10 flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center shadow-sm">1</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[12px] px-1 pt-1">
+<span class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> จำนวนขนมปังในตะกร้า
+          </span>
+<span class="text-on-surface-variant/60">Tap to inspect</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full shadow-[0_1px_0_#84d0f8]">
+<span class="material-symbols-outlined text-[15px]">search_check</span>
+            3 differences
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm px-2.5 py-1 rounded-full">
+            Active · ใช้งานอยู่
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant/70">19 Sep 2026</span>
+</div>
+</div>
+<!-- Card 5: Medium Breezy Windmill Hill Q2 -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_-4px_rgba(0,102,136,0.08)] flex flex-col justify-between gap-space-md hover:-translate-y-1 transition-all">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 self-start px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm shadow-[0_2px_0_#84d0f8]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            Medium · Level 1 (Windmill Hill)
+          </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-1">Q2: Lavender Field Cottage Roof</h2>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[0_2px_0_#84d0f8] hover:bg-primary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-[0_2px_0_#f2b6c8] hover:bg-tertiary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Side-by-side Comparison Visualizer -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-2">
+<div class="grid grid-cols-2 gap-2">
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A whimsical cozy anime illustration of a lavender flower field with a rustic cottage and windmill under breezy blue skies, pastel purple and mint tones, storybook aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_16eediAW836KFc0UHxMCSsw6gJWD3ZhGwpHbuNqM_KBnccAam6N4XNv5m_sNMZVspbhroZS8cv0HtqycZ1xU79j-g_K1zEN4MqQvdT7h5onHtJjUYtcyCOIR6hIGVsr9RU2_-3x-BP81-ANn93HWNHk9n5gjU_t67U2rY-9PAaTo94kBIlriDnbwgwT3xuHqBIHvcvtynf1y4z2fuiQQQSSLxpuceDucC64UCjuh">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Original (ต้นฉบับ)</span>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A whimsical cozy anime illustration of a lavender flower field with a rustic cottage and windmill under breezy blue skies, pastel purple and mint tones, with slight architectural difference on roof" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZXsbBN0644Il6yFwhD72VQezYIG6yJv_uDStaJDnnGVW-RbHYGZIXJaUKwJLQA6hI7zT7yAqg9TkSex9NWQ1HdCzSxz4cEgePxXilJbwhjeCrOGfymqtRS0ThXVkAD8gJgtsR1d_IgNA9Ad9qeMZZ4VX0pV0r6JPxxVVvBmgW-W1ZPb1XIlrHHVwWynoRmNs7f9sKXt-ImO6_AGMlKTlXQ1B6lzCo2imxWQkbk2ir">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Difference (จุดต่าง)</span>
+<div class="absolute top-[40%] right-[35%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-2 border-dashed border-tertiary animate-pulse bg-tertiary/10 flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center shadow-sm">2</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[12px] px-1 pt-1">
+<span class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> ทรงหลังคาบ้านกระท่อม
+          </span>
+<span class="text-on-surface-variant/60">Tap to inspect</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 bg-primary-fixed/60 text-on-primary-fixed-variant font-label-sm text-label-sm px-2.5 py-1 rounded-full shadow-[0_1px_0_#84d0f8]">
+<span class="material-symbols-outlined text-[15px]">search_check</span>
+            3 differences
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm px-2.5 py-1 rounded-full">
+            Active · ใช้งานอยู่
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant/70">17 Sep 2026</span>
+</div>
+</div>
+<!-- Card 6: Hard Starlit Night Market Q3 -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-[0_8px_24px_-4px_rgba(0,102,136,0.08)] flex flex-col justify-between gap-space-md hover:-translate-y-1 transition-all">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 self-start px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm shadow-[0_2px_0_#f2b6c8]">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Hard · Level 1 (Night Market)
+          </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-1">Q3: Neon Lantern Reflection</h2>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-[0_2px_0_#84d0f8] hover:bg-primary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-[0_2px_0_#f2b6c8] hover:bg-tertiary-container transition-transform active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Side-by-side Comparison Visualizer -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-2">
+<div class="grid grid-cols-2 gap-2">
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A charming cozy night market with glowing paper lanterns, food stalls, soft pastel purple twilight, cute anime characters enjoying snacks, gentle starlight reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALMxQFBThqMqNuTeFmLxDWJAgK57oegSD57HNQ4M66Kz_9mPnfz_xnSeF_57eeNEDLJzeiMlcHX6wN0yZwtSNrunl_pmmG38WeGp3z4rv62JoWo3PTePtU6NwsXSI95jNXOlcd2SHBSBCXXmBB2RBfAxIxewhMEUOPHe6jR-GHP-jPTM9pl_JvY_i_vLSAE66j3WtrBb5TMe2PxwaJ5KUGTT9hk8VP6WPGQy7x4-Ps">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Original (ต้นฉบับ)</span>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-square flex flex-col items-center justify-center shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A charming cozy night market with glowing paper lanterns, food stalls, soft pastel purple twilight, difference on lantern glow and street mirror reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPOBp6SjX8otwCA7-PtoZtEgXHfHP-2Yvb9JG03DBdqoNvnXrkv4d4QFS82wYBCAgkEhcTWFnthRoh5ZNKkxjaJjqNNCk5sHBCDoIFvkozObVbZgcSItNG1GuWQhl8mjc_2aAcPBJGFdFejLK8Sg3ftxVykqELQaAlBUOovl97q0FikDdysPtqFpvCYxrIlmIWSCtl307QsOJjEjK4qtHdyBaDo9wS_mM7cvhYo8XE">
+<span class="absolute bottom-1.5 left-1.5 bg-surface/90 backdrop-blur-sm text-on-surface font-label-sm text-[11px] px-2 py-0.5 rounded-full shadow-sm">Difference (จุดต่าง)</span>
+<div class="absolute top-[35%] left-[65%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-2 border-dashed border-tertiary animate-pulse bg-tertiary/10 flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center shadow-sm">3</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[12px] px-1 pt-1">
+<span class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> แสงสะท้อนโคมไฟนีออน
+          </span>
+<span class="text-on-surface-variant/60">Tap to inspect</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed/60 text-on-tertiary-fixed font-label-sm text-label-sm px-2.5 py-1 rounded-full shadow-[0_1px_0_#f2b6c8]">
+<span class="material-symbols-outlined text-[15px]">search_check</span>
+            5 differences
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed/50 text-secondary font-label-sm text-label-sm px-2.5 py-1 rounded-full">
+            Active · ใช้งานอยู่
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant/70">16 Sep 2026</span>
+</div>
+</div>
+</div>
+<!-- Bottom Pagination & Interactive Stats -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-[0_8px_24px_-4px_rgba(0,102,136,0.06)] flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span>Page 1 of 5</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>27 Puzzle items active in database</span>
+</div>
+<!-- Tactile Pagination Pill Bar -->
+<div class="flex items-center gap-1.5 bg-surface-container-low p-1.5 rounded-full shadow-[0_2px_0_#dfe3e5]">
+<button class="px-3.5 py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors cursor-pointer flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span>‹ Prev</span>
+</button>
+<!-- Active Page Pill -->
+<button class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center shadow-[0_3px_0_#004d67] font-bold">
+        1
+      </button>
+<button class="w-8 h-8 rounded-full text-on-surface-variant font-label-md text-label-md flex items-center justify-center hover:bg-surface-container-high transition-colors">
+        2
+      </button>
+<button class="w-8 h-8 rounded-full text-on-surface-variant font-label-md text-label-md flex items-center justify-center hover:bg-surface-container-high transition-colors">
+        3
+      </button>
+<button class="w-8 h-8 rounded-full text-on-surface-variant font-label-md text-label-md flex items-center justify-center hover:bg-surface-container-high transition-colors">
+        4
+      </button>
+<button class="w-8 h-8 rounded-full text-on-surface-variant font-label-md text-label-md flex items-center justify-center hover:bg-surface-container-high transition-colors">
+        5
+      </button>
+<button class="px-3.5 py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors cursor-pointer flex items-center gap-1">
+<span>Next ›</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Ensure the Questions tab in the sidebar is active per prompt instruction
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('aside nav a');
+    navLinks.forEach(link => {
+      if (link.getAttribute('data-path') === 'questions' || link.textContent.trim().toLowerCase() === 'questions') {
+        link.className = 'flex items-center px-space-md py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-[0_4px_0_#004d67] transition-all';
+      } else {
+        link.className = 'flex items-center px-space-md py-3 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-all';
+      }
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-low py-space-md px-space-xl flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm"><p class="text-center w-full">Spot &amp; Seek · Admin Console · Crafted with care</p></footer></div></body></html>
