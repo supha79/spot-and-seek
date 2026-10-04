@@ -9,3 +9,5 @@ Thumbs.db
 *.tsbuildinfo
 .vite/
 coverage/
+/supabase/.temp/
+/supabase/.branches/
