@@ -1,0 +1,39 @@
+# Local-only configuration for Supabase CLI v2.119.0.
+# Reference: https://supabase.com/docs/guides/local-development/cli/config
+project_id = "spot-and-seek"
+
+[api]
+enabled = true
+port = 55431
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+auto_expose_new_tables = false
+
+[db]
+port = 55432
+shadow_port = 55430
+major_version = 17
+
+[db.migrations]
+enabled = true
+
+[db.seed]
+enabled = false
+
+[auth]
+enabled = true
+
+[studio]
+enabled = true
+port = 55433
+
+[local_smtp]
+enabled = true
+port = 55434
+smtp_port = 55435
+pop3_port = 55436
+
+[analytics]
+enabled = false
+port = 55437
