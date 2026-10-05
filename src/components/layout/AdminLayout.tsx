@@ -11,11 +11,15 @@ const navItems = [
 
 export function AdminLayout() {
   const navigate = useNavigate();
-  const { logout, user } = useAuth();
+  const { logout, user, authError, isLoading } = useAuth();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login', { replace: true });
+    } catch {
+      return;
+    }
   };
 
   return (
@@ -48,7 +52,8 @@ export function AdminLayout() {
             <div className="hidden rounded-full bg-surface-container-low px-3 py-2 text-label-md text-on-surface-variant sm:block">
               {user?.username ?? 'Admin'}
             </div>
-            <button type="button" onClick={handleLogout} className="rounded-full bg-primary-container px-4 py-2 text-label-md text-on-primary-container shadow-[0_4px_0_#2B8BC6] active:translate-y-1 active:shadow-[0_2px_0_#2B8BC6]">
+            {authError ? <span role="alert" className="text-sm text-error">{authError}</span> : null}
+            <button type="button" onClick={handleLogout} disabled={isLoading} className="rounded-full bg-primary-container px-4 py-2 text-label-md text-on-primary-container shadow-[0_4px_0_#2B8BC6] active:translate-y-1 active:shadow-[0_2px_0_#2B8BC6]">
               Log out
             </button>
           </div>

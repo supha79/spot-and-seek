@@ -10,8 +10,14 @@ export function ProtectedRoute({ children }: { children: ReactNode }) {
     return <div className="flex min-h-screen items-center justify-center bg-surface text-on-surface">Loading...</div>;
   }
 
-  if (!user) {
-    return <Navigate to="/login" replace state={{ from: location }} />;
+  if (!user || !user.emailConfirmedAt) {
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{ from: location, reason: user ? 'email-not-confirmed' : undefined }}
+      />
+    );
   }
 
   return <>{children}</>;

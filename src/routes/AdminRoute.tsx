@@ -10,8 +10,12 @@ export function AdminRoute({ children }: { children: ReactNode }) {
     return <div className="flex min-h-screen items-center justify-center bg-surface text-on-surface">Loading...</div>;
   }
 
-  if (!user || !user.isAdmin) {
-    return <Navigate to="/dashboard/home" replace state={{ from: location }} />;
+  if (!user || !user.emailConfirmedAt) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+
+  if (!user.isAdmin) {
+    return <Navigate to="/dashboard/home" replace />;
   }
 
   return <>{children}</>;

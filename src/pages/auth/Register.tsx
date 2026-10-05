@@ -10,16 +10,23 @@ import { useAuth } from '../../context/AuthContext';
 
 export default function Register() {
   const navigate = useNavigate();
-  const { register, isLoading } = useAuth();
+  const { register, isLoading, configError } = useAuth();
 
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [registrationSent, setRegistrationSent] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError('');
+
+    if (!email.trim()) {
+      setError('Email is required.');
+      return;
+    }
 
     if (!username.trim()) {
       setError('Username is required.');
@@ -37,8 +44,8 @@ export default function Register() {
     }
 
     try {
-      await register(username, password, confirmPassword);
-      navigate('/dashboard/home');
+      await register(email, username, password, confirmPassword);
+      setRegistrationSent(true);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Registration failed.';
       setError(message);
@@ -64,13 +71,34 @@ export default function Register() {
                 <p className="mt-2 text-body-sm text-on-surface-variant">สมัครสมาชิกใช้เวลาไม่ถึงหนึ่งนาที</p>
               </div>
 
+              {registrationSent ? (
+                <div role="status" className="mb-4 space-y-3 rounded-lg bg-secondary-container px-3 py-2 text-label-sm text-on-secondary-container">
+                  <p>Check your inbox and confirm your email before logging in.</p>
+                  <Button variant="ghost" onClick={() => navigate('/login')}>Go to login</Button>
+                </div>
+              ) : null}
+
               <form className="space-y-4" onSubmit={handleSubmit}>
+                <div>
+                  <div className="mb-2 flex items-center justify-between px-1">
+                    <label htmlFor="reg-email" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
+                      Email
+                    </label>
+                  </div>
+                  <Input
+                    id="reg-email"
+                    type="email"
+                    value={email}
+                    onChange={setEmail}
+                    placeholder="you@example.com"
+                  />
+                </div>
                 <div>
                   <div className="mb-2 flex items-center justify-between px-1">
                     <label htmlFor="reg-username" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
                       Username
                     </label>
-                    <span className="text-xs text-on-surface-variant/70">Unique ID</span>
+                    <span className="text-xs text-on-surface-variant/70">Profile name</span>
                   </div>
                   <div className={`relative ${error ? 'rounded-lg border border-error bg-[#FFE8EF]' : ''}`}>
                     <Input
@@ -82,10 +110,10 @@ export default function Register() {
                       className={error ? 'border border-error bg-[#FFE8EF] text-error' : ''}
                     />
                   </div>
-                  {error ? (
+                  {error || configError ? (
                     <div className="mt-2 flex items-center gap-2 rounded-lg bg-[#FFE8EF] px-3 py-2 text-error">
                       <span className="material-symbols-outlined text-base">info</span>
-                      <span className="text-label-sm font-semibold">{error}</span>
+                      <span className="text-label-sm font-semibold">{error || configError}</span>
                     </div>
                   ) : null}
                 </div>

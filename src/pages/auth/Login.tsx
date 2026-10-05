@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../../components/layout/Header';
 import AmbientBackground from '../../components/ui/AmbientBackground';
 import Button from '../../components/ui/Button';
@@ -10,8 +10,13 @@ import { useAuth } from '../../context/AuthContext';
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login, isLoading } = useAuth();
-  const [username, setUsername] = useState('');
+  const location = useLocation();
+  const routeState = location.state as {
+    from?: { pathname?: string; search?: string; hash?: string };
+    reason?: string;
+  } | null;
+  const { login, isLoading, authError, configError } = useAuth();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -20,8 +25,12 @@ export default function Login() {
     setError('');
 
     try {
-      await login(username, password);
-      navigate('/dashboard/home');
+      await login(email, password);
+      const from = routeState?.from;
+      const returnTo = from?.pathname?.startsWith('/') && !from.pathname.startsWith('//')
+        ? `${from.pathname}${from.search ?? ''}${from.hash ?? ''}`
+        : '/dashboard/home';
+      navigate(returnTo, { replace: true });
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Login failed.';
       setError(message);
@@ -91,16 +100,16 @@ export default function Login() {
 
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
-                  <label htmlFor="usernameInput" className="mb-2 block text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
-                    Username
+                  <label htmlFor="emailInput" className="mb-2 block text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
+                    Email
                   </label>
                   <Input
-                    id="usernameInput"
-                    leftIcon="search"
-                    type="text"
-                    placeholder="Seeker name or email..."
-                    value={username}
-                    onChange={setUsername}
+                    id="emailInput"
+                    leftIcon="mail"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={setEmail}
                   />
                 </div>
 
@@ -119,12 +128,20 @@ export default function Login() {
                 </div>
 
                 <div className="flex justify-end">
-                  <Link to="/register" className="text-label-sm text-primary hover:text-on-primary-container">
+                  <Link to="/forgot-password" className="text-label-sm text-primary hover:text-on-primary-container">
                     Forgot password?
                   </Link>
                 </div>
 
-                {error ? <p className="text-sm text-error">{error}</p> : null}
+                {routeState?.reason === 'email-not-confirmed' ? (
+                  <p role="status" className="text-sm text-on-surface-variant">Confirm your email address before continuing.</p>
+                ) : null}
+                {new URLSearchParams(window.location.search).get('verified') === '1' ? (
+                  <p role="status" className="text-sm text-secondary">Email confirmed. You can now log in.</p>
+                ) : null}
+                {error || authError || configError ? (
+                  <p role="alert" className="text-sm text-error">{error || authError || configError}</p>
+                ) : null}
 
                 <Button
                   type="submit"

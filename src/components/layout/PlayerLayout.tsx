@@ -16,15 +16,20 @@ const navItems = [
 
 export function PlayerLayout() {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, user, authError, isLoading } = useAuth();
   const { profile } = useGameData();
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
-  const handleLogout = () => {
-    logout();
-    setMenuOpen(false);
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setMenuOpen(false);
+      setLogoutModalOpen(false);
+      navigate('/login', { replace: true });
+    } catch {
+      return;
+    }
   };
 
   return (
@@ -66,7 +71,7 @@ export function PlayerLayout() {
               dropdownOpen={menuOpen}
             >
               <div className="w-44 rounded-2xl border border-outline-variant bg-surface-container-lowest p-2 shadow-lg">
-                <div className="px-2 py-1 text-label-sm text-on-surface-variant">{profile.displayName}</div>
+                <div className="px-2 py-1 text-label-sm text-on-surface-variant">{user?.username || profile.displayName}</div>
                 <Link to="/dashboard/profile" className="block rounded-xl px-2 py-2 text-label-md text-on-surface hover:bg-surface-container" onClick={() => setMenuOpen(false)}>
                   Profile
                 </Link>
@@ -87,10 +92,11 @@ export function PlayerLayout() {
           <div className="text-center">
             <h2 className="text-headline-md text-on-surface">Log out?</h2>
             <p className="mt-2 text-body-md text-on-surface-variant">Are you sure you want to log out?</p>
+            {authError ? <p role="alert" className="mt-2 text-sm text-error">{authError}</p> : null}
           </div>
           <div className="flex justify-end gap-3">
             <Button variant="ghost" onClick={() => setLogoutModalOpen(false)}>Cancel</Button>
-            <Button variant="primary" onClick={handleLogout}>Log out</Button>
+            <Button variant="primary" onClick={handleLogout} disabled={isLoading}>Log out</Button>
           </div>
         </div>
       </Modal>
