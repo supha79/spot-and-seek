@@ -5,7 +5,47 @@ import PlaceholderIllustration from '../../components/ui/PlaceholderIllustration
 import { useGameData } from '../../context/GameDataContext';
 
 export default function Home() {
-  const { profile, history } = useGameData();
+  const {
+    profile,
+    profileLoading,
+    profileAvailable,
+    profileError,
+    history,
+    historyLoading,
+    historyError,
+  } = useGameData();
+  const profileStatsAvailable = profileAvailable && !profileLoading;
+  const unavailableProfileValue = profileLoading ? '...' : '—';
+  const stats = [
+    {
+      title: 'Levels Completed',
+      value: profileStatsAvailable ? profile.levelsCompleted.toLocaleString() : unavailableProfileValue,
+      suffix: profileStatsAvailable ? `/ ${profile.totalLevels}` : profileLoading ? '/ ...' : '',
+      icon: 'checklist',
+      tone: 'secondary',
+    },
+    {
+      title: 'Best Score',
+      value: profileStatsAvailable ? profile.bestScore.toLocaleString() : unavailableProfileValue,
+      suffix: '',
+      icon: 'star',
+      tone: 'tertiary',
+    },
+    {
+      title: 'Total Plays',
+      value: profileStatsAvailable ? profile.totalPlays.toLocaleString() : unavailableProfileValue,
+      suffix: 'รอบ',
+      icon: 'videogame_asset',
+      tone: 'primary',
+    },
+    {
+      title: 'Avg. Time',
+      value: profileStatsAvailable ? profile.avgTime.toLocaleString() : unavailableProfileValue,
+      suffix: 'วินาที',
+      icon: 'timer',
+      tone: 'secondary',
+    },
+  ];
 
   return (
     <div className="space-y-8 pb-6">
@@ -85,12 +125,7 @@ export default function Home() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {[
-          { title: 'Levels Completed', value: '4', suffix: '/ 9', icon: 'checklist', tone: 'secondary' },
-          { title: 'Best Score', value: '2,450', suffix: '', icon: 'star', tone: 'tertiary' },
-          { title: 'Total Plays', value: '12', suffix: 'รอบ', icon: 'videogame_asset', tone: 'primary' },
-          { title: 'Avg. Time', value: '48', suffix: 'วินาที', icon: 'timer', tone: 'secondary' },
-        ].map((stat) => (
+        {stats.map((stat) => (
           <Card key={stat.title} className="p-5">
             <div className="flex items-center justify-between">
               <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${stat.tone === 'secondary' ? 'bg-secondary-fixed text-on-secondary-fixed' : stat.tone === 'tertiary' ? 'bg-tertiary-fixed text-on-tertiary-fixed' : stat.tone === 'primary' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-secondary-container text-on-secondary-container'}`}>
@@ -109,6 +144,9 @@ export default function Home() {
           </Card>
         ))}
       </section>
+      {profileError ? (
+        <p role="alert" className="text-body-sm text-error">Dashboard stats could not be loaded.</p>
+      ) : null}
 
       <section className="space-y-4">
         <div className="rounded-[28px] border border-outline-variant/60 bg-surface-container-lowest p-4 shadow-[0_12px_28px_rgba(43,139,198,0.08)]">
@@ -141,7 +179,13 @@ export default function Home() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-3">
-          {history.slice(0, 3).map((entry) => (
+          {historyLoading ? (
+            <p role="status" className="text-body-sm text-on-surface-variant">Loading recent plays...</p>
+          ) : historyError ? (
+            <p role="alert" className="text-body-sm text-error">Recent plays could not be loaded.</p>
+          ) : history.length === 0 ? (
+            <p className="text-body-sm text-on-surface-variant">No recent plays yet.</p>
+          ) : history.slice(0, 3).map((entry) => (
             <Card key={entry.id} className="p-4">
               <div className="flex items-center justify-between">
                 <span className="text-label-sm text-primary">{entry.difficulty}</span>
