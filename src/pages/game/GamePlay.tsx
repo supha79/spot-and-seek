@@ -1,10 +1,20 @@
-import { useEffect, useMemo, useReducer, useState } from 'react';
+import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 import Modal from '../../components/ui/Modal';
-import { difficultyOptions, levelCatalog } from '../../context/GameDataContext';
+import { difficultyOptions, levelCatalog, useGameData } from '../../context/GameDataContext';
+import {
+  abandonGameRun,
+  createGameRequestId,
+  finishGameRun,
+  pauseGameRun,
+  recordGameRunEvent,
+  resumeGameRun,
+  startGameRun,
+  type GameRunSnapshot,
+} from '../../services/gameRuns';
 
-type GameStatus = 'ready' | 'playing' | 'paused' | 'complete' | 'timesUp';
+type GameStatus = 'ready' | 'playing' | 'paused' | 'complete';
 
 type FoundSpot = {
   id: string;
@@ -23,16 +33,17 @@ type GameState = {
 };
 
 type GameAction =
-  | { type: 'START' }
-  | { type: 'PAUSE' }
-  | { type: 'RESUME' }
   | { type: 'TICK' }
-  | { type: 'FOUND_SPOT'; spotId: string; x: number; y: number }
-  | { type: 'WRONG_CLICK' }
-  | { type: 'USE_HINT' }
+  | { type: 'SERVER_SYNC'; snapshot: GameRunSnapshot; foundSpot?: FoundSpot; hintSpotId?: string }
   | { type: 'CLEAR_HINT' }
-  | { type: 'COMPLETE' }
-  | { type: 'TIME_UP' };
+
+type PendingOperation = {
+  requestId: string | null;
+  label: string;
+  run: () => Promise<GameRunSnapshot>;
+  foundSpot?: FoundSpot;
+  hintSpotId?: string;
+};
 
 type SpotConfig = {
   id: string;
@@ -105,49 +116,32 @@ function formatTime(totalSeconds: number) {
 
 function reducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
-    case 'START':
-      return { ...state, status: 'playing' };
-    case 'PAUSE':
-      return { ...state, status: 'paused' };
-    case 'RESUME':
-      return { ...state, status: 'playing' };
     case 'TICK': {
       if (state.status !== 'playing') return state;
       return { ...state, timeRemainingSeconds: Math.max(0, state.timeRemainingSeconds - 1) };
     }
-    case 'FOUND_SPOT': {
-      if (state.status !== 'playing') return state;
-      if (state.foundSpots.some((spot) => spot.id === action.spotId)) return state;
-
+    case 'SERVER_SYNC': {
+      const status = action.snapshot.status === 'active'
+        ? 'playing'
+        : action.snapshot.status === 'paused'
+          ? 'paused'
+          : action.snapshot.status === 'completed'
+            ? 'complete'
+            : state.status;
       return {
         ...state,
-        foundSpots: [...state.foundSpots, { id: action.spotId, x: action.x, y: action.y }],
-      };
-    }
-    case 'WRONG_CLICK':
-      if (state.status !== 'playing') return state;
-      return { ...state, wrongClicks: state.wrongClicks + 1 };
-    case 'USE_HINT': {
-      if (state.status !== 'playing' || state.hintsRemaining <= 0) return state;
-
-      const remainingSpots = getSpotsForLevel('easy', 'easy');
-      const nextUnfound = remainingSpots.find((spot) => !state.foundSpots.some((item) => item.id === spot.id));
-      if (!nextUnfound) {
-        return { ...state, hintsRemaining: state.hintsRemaining - 1, hintHighlight: null };
-      }
-
-      return {
-        ...state,
-        hintsRemaining: state.hintsRemaining - 1,
-        hintHighlight: nextUnfound.id,
+        status,
+        timeRemainingSeconds: Math.ceil(action.snapshot.time_remaining_seconds),
+        wrongClicks: action.snapshot.wrong_clicks,
+        hintsRemaining: Math.max(0, 3 - action.snapshot.hints_used),
+        foundSpots: action.foundSpot && !state.foundSpots.some((spot) => spot.id === action.foundSpot?.id)
+          ? [...state.foundSpots, action.foundSpot]
+          : state.foundSpots,
+        hintHighlight: action.hintSpotId ?? state.hintHighlight,
       };
     }
     case 'CLEAR_HINT':
       return { ...state, hintHighlight: null };
-    case 'COMPLETE':
-      return { ...state, status: 'complete' };
-    case 'TIME_UP':
-      return { ...state, status: 'timesUp' };
     default:
       return state;
   }
@@ -158,6 +152,7 @@ export default function GamePlay() {
   const { routeParam: levelId = 'cozy-cat-corner' } = useParams();
   const level = getLevelByRoute(levelId);
   const spots = useMemo(() => getSpotsForLevel(level.id, level.difficulty), [level.difficulty, level.id]);
+  const { refreshProfile } = useGameData();
 
   const initialState: GameState = {
     status: 'ready',
@@ -172,6 +167,14 @@ export default function GamePlay() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [wrongFlash, setWrongFlash] = useState(false);
   const [recentFound, setRecentFound] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [operationError, setOperationError] = useState<string | null>(null);
+  const [pendingOperation, setPendingOperation] = useState<PendingOperation | null>(null);
+  const runIdRef = useRef<string | null>(null);
+  const pendingOperationRef = useRef<PendingOperation | null>(null);
+  const operationInFlightRef = useRef(false);
+  const finishRequestedRef = useRef(false);
+  const inputDisabled = isSubmitting || pendingOperation !== null;
 
   useEffect(() => {
     if (state.status !== 'playing') return;
@@ -195,75 +198,156 @@ export default function GamePlay() {
     return () => window.clearTimeout(timerId);
   }, [state.hintHighlight]);
 
-  useEffect(() => {
-    if (state.status === 'playing' && state.foundSpots.length >= state.totalDifferences) {
-      dispatch({ type: 'COMPLETE' });
-      navigate(`/dashboard/play/${level.id}/complete`, {
-        state: {
-          timeTaken: level.time - state.timeRemainingSeconds,
-          mistakes: state.wrongClicks,
-          hintsUsed: 3 - state.hintsRemaining,
-          score: 1850,
-          found: state.foundSpots.length,
-          totalDifferences: state.totalDifferences,
-        },
-      });
-    }
-  }, [level.id, level.time, navigate, state.foundSpots.length, state.hintsRemaining, state.status, state.timeRemainingSeconds, state.totalDifferences, state.wrongClicks]);
+  async function submitOperation(operation: PendingOperation) {
+    if (operationInFlightRef.current) return;
+    if (pendingOperationRef.current && pendingOperationRef.current !== operation) return;
 
-  useEffect(() => {
-    if (state.status === 'playing' && state.timeRemainingSeconds <= 0) {
-      dispatch({ type: 'TIME_UP' });
-      navigate(`/dashboard/play/${level.id}/times-up`, {
-        state: {
-          timeTaken: level.time,
-          mistakes: state.wrongClicks,
-          hintsUsed: 3 - state.hintsRemaining,
-          found: state.foundSpots.length,
-          totalDifferences: state.totalDifferences,
-          score: 0,
-        },
-      });
+    operationInFlightRef.current = true;
+    pendingOperationRef.current = operation;
+    setPendingOperation(operation);
+    setIsSubmitting(true);
+    setOperationError(null);
+    let finishAfterOperation = false;
+
+    try {
+      const snapshot = await operation.run();
+      pendingOperationRef.current = null;
+      setPendingOperation(null);
+      dispatch({ type: 'SERVER_SYNC', snapshot, foundSpot: operation.foundSpot, hintSpotId: operation.hintSpotId });
+      if (snapshot.status === 'active') runIdRef.current = snapshot.run_id;
+
+      if (snapshot.status === 'won') {
+        finishRequestedRef.current = true;
+        refreshProfile();
+        navigate(`/dashboard/play/${level.id}/complete`, {
+          state: {
+            timeTaken: Math.round(snapshot.elapsed_active_seconds),
+            mistakes: snapshot.wrong_clicks,
+            hintsUsed: snapshot.hints_used,
+            score: snapshot.score,
+            found: snapshot.found_count,
+            totalDifferences: snapshot.total_spots,
+          },
+        });
+      } else if (snapshot.status === 'lost') {
+        finishRequestedRef.current = true;
+        refreshProfile();
+        navigate(`/dashboard/play/${level.id}/times-up`, {
+          state: {
+            timeTaken: Math.round(snapshot.elapsed_active_seconds),
+            mistakes: snapshot.wrong_clicks,
+            hintsUsed: snapshot.hints_used,
+            score: snapshot.score,
+            found: snapshot.found_count,
+            totalDifferences: snapshot.total_spots,
+          },
+        });
+      } else if (snapshot.status === 'abandoned') {
+        navigate('/dashboard/easy-levels');
+      } else if (
+        (snapshot.status === 'completed' || (snapshot.status === 'active' && snapshot.time_remaining_seconds <= 0))
+        && !finishRequestedRef.current
+      ) {
+        finishRequestedRef.current = true;
+        finishAfterOperation = true;
+      }
+    } catch (error) {
+      setOperationError(error instanceof Error ? error.message : 'The game request failed.');
+    } finally {
+      operationInFlightRef.current = false;
+      setIsSubmitting(false);
     }
-  }, [level.id, level.time, navigate, state.foundSpots.length, state.hintsRemaining, state.status, state.timeRemainingSeconds, state.totalDifferences, state.wrongClicks]);
+
+    if (finishAfterOperation) {
+      const runId = runIdRef.current;
+      if (runId) {
+        void submitOperation({
+          requestId: null,
+          label: 'Save result',
+          run: () => finishGameRun(runId),
+        });
+      }
+    }
+  }
+
+  const submitRequest = (
+    label: string,
+    run: (requestId: string) => Promise<GameRunSnapshot>,
+    extras: Pick<PendingOperation, 'foundSpot' | 'hintSpotId'> = {},
+  ) => {
+    if (operationInFlightRef.current || pendingOperationRef.current) return;
+    const requestId = createGameRequestId();
+    void submitOperation({ requestId, label, run: () => run(requestId), ...extras });
+  };
+
+  const retryPendingOperation = () => {
+    const operation = pendingOperationRef.current;
+    if (operation) void submitOperation(operation);
+  };
 
   const handleStart = () => {
-    dispatch({ type: 'START' });
+    submitRequest('Start game', (requestId) => startGameRun(level.id, requestId));
   };
 
   const handlePause = () => {
-    dispatch({ type: 'PAUSE' });
+    const runId = runIdRef.current;
+    if (runId) submitRequest('Pause game', (requestId) => pauseGameRun(runId, requestId));
   };
 
   const handleResume = () => {
-    dispatch({ type: 'RESUME' });
+    const runId = runIdRef.current;
+    if (runId) submitRequest('Resume game', (requestId) => resumeGameRun(runId, requestId));
   };
 
   const handleExit = () => {
-    navigate('/dashboard/easy-levels');
+    const runId = runIdRef.current;
+    if (runId) submitRequest('Abandon game', (requestId) => abandonGameRun(runId, requestId));
   };
 
   const handleHint = () => {
-    if (state.hintsRemaining <= 0 || state.status !== 'playing') return;
-
-    dispatch({ type: 'USE_HINT' });
+    if (state.hintsRemaining <= 0 || state.status !== 'playing' || !runIdRef.current) return;
+    const nextUnfound = spots.find((spot) => !state.foundSpots.some((item) => item.id === spot.id));
+    submitRequest(
+      'Use hint',
+      (requestId) => recordGameRunEvent(runIdRef.current!, requestId, 'hint_used'),
+      { hintSpotId: nextUnfound?.id },
+    );
   };
 
   const handleCorrectSpot = (spot: SpotConfig) => {
-    if (state.status !== 'playing') return;
-    if (state.foundSpots.some((item) => item.id === spot.id)) return;
+    const runId = runIdRef.current;
+    if (!runId || state.status !== 'playing' || state.foundSpots.some((item) => item.id === spot.id)) return;
 
-    dispatch({ type: 'FOUND_SPOT', spotId: spot.id, x: spot.x, y: spot.y });
+    submitRequest(
+      'Record found spot',
+      (requestId) => recordGameRunEvent(runId, requestId, 'spot_found', spot.id),
+      { foundSpot: { id: spot.id, x: spot.x, y: spot.y } },
+    );
     setRecentFound(spot.id);
     window.setTimeout(() => setRecentFound(null), 700);
   };
 
   const handleWrongClick = () => {
-    if (state.status !== 'playing') return;
-    dispatch({ type: 'WRONG_CLICK' });
+    const runId = runIdRef.current;
+    if (!runId || state.status !== 'playing') return;
+    submitRequest('Record wrong click', (requestId) => recordGameRunEvent(runId, requestId, 'wrong_click'));
     setWrongFlash(true);
     window.setTimeout(() => setWrongFlash(false), 600);
   };
+
+  useEffect(() => {
+    if (
+      state.status !== 'playing'
+      || state.timeRemainingSeconds > 0
+      || !runIdRef.current
+      || finishRequestedRef.current
+      || operationInFlightRef.current
+      || pendingOperationRef.current
+    ) return;
+    finishRequestedRef.current = true;
+    const runId = runIdRef.current;
+    void submitOperation({ requestId: null, label: 'Finish game', run: () => finishGameRun(runId) });
+  }, [state.status, state.timeRemainingSeconds]);
 
   const progressWidth = (state.timeRemainingSeconds / level.time) * 100;
   const foundCount = state.foundSpots.length;
@@ -276,12 +360,22 @@ export default function GamePlay() {
         <div className="absolute bottom-10 left-10 h-40 w-40 rounded-full bg-primary-fixed/30 blur-3xl" />
       </div>
 
+      {operationError && pendingOperation ? (
+        <div role="alert" className="mb-4 flex flex-col gap-3 rounded-2xl bg-tertiary-fixed p-4 text-on-tertiary-fixed sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-body-sm">{operationError}</p>
+          <Button type="button" variant="tertiary" disabled={isSubmitting} onClick={retryPendingOperation} leftIcon="refresh">
+            {isSubmitting ? 'Retrying...' : 'Retry'}
+          </Button>
+        </div>
+      ) : null}
+
       <section className="mb-6 w-full">
         <div className="flex w-full flex-wrap items-center justify-between gap-4 rounded-[18px] bg-surface-container-lowest p-3 shadow-[0_8px_24px_-4px_rgba(43,139,198,0.12),0_2px_6px_0_rgba(43,139,198,0.06)] sm:p-4">
           <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3">
             <button
               type="button"
               onClick={handlePause}
+              disabled={inputDisabled || state.status !== 'playing'}
               className="group flex items-center gap-2 rounded-full bg-surface-container-low px-4 py-2 text-label-md text-on-surface shadow-[0_4px_0_#bfc8ce] transition-all active:translate-y-[3px] active:shadow-[0_1px_0_#bfc8ce]"
             >
               <span className="material-symbols-outlined text-[20px] text-primary transition-transform group-hover:scale-110">pause_circle</span>
@@ -335,7 +429,7 @@ export default function GamePlay() {
             <button
               type="button"
               onClick={handleHint}
-              disabled={state.hintsRemaining <= 0 || state.status !== 'playing'}
+              disabled={inputDisabled || state.hintsRemaining <= 0 || state.status !== 'playing'}
               className="group relative flex items-center gap-1.5 rounded-full border-2 border-secondary bg-surface-container-lowest px-4 py-2 text-secondary shadow-[0_4px_0_#2c6956] transition-all active:translate-y-[3px] active:shadow-[0_1px_0_#2c6956] disabled:cursor-not-allowed disabled:opacity-60"
             >
               <span className="material-symbols-outlined text-[20px] text-secondary transition-transform group-hover:rotate-12 group-hover:scale-110">lightbulb</span>
@@ -408,7 +502,7 @@ export default function GamePlay() {
               </div>
             </div>
 
-            <div className="relative aspect-square w-full overflow-hidden rounded-[20px] bg-surface-container-low shadow-[inset_0_0_0_2px_rgba(43,139,198,0.1)]" onClick={handleWrongClick}>
+            <div className="relative aspect-square w-full overflow-hidden rounded-[20px] bg-surface-container-low shadow-[inset_0_0_0_2px_rgba(43,139,198,0.1)]" onClick={inputDisabled ? undefined : handleWrongClick}>
               <img
                 src={level.image}
                 alt={`${level.title} altered illustration`}
@@ -423,6 +517,7 @@ export default function GamePlay() {
                   <button
                     key={spot.id}
                     type="button"
+                    disabled={inputDisabled || state.status !== 'playing' || isFound}
                     onClick={(event) => {
                       event.stopPropagation();
                       handleCorrectSpot(spot);
@@ -521,8 +616,8 @@ export default function GamePlay() {
               <span className="rounded-full bg-tertiary-fixed px-3 py-1.5 text-label-md text-on-tertiary-fixed">{formatTime(level.time)}</span>
             </div>
 
-            <Button variant="secondary" size="lg" onClick={handleStart} className="mt-7 w-full justify-center">
-              Start
+            <Button variant="secondary" size="lg" onClick={handleStart} disabled={inputDisabled} className="mt-7 w-full justify-center">
+              {isSubmitting ? 'Starting...' : 'Start'}
             </Button>
           </div>
         </Modal>
@@ -538,13 +633,36 @@ export default function GamePlay() {
             <p className="mt-2 text-body-md text-on-surface-variant">เกมหยุดชั่วคราว คุณพร้อมกลับมาเล่นต่ออีกครั้งไหม?</p>
 
             <div className="mt-6 flex w-full flex-col gap-3">
-              <Button variant="primary" size="lg" onClick={handleResume} className="w-full justify-center">
-                Resume
+              <Button variant="primary" size="lg" onClick={handleResume} disabled={inputDisabled} className="w-full justify-center">
+                {isSubmitting ? 'Resuming...' : 'Resume'}
               </Button>
-              <Button variant="ghost" size="lg" onClick={handleExit} className="w-full justify-center">
-                Exit
+              <Button variant="ghost" size="lg" onClick={handleExit} disabled={inputDisabled} className="w-full justify-center">
+                {isSubmitting ? 'Saving...' : 'Exit'}
               </Button>
             </div>
+          </div>
+        </Modal>
+      ) : null}
+
+      {state.status === 'complete' ? (
+        <Modal isOpen={true} onClose={() => undefined}>
+          <div className="flex flex-col items-center p-6 text-center sm:p-8">
+            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-secondary-container text-secondary">
+              <span className="material-symbols-outlined text-[36px]">task_alt</span>
+            </div>
+            <h2 className="text-headline-md text-on-surface">Saving result</h2>
+            <p className="mt-2 text-body-md text-on-surface-variant">
+              {isSubmitting ? 'Your completed game is being finalized.' : 'The completed game is waiting to be finalized.'}
+            </p>
+            {operationError ? <p role="alert" className="mt-4 text-body-sm text-error">{operationError}</p> : null}
+            {pendingOperation ? (
+              <Button type="button" disabled={isSubmitting} onClick={retryPendingOperation} leftIcon="refresh" className="mt-6">
+                {isSubmitting ? 'Retrying...' : 'Retry saving result'}
+              </Button>
+            ) : null}
+            <Button type="button" variant="ghost" disabled={isSubmitting} onClick={() => navigate('/dashboard/easy-levels')} className="mt-3">
+              Back to levels
+            </Button>
           </div>
         </Modal>
       ) : null}

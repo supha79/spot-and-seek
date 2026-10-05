@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 
 type LocationState = {
@@ -21,14 +21,17 @@ function formatTime(totalSeconds: number = 0) {
 export default function LevelComplete() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = (location.state ?? {}) as LocationState;
+  const state = location.state as LocationState | null;
+  if (!state || typeof state.score !== 'number') {
+    return <Navigate to="/dashboard/easy-levels" replace />;
+  }
 
-  const timeTaken = state.timeTaken ?? 58;
-  const mistakes = state.mistakes ?? 2;
-  const hintsUsed = state.hintsUsed ?? 1;
-  const score = state.score ?? 1850;
-  const found = state.found ?? 3;
-  const totalDifferences = state.totalDifferences ?? 3;
+  const timeTaken = state.timeTaken ?? 0;
+  const mistakes = state.mistakes ?? 0;
+  const hintsUsed = state.hintsUsed ?? 0;
+  const score = state.score;
+  const found = state.found ?? 0;
+  const totalDifferences = state.totalDifferences ?? 0;
 
   return (
     <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 py-8">

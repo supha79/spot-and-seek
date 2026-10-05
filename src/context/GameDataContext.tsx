@@ -1,4 +1,6 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useAuth } from './AuthContext';
+import { supabase, supabaseConfigError } from '../supabaseClient';
 
 export type DifficultyMode = 'easy' | 'medium' | 'hard';
 
@@ -202,6 +204,10 @@ export const levelCatalog: Level[] = [
 
 type GameDataContextValue = {
   profile: GameProfile;
+  profileLoading: boolean;
+  profileAvailable: boolean;
+  profileError: string | null;
+  refreshProfile: () => void;
   history: HistoryEntry[];
   levels: Level[];
   buddyOptions: BuddyOption[];
@@ -214,22 +220,126 @@ type GameDataContextValue = {
 const GameDataContext = createContext<GameDataContextValue | undefined>(undefined);
 
 export function GameDataProvider({ children }: { children: ReactNode }) {
+  const { user } = useAuth();
   const [selectedBuddy, setSelectedBuddy] = useState('Bunny');
   const [history, setHistory] = useState<HistoryEntry[]>(defaultHistory);
+  const [profileData, setProfileData] = useState<GameProfile | null>(null);
+  const [profileOwnerId, setProfileOwnerId] = useState<string | null>(null);
+  const [profileLoading, setProfileLoading] = useState(true);
+  const [profileError, setProfileError] = useState<string | null>(null);
+  const [profileRevision, setProfileRevision] = useState(0);
+  const refreshProfile = useCallback(() => setProfileRevision((revision) => revision + 1), []);
 
-  const profile = useMemo<GameProfile>(
-    () => ({
-      username: 'mint_saki',
-      displayName: 'mint_saki',
-      selectedBuddy,
-      levelsCompleted: 4,
-      totalLevels: 9,
-      bestScore: 2450,
-      totalPlays: 12,
-      avgTime: 48,
-    }),
-    [selectedBuddy],
-  );
+  useEffect(() => {
+    let isMounted = true;
+
+    if (!user) {
+      setProfileData(null);
+      setSelectedBuddy('Bunny');
+      setProfileLoading(false);
+      setProfileError(null);
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    if (!supabase) {
+      setProfileLoading(false);
+      setProfileError(supabaseConfigError ?? 'Supabase is not configured.');
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    setProfileLoading(true);
+    setProfileError(null);
+
+    void Promise.all([
+      supabase
+        .from('profiles')
+        .select('username, selected_buddy, best_score, total_plays')
+        .eq('id', user.id)
+        .maybeSingle(),
+      supabase
+        .from('game_runs')
+        .select('level_id, elapsed_active_seconds, status')
+        .eq('user_id', user.id)
+        .in('status', ['won', 'lost']),
+    ])
+      .then(([profileResult, runsResult]) => {
+        if (!isMounted) return;
+        if (profileResult.error) throw profileResult.error;
+        if (runsResult.error) throw runsResult.error;
+        if (!profileResult.data) throw new Error('Your player profile was not found.');
+
+        const runs = runsResult.data ?? [];
+        const completedLevelIds = new Set(
+          runs.filter((run) => run.status === 'won').map((run) => run.level_id),
+        );
+        const averageSeconds = runs.length
+          ? Math.round(runs.reduce((total, run) => total + Number(run.elapsed_active_seconds), 0) / runs.length)
+          : 0;
+        const buddy = profileResult.data.selected_buddy;
+
+        setSelectedBuddy(buddy);
+        setProfileData({
+          username: profileResult.data.username,
+          displayName: profileResult.data.username,
+          selectedBuddy: buddy,
+          levelsCompleted: completedLevelIds.size,
+          totalLevels: levelCatalog.length,
+          bestScore: profileResult.data.best_score,
+          totalPlays: profileResult.data.total_plays,
+          avgTime: averageSeconds,
+        });
+        setProfileOwnerId(user.id);
+        setProfileLoading(false);
+      })
+      .catch((error: unknown) => {
+        if (!isMounted) return;
+        setProfileError(error instanceof Error ? error.message : 'Could not load your profile.');
+        setProfileLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [profileRevision, user?.id, user?.username]);
+
+  const updateSelectedBuddy = async (buddy: string) => {
+    if (!buddyOptions.some((option) => option.id === buddy)) return;
+    const previousBuddy = selectedBuddy;
+    setSelectedBuddy(buddy);
+    setProfileError(null);
+
+    try {
+      if (!supabase || !user) {
+        throw new Error(supabaseConfigError ?? 'Sign in to save your buddy.');
+      }
+      const { error } = await supabase
+        .from('profiles')
+        .update({ selected_buddy: buddy })
+        .eq('id', user.id);
+      if (error) throw error;
+      setProfileData((current) => current ? { ...current, selectedBuddy: buddy } : current);
+    } catch (error) {
+      setSelectedBuddy((current) => current === buddy ? previousBuddy : current);
+      setProfileError(error instanceof Error ? error.message : 'Could not save your buddy.');
+    }
+  };
+
+  const ownedProfileData = profileOwnerId === user?.id ? profileData : null;
+  const visibleBuddy = profileOwnerId === user?.id ? selectedBuddy : 'Bunny';
+  const profile = useMemo<GameProfile>(() => ownedProfileData ?? ({
+    username: user?.username ?? '',
+    displayName: user?.username ?? '',
+    selectedBuddy: visibleBuddy,
+    levelsCompleted: 0,
+    totalLevels: levelCatalog.length,
+    bestScore: 0,
+    totalPlays: 0,
+    avgTime: 0,
+  }), [ownedProfileData, user?.username, visibleBuddy]);
 
   const clearHistory = () => setHistory([]);
   const restoreHistory = () => setHistory(defaultHistory);
@@ -237,15 +347,19 @@ export function GameDataProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       profile,
+      profileLoading,
+      profileAvailable: profileOwnerId === user?.id && profileData !== null,
+      profileError,
+      refreshProfile,
       history,
       levels: levelCatalog,
       buddyOptions,
-      selectedBuddy,
-      setSelectedBuddy,
+      selectedBuddy: visibleBuddy,
+      setSelectedBuddy: updateSelectedBuddy,
       clearHistory,
       restoreHistory,
     }),
-    [history, profile, selectedBuddy],
+    [history, profile, profileData, profileError, profileLoading, profileOwnerId, refreshProfile, user?.id, visibleBuddy],
   );
 
   return <GameDataContext.Provider value={value}>{children}</GameDataContext.Provider>;
