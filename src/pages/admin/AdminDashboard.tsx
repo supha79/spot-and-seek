@@ -1,16 +1,78 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAdminData } from '../../context/AdminDataContext';
+import {
+  loadAdminDashboardSummary,
+  loadRecentAdminPlays,
+  type AdminDashboardSummary,
+  type RecentAdminPlay,
+} from '../../services/adminDashboard';
+
+type DashboardData = {
+  summary: AdminDashboardSummary;
+  recentPlays: RecentAdminPlay[];
+};
+
+const difficultyStyles = {
+  easy: {
+    badge: 'bg-secondary-fixed text-on-secondary-fixed',
+    bar: 'bg-secondary-fixed',
+    color: 'text-secondary',
+  },
+  medium: {
+    badge: 'bg-primary-fixed text-on-primary-fixed-variant',
+    bar: 'bg-primary-container',
+    color: 'text-primary',
+  },
+  hard: {
+    badge: 'bg-tertiary-fixed text-on-tertiary-fixed',
+    bar: 'bg-tertiary-container',
+    color: 'text-tertiary',
+  },
+} as const;
+
+function formatPlayedAt(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+}
 
 export default function AdminDashboard() {
   const { games, levels, questions } = useAdminData();
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
-  const statCards = [
-    { label: 'Users', value: '128', icon: 'groups', tint: 'bg-primary-fixed text-primary' },
+  useEffect(() => {
+    let isMounted = true;
+    setIsLoading(true);
+    setHasError(false);
+    setDashboardData(null);
+
+    void Promise.all([loadAdminDashboardSummary(), loadRecentAdminPlays()])
+      .then(([summary, recentPlays]) => {
+        if (isMounted) setDashboardData({ summary, recentPlays });
+      })
+      .catch(() => {
+        if (isMounted) setHasError(true);
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [retryCount]);
+
+  const statCards = dashboardData ? [
+    { label: 'Users', value: dashboardData.summary.usersCount.toLocaleString(), icon: 'groups', tint: 'bg-primary-fixed text-primary' },
     { label: 'Games', value: String(games.length), icon: 'sports_esports', tint: 'bg-secondary-fixed text-secondary' },
     { label: 'Levels', value: String(levels.length), icon: 'layers', tint: 'bg-primary-container text-on-primary-container' },
     { label: 'Questions', value: String(questions.length), icon: 'psychology_alt', tint: 'bg-surface-container-high text-tertiary' },
-    { label: 'Total plays', value: '1,024', icon: 'local_fire_department', tint: 'bg-tertiary-fixed text-tertiary' },
-  ];
+    { label: 'Total plays', value: dashboardData.summary.totalPlays.toLocaleString(), icon: 'local_fire_department', tint: 'bg-tertiary-fixed text-tertiary' },
+  ] : [];
 
   return (
     <div className="space-y-space-xl">
@@ -24,11 +86,11 @@ export default function AdminDashboard() {
             <div className="flex items-center gap-space-xs">
               <span className="rounded-full bg-secondary-fixed px-2.5 py-0.5 text-label-sm text-on-secondary-fixed">Spot &amp; Seek Master Hub</span>
               <span className="text-tertiary text-xs">✦</span>
-              <span className="text-body-sm text-on-surface-variant">Live Insights</span>
+              <span className="text-body-sm text-on-surface-variant">Usage overview</span>
             </div>
             <h1 className="text-headline-lg text-on-surface">Admin Dashboard</h1>
             <p className="text-body-md text-on-surface-variant">
-              ภาพรวมข้อมูลของระบบ <span className="text-secondary">· สถานะการทำงานปกติ พร้อมเปิดด่านใหม่</span>
+              ภาพรวมสถิติการเล่นและเนื้อหาในระบบ
             </p>
           </div>
         </div>
@@ -45,6 +107,24 @@ export default function AdminDashboard() {
         </div>
       </section>
 
+      {isLoading ? (
+        <section className="rounded-lg bg-surface-container-lowest p-space-xl text-center shadow-[0_8px_24px_rgba(43,139,198,0.06)]">
+          <p role="status" className="text-body-md text-on-surface-variant">Loading dashboard data...</p>
+        </section>
+      ) : hasError || !dashboardData ? (
+        <section className="rounded-lg bg-surface-container-lowest p-space-xl text-center shadow-[0_8px_24px_rgba(43,139,198,0.06)]">
+          <h2 className="text-headline-md text-on-surface">Unable to load dashboard data</h2>
+          <p role="alert" className="mt-2 text-body-md text-on-surface-variant">Please check the connection and try again.</p>
+          <button
+            type="button"
+            onClick={() => setRetryCount((count) => count + 1)}
+            className="mt-5 rounded-full bg-primary-container px-5 py-3 text-label-md text-on-primary-container shadow-[0_4px_0_#2b8bc6] active:translate-y-1 active:shadow-[0_2px_0_#2b8bc6]"
+          >
+            Retry
+          </button>
+        </section>
+      ) : (
+      <>
       <section className="grid grid-cols-1 gap-space-md sm:grid-cols-2 lg:grid-cols-5">
         {statCards.map(({ label, value, icon, tint }) => (
           <div key={label} className="rounded-lg bg-surface-container-lowest p-space-lg shadow-[0_8px_20px_rgba(43,139,198,0.06)]">
@@ -77,25 +157,31 @@ export default function AdminDashboard() {
           </div>
 
           <div className="mt-space-xl space-y-space-lg">
-            {[
-              { label: 'Easy', count: '580 plays', percentage: '56%', badge: 'bg-secondary-fixed text-on-secondary-fixed', bar: 'bg-secondary-fixed', color: 'text-secondary' },
-              { label: 'Medium', count: '312 plays', percentage: '31%', badge: 'bg-primary-fixed text-on-primary-fixed-variant', bar: 'bg-primary-container', color: 'text-primary' },
-              { label: 'Hard', count: '132 plays', percentage: '13%', badge: 'bg-tertiary-fixed text-on-tertiary-fixed', bar: 'bg-tertiary-container', color: 'text-tertiary' },
-            ].map((row) => (
-              <div key={row.label} className="space-y-2">
+            {dashboardData.summary.difficultyStats.map((row) => {
+              const styles = difficultyStyles[row.difficulty];
+              const label = row.difficulty.charAt(0).toUpperCase() + row.difficulty.slice(1);
+
+              return (
+              <div key={row.difficulty} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-space-xs">
-                    <span className={`h-3 w-3 rounded-full ${row.bar}`} />
-                    <span className="text-label-lg text-on-surface">{row.label}</span>
-                    <span className={`rounded-full px-2 py-0.5 text-label-sm ${row.badge}`}>{row.label === 'Easy' ? 'ด่านง่าย' : row.label === 'Medium' ? 'ปานกลาง' : 'ท้าทาย'}</span>
+                    <span className={`h-3 w-3 rounded-full ${styles.bar}`} />
+                    <span className="text-label-lg text-on-surface">{label}</span>
+                    <span className={`rounded-full px-2 py-0.5 text-label-sm ${styles.badge}`}>{label === 'Easy' ? 'ด่านง่าย' : label === 'Medium' ? 'ปานกลาง' : 'ท้าทาย'}</span>
                   </div>
-                  <span className="text-label-md text-on-surface">{row.count} <span className={`font-bold ${row.color}`}>({row.percentage})</span></span>
+                  <span className="text-label-md text-on-surface">{row.count.toLocaleString()} plays <span className={`font-bold ${styles.color}`}>({Math.round(row.percentage)}%)</span></span>
                 </div>
                 <div className="h-5 w-full rounded-full bg-surface-container p-1 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)]">
-                  <div className={`h-full rounded-full ${row.bar}`} style={{ width: row.percentage }} />
+                  <div className={`h-full rounded-full ${styles.bar}`} style={{ width: `${Math.min(row.percentage, 100)}%` }} />
                 </div>
               </div>
-            ))}
+              );
+            })}
+            {dashboardData.summary.unknownLevelSessionCount > 0 ? (
+              <p role="status" className="text-body-sm text-on-surface-variant">
+                {dashboardData.summary.unknownLevelSessionCount.toLocaleString()} session(s) excluded from difficulty totals because their level ID is unknown: {dashboardData.summary.unknownLevelIds.slice(0, 3).join(', ')}{dashboardData.summary.unknownLevelIds.length > 3 ? ', ...' : ''}
+              </p>
+            ) : null}
           </div>
         </div>
 
@@ -105,43 +191,45 @@ export default function AdminDashboard() {
               <h3 className="text-headline-md text-on-surface">Recent plays</h3>
               <p className="text-body-sm text-on-surface-variant">การเล่นล่าสุดของผู้เล่น</p>
             </div>
-            <span className="flex items-center gap-1 rounded-full bg-secondary-fixed px-3 py-1 text-label-sm text-on-secondary-fixed">
-              <span className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
-              Real-time feed
-            </span>
+            <span className="rounded-full bg-secondary-fixed px-3 py-1 text-label-sm text-on-secondary-fixed">Recent activity</span>
           </div>
 
           <div className="mt-space-lg space-y-space-sm">
-            {[
-              ['mint_saki', 'Cozy Cat Corner', 'Easy', '2,100 pts', '2 mins ago', 'bg-secondary-fixed'],
-              ['breeze_wow', 'Breezy Windmill Hill', 'Medium', '1,860 pts', '6 mins ago', 'bg-primary-fixed'],
-              ['fox_jelly', 'Starlit Night Market', 'Hard', '2,420 pts', '12 mins ago', 'bg-tertiary-fixed'],
-              ['petal_nim', 'Balloon Hills', 'Easy', '1,980 pts', '21 mins ago', 'bg-secondary-container'],
-            ].map(([user, title, difficulty, points, time, tint], index) => (
-              <div key={`${user}-${index}`} className="flex items-center justify-between gap-space-md rounded-DEFAULT bg-surface-container-low p-space-md">
+            {dashboardData.recentPlays.length === 0 ? (
+              <p className="rounded-DEFAULT bg-surface-container-low p-space-md text-center text-body-sm text-on-surface-variant">
+                No plays recorded yet.
+              </p>
+            ) : dashboardData.recentPlays.map((play, index) => {
+              const styles = play.difficulty ? difficultyStyles[play.difficulty] : null;
+
+              return (
+              <div key={play.id} className="flex items-center justify-between gap-space-md rounded-DEFAULT bg-surface-container-low p-space-md">
                 <div className="flex items-center gap-space-md">
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-full ${tint} text-sm`}>
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-full ${index % 2 === 0 ? 'bg-secondary-fixed' : 'bg-primary-fixed'} text-sm`}>
                     {index % 2 === 0 ? '🐱' : index % 3 === 0 ? '🦊' : '🌙'}
                   </div>
                   <div>
-                    <div className="text-label-md text-on-surface">{user}</div>
-                    <div className="text-body-sm text-on-surface-variant">{title}</div>
+                    <div className="text-label-md text-on-surface">{play.username}</div>
+                    <div className="text-body-sm text-on-surface-variant">{play.title}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-space-md">
-                  <span className={`rounded-full px-3 py-1 text-label-sm ${difficulty === 'Easy' ? 'bg-secondary-fixed text-on-secondary-fixed' : difficulty === 'Medium' ? 'bg-primary-fixed text-on-primary-fixed-variant' : 'bg-tertiary-fixed text-on-tertiary-fixed'}`}>
-                    {difficulty}
+                  <span className={`rounded-full px-3 py-1 text-label-sm ${styles?.badge ?? 'bg-surface-container-high text-on-surface-variant'}`}>
+                    {play.difficulty ? play.difficulty.charAt(0).toUpperCase() + play.difficulty.slice(1) : 'Unknown'}
                   </span>
                   <div className="text-right">
-                    <div className="text-label-md text-secondary">{points}</div>
-                    <div className="text-body-sm text-outline">{time}</div>
+                    <div className="text-label-md text-secondary">{play.score.toLocaleString()} pts · {play.result === 'win' ? 'Won' : 'Lost'}</div>
+                    <div className="text-body-sm text-outline">{formatPlayedAt(play.playedAt)}</div>
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
+      </>
+      )}
     </div>
   );
 }
