@@ -1,7 +1,7 @@
 import { useGameData } from '../../context/GameDataContext';
 
 export default function History() {
-  const { history, clearHistory, restoreHistory } = useGameData();
+  const { history, historyLoading, historyError } = useGameData();
 
   return (
     <div className="space-y-6 pb-8">
@@ -11,17 +11,18 @@ export default function History() {
           <h1 className="mt-1 text-headline-lg text-on-surface">Your recent plays</h1>
         </div>
 
-        <div className="flex gap-3">
-          <button type="button" onClick={clearHistory} className="rounded-full bg-surface-container px-4 py-2 text-label-md text-on-surface-variant">
-            Clear
-          </button>
-          <button type="button" onClick={restoreHistory} className="rounded-full bg-primary-container px-4 py-2 text-label-md text-on-primary-container">
-            Restore
-          </button>
-        </div>
       </section>
 
-      {history.length === 0 ? (
+      {historyLoading ? (
+        <section className="rounded-[28px] bg-surface-container-lowest p-10 text-center shadow-[0_12px_28px_rgba(43,139,198,0.08)]">
+          <p role="status" className="text-body-md text-on-surface-variant">Loading history...</p>
+        </section>
+      ) : historyError ? (
+        <section className="rounded-[28px] bg-surface-container-lowest p-10 text-center shadow-[0_12px_28px_rgba(43,139,198,0.08)]">
+          <h2 className="text-headline-md text-on-surface">Unable to load history</h2>
+          <p role="alert" className="mt-2 text-body-md text-on-surface-variant">Please try again later.</p>
+        </section>
+      ) : history.length === 0 ? (
         <section className="rounded-[28px] bg-surface-container-lowest p-10 text-center shadow-[0_12px_28px_rgba(43,139,198,0.08)]">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-fixed text-primary">
             <span className="material-symbols-outlined text-[32px]">history</span>

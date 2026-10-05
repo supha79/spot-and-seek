@@ -31,8 +31,14 @@ export type HistoryEntry = {
   difficulty: string;
   date: string;
   score: number;
-  status: 'Cleared' | 'New';
+  status: 'Cleared' | 'Lost';
 };
+
+function formatHistoryDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+}
 
 export type GameProfile = {
   username: string;
@@ -44,12 +50,6 @@ export type GameProfile = {
   totalPlays: number;
   avgTime: number;
 };
-
-const defaultHistory: HistoryEntry[] = [
-  { id: 'hist-1', title: 'Cozy Cat Corner', difficulty: 'Easy', date: 'Today · 9:40 AM', score: 2450, status: 'Cleared' },
-  { id: 'hist-2', title: 'Sunny Picnic', difficulty: 'Easy', date: 'Yesterday · 7:20 PM', score: 2100, status: 'Cleared' },
-  { id: 'hist-3', title: 'Greenhouse Garden', difficulty: 'Medium', date: 'Tue · 6:05 PM', score: 1820, status: 'New' },
-];
 
 export const difficultyOptions = [
   {
@@ -209,12 +209,12 @@ type GameDataContextValue = {
   profileError: string | null;
   refreshProfile: () => void;
   history: HistoryEntry[];
+  historyLoading: boolean;
+  historyError: string | null;
   levels: Level[];
   buddyOptions: BuddyOption[];
   selectedBuddy: string;
   setSelectedBuddy: (buddy: string) => void;
-  clearHistory: () => void;
-  restoreHistory: () => void;
 };
 
 const GameDataContext = createContext<GameDataContextValue | undefined>(undefined);
@@ -222,7 +222,10 @@ const GameDataContext = createContext<GameDataContextValue | undefined>(undefine
 export function GameDataProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const [selectedBuddy, setSelectedBuddy] = useState('Bunny');
-  const [history, setHistory] = useState<HistoryEntry[]>(defaultHistory);
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [historyOwnerId, setHistoryOwnerId] = useState<string | null>(null);
+  const [historyLoading, setHistoryLoading] = useState(false);
+  const [historyError, setHistoryError] = useState<string | null>(null);
   const [profileData, setProfileData] = useState<GameProfile | null>(null);
   const [profileOwnerId, setProfileOwnerId] = useState<string | null>(null);
   const [profileLoading, setProfileLoading] = useState(true);
@@ -306,6 +309,68 @@ export function GameDataProvider({ children }: { children: ReactNode }) {
     };
   }, [profileRevision, user?.id, user?.username]);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    if (!user) {
+      setHistory([]);
+      setHistoryOwnerId(null);
+      setHistoryLoading(false);
+      setHistoryError(null);
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    setHistory([]);
+    setHistoryOwnerId(user.id);
+    setHistoryLoading(true);
+    setHistoryError(null);
+
+    if (!supabase) {
+      setHistoryLoading(false);
+      setHistoryError(supabaseConfigError ?? 'Supabase is not configured.');
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    void (async () => {
+      try {
+        const { data, error } = await supabase
+          .from('game_sessions')
+          .select('id, level_id, score, result, played_at')
+          .eq('user_id', user.id)
+          .order('played_at', { ascending: false });
+        if (!isMounted) return;
+        if (error) throw error;
+
+        setHistory((data ?? []).map((session) => {
+          const level = levelCatalog.find((item) => item.id === session.level_id);
+          if (!level) throw new Error('A saved session references a level that is not in the catalog.');
+          return {
+            id: session.id,
+            title: level.title,
+            difficulty: level.difficulty,
+            date: formatHistoryDate(session.played_at),
+            score: session.score,
+            status: session.result === 'win' ? 'Cleared' : 'Lost',
+          };
+        }));
+      } catch (error: unknown) {
+        if (!isMounted) return;
+        setHistory([]);
+        setHistoryError(error instanceof Error ? error.message : 'Could not load game history.');
+      } finally {
+        if (isMounted) setHistoryLoading(false);
+      }
+    })();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [user?.id]);
+
   const updateSelectedBuddy = async (buddy: string) => {
     if (!buddyOptions.some((option) => option.id === buddy)) return;
     const previousBuddy = selectedBuddy;
@@ -341,8 +406,11 @@ export function GameDataProvider({ children }: { children: ReactNode }) {
     avgTime: 0,
   }), [ownedProfileData, user?.username, visibleBuddy]);
 
-  const clearHistory = () => setHistory([]);
-  const restoreHistory = () => setHistory(defaultHistory);
+  const activeUserId = user?.id ?? null;
+  const visibleHistory = historyOwnerId === activeUserId ? history : [];
+  const visibleHistoryLoading = activeUserId !== null
+    && (historyOwnerId !== activeUserId || historyLoading);
+  const visibleHistoryError = historyOwnerId === activeUserId ? historyError : null;
 
   const value = useMemo(
     () => ({
@@ -351,15 +419,15 @@ export function GameDataProvider({ children }: { children: ReactNode }) {
       profileAvailable: profileOwnerId === user?.id && profileData !== null,
       profileError,
       refreshProfile,
-      history,
+      history: visibleHistory,
+      historyLoading: visibleHistoryLoading,
+      historyError: visibleHistoryError,
       levels: levelCatalog,
       buddyOptions,
       selectedBuddy: visibleBuddy,
       setSelectedBuddy: updateSelectedBuddy,
-      clearHistory,
-      restoreHistory,
     }),
-    [history, profile, profileData, profileError, profileLoading, profileOwnerId, refreshProfile, user?.id, visibleBuddy],
+    [profile, profileData, profileError, profileLoading, profileOwnerId, refreshProfile, user?.id, visibleBuddy, visibleHistory, visibleHistoryError, visibleHistoryLoading],
   );
 
   return <GameDataContext.Provider value={value}>{children}</GameDataContext.Provider>;
