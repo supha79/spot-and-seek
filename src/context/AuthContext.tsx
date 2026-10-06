@@ -16,7 +16,7 @@ type AuthContextValue = {
   isRecoverySession: boolean;
   authError: string | null;
   configError: string | null;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<AuthUser>;
   register: (email: string, username: string, password: string, confirmPassword: string) => Promise<void>;
   logout: () => Promise<void>;
   requestPasswordReset: (email: string) => Promise<void>;
@@ -107,8 +107,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await client.auth.signOut();
         throw new Error('Please confirm your email address before signing in.');
       }
-      setUser(toAuthUser(data.user));
+      const authUser = toAuthUser(data.user);
+      setUser(authUser);
       setIsRecoverySession(false);
+      return authUser;
     } catch (error) {
       const message = getErrorMessage(error);
       setAuthError(message);

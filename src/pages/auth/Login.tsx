@@ -25,11 +25,17 @@ export default function Login() {
     setError('');
 
     try {
-      await login(email, password);
+      const authenticatedUser = await login(email, password);
       const from = routeState?.from;
-      const returnTo = from?.pathname?.startsWith('/') && !from.pathname.startsWith('//')
-        ? `${from.pathname}${from.search ?? ''}${from.hash ?? ''}`
-        : '/dashboard/home';
+      const requestedPath = from?.pathname;
+      const isSafeReturnPath = requestedPath?.startsWith('/') && !requestedPath.startsWith('//');
+      const isRoleCompatibleReturnPath = authenticatedUser.isAdmin
+        ? requestedPath === '/admin' || requestedPath?.startsWith('/admin/')
+        : requestedPath?.startsWith('/dashboard/');
+      const defaultDestination = authenticatedUser.isAdmin ? '/admin/dashboard' : '/dashboard/home';
+      const returnTo = isSafeReturnPath && isRoleCompatibleReturnPath
+        ? `${requestedPath}${from?.search ?? ''}${from?.hash ?? ''}`
+        : defaultDestination;
       navigate(returnTo, { replace: true });
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Login failed.';
