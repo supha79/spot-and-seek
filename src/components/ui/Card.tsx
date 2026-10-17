@@ -10,8 +10,8 @@ export type CardProps = {
 };
 
 const sizeClasses: Record<CardSize, string> = {
-  sm: 'rounded-lg',
-  lg: 'rounded-xl',
+  sm: 'rounded-md',
+  lg: 'rounded-lg',
 };
 
 export function Card({ children, className = '', size = 'lg', style }: CardProps) {

@@ -1,26 +1,64 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
-import PlaceholderIllustration from '../../components/ui/PlaceholderIllustration';
+import { getGameRunResult, type GameRunResult } from '../../services/gameRunResults';
 
-type LocationState = {
-  timeTaken?: number;
-  mistakes?: number;
-  hintsUsed?: number;
-  found?: number;
-  totalDifferences?: number;
-  score?: number;
-};
+function formatTime(totalSeconds: number) {
+  const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+  const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
 
 export default function TimesUp() {
   const navigate = useNavigate();
-  const { levelId = 'cozy-cat-corner' } = useParams();
-  const location = useLocation();
-  const state = (location.state ?? {}) as LocationState;
+  const { runId } = useParams();
+  const [gameResult, setGameResult] = useState<GameRunResult | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
-  const mistakes = state.mistakes ?? 3;
-  const hintsUsed = state.hintsUsed ?? 1;
-  const found = state.found ?? 2;
-  const totalDifferences = state.totalDifferences ?? 3;
+  useEffect(() => {
+    let isMounted = true;
+    setIsLoading(true);
+    setHasError(false);
+    setGameResult(null);
+
+    void getGameRunResult(runId ?? '')
+      .then((result) => {
+        if (!isMounted) return;
+        if (result.status !== 'lost') {
+          setHasError(true);
+          return;
+        }
+        setGameResult(result);
+      })
+      .catch(() => {
+        if (isMounted) setHasError(true);
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [retryCount, runId]);
+
+  if (isLoading || (!hasError && gameResult?.run_id !== runId)) {
+    return <p role="status" className="py-12 text-center text-body-md text-on-surface-variant">Loading game result...</p>;
+  }
+
+  if (hasError || !gameResult || gameResult.run_id !== runId) {
+    return (
+      <div role="alert" className="mx-auto max-w-xl space-y-4 py-12 text-center">
+        <p className="text-headline-sm text-on-surface">This game result is unavailable.</p>
+        <Button variant="ghost" leftIcon="refresh" onClick={() => setRetryCount((count) => count + 1)}>Retry</Button>
+        <Link to="/dashboard/history" className="block text-label-md text-primary">Back to history</Link>
+      </div>
+    );
+  }
+
+  const replayLevelId = gameResult.level.content_level_id ?? gameResult.level.id;
 
   return (
     <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 py-8">
@@ -55,47 +93,17 @@ export default function TimesUp() {
 
           <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-secondary-container px-4 py-2 text-label-lg text-on-secondary-container shadow-[0_2px_8px_-1px_rgba(44,105,86,0.15)]">
             <span className="material-symbols-outlined text-[20px]">check_circle</span>
-            <span>Found {found} / {totalDifferences} Differences</span>
+            <span>Found {gameResult.found_count} / {gameResult.total_spots} Differences</span>
           </div>
         </div>
 
-        <div className="rounded-lg bg-surface-container-low p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-label-md font-bold text-primary">จุดต่างที่คุณเกือบเจอแล้ว</span>
-              <span className="material-symbols-outlined text-[18px] text-primary">search</span>
-            </div>
-            <span className="rounded-full bg-tertiary-fixed px-2 py-1 text-label-sm text-on-tertiary-fixed font-semibold">1 Spot Missed</span>
-          </div>
-
-          <div className="relative aspect-square w-full overflow-hidden rounded-[20px] bg-surface-container shadow-inner">
-            <PlaceholderIllustration className="h-full w-full rounded-[20px]" label="missed difference" />
-            <div className="absolute bottom-[32%] right-[18%] flex h-11 w-11 items-center justify-center rounded-full bg-secondary-container/40 animate-pulse">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary-container shadow-[0_3px_0_#2BA678]">
-                <span className="material-symbols-outlined text-[18px] text-on-secondary-container">done</span>
-              </div>
-            </div>
-            <div className="absolute left-[62%] top-[39%] flex h-11 w-11 items-center justify-center rounded-full bg-secondary-container/40 animate-pulse">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary-container shadow-[0_3px_0_#2BA678]">
-                <span className="material-symbols-outlined text-[18px] text-on-secondary-container">done</span>
-              </div>
-            </div>
-            <div className="absolute left-[48%] top-[56%] -translate-x-1/2 -translate-y-1/2">
-              <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-tertiary-fixed/70 shadow-[0_4px_12px_rgba(234,175,193,0.6)]">
-                <div className="absolute -inset-3 rounded-full bg-tertiary-container/50 animate-ping" />
-                <span className="material-symbols-outlined text-[26px] text-on-tertiary-container">visibility</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <div className="rounded-DEFAULT bg-primary-fixed/40 p-3 text-center shadow-sm">
             <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-on-primary-container shadow-[0_2px_0_#2B8BC6]">
               <span className="material-symbols-outlined text-[18px]">timer</span>
             </div>
             <div className="text-label-sm text-on-surface-variant">Time</div>
-            <div className="text-headline-sm text-on-surface">02:00</div>
+            <div className="text-headline-sm text-on-surface">{formatTime(Math.round(gameResult.elapsed_active_seconds))}</div>
           </div>
 
           <div className="rounded-DEFAULT bg-tertiary-fixed/40 p-3 text-center shadow-sm">
@@ -103,7 +111,7 @@ export default function TimesUp() {
               <span className="material-symbols-outlined text-[18px]">close</span>
             </div>
             <div className="text-label-sm text-on-surface-variant">Wrong clicks</div>
-            <div className="text-headline-sm text-on-surface">{mistakes}</div>
+            <div className="text-headline-sm text-on-surface">{gameResult.wrong_clicks}</div>
           </div>
 
           <div className="rounded-DEFAULT bg-secondary-fixed/40 p-3 text-center shadow-sm">
@@ -111,12 +119,19 @@ export default function TimesUp() {
               <span className="material-symbols-outlined text-[18px]">lightbulb</span>
             </div>
             <div className="text-label-sm text-on-surface-variant">Hints used</div>
-            <div className="text-headline-sm text-on-surface">{hintsUsed}</div>
+            <div className="text-headline-sm text-on-surface">{gameResult.hints_used}</div>
+          </div>
+          <div className="rounded-DEFAULT bg-secondary-fixed/40 p-3 text-center shadow-sm">
+              <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-secondary-container text-on-secondary-container">
+                <span className="material-symbols-outlined text-[18px]">star</span>
+              </div>
+              <div className="text-label-sm text-on-surface-variant">Score</div>
+              <div className="text-headline-sm text-on-surface">{gameResult.score.toLocaleString()}</div>
           </div>
         </div>
 
         <div className="mt-6 flex flex-col gap-3">
-          <Button variant="primary" size="lg" onClick={() => navigate(`/dashboard/play/${levelId}`)} className="w-full justify-center">
+          <Button variant="primary" size="lg" onClick={() => navigate(`/dashboard/play/${replayLevelId}`)} className="w-full justify-center">
             Try again
           </Button>
           <Button variant="ghost" size="lg" onClick={() => navigate('/dashboard/easy-levels')} className="w-full justify-center">
@@ -125,8 +140,11 @@ export default function TimesUp() {
         </div>
 
         <div className="mt-4 flex items-center justify-center gap-2 text-on-surface-variant">
-          <span className="text-[16px]">🐱</span>
-          <span className="text-label-sm">Cozy Cat Corner · Easy Level 1</span>
+          <span className="text-label-sm">{gameResult.level.title ?? gameResult.level.id} · {gameResult.level.difficulty ?? 'Legacy'}</span>
+        </div>
+        <p className="mt-2 text-center text-body-sm text-on-surface-variant">Completed {new Date(gameResult.played_at).toLocaleString()}</p>
+        <div className="mt-3 text-center">
+          <Link to="/dashboard/history" className="text-label-md text-primary hover:underline">View history</Link>
         </div>
       </div>
     </div>

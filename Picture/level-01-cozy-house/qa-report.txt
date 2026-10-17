@@ -1,0 +1,10 @@
+Level: 1 - Cozy House
+Difficulty: Easy
+---
+Asset files:
+  original.png -> 1-1.png
+  comparison.png -> 1-2.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the exact SHA-256 pair recorded in differences.json. Five visible differences were confirmed and mapped to normalized hit regions: Cloud above the left roof is missing; Front door changes from red to blue; Lower-left window is missing; Smoke appears above the chimney; Small flower detail changes in the left flower bed.
+Runtime duration: 120 seconds, adjusted to the database difficulty tier.

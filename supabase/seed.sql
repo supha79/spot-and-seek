@@ -1,0 +1,2 @@
+-- Intentionally does not seed or approve a Dynamic score policy.
+-- Use the Admin policy workflow with product-approved coefficients and a distinct approver.

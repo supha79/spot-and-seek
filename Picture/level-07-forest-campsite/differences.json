@@ -1,0 +1,120 @@
+{
+    "levelName":  "Forest Campsite",
+    "hints":  1,
+    "differences":  [
+                        {
+                            "boundingBox":  {
+                                                "x":  564,
+                                                "y":  293,
+                                                "width":  174,
+                                                "height":  174
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.45,
+                                                      "y_norm":  0.35,
+                                                      "width_norm":  0.12,
+                                                      "height_norm":  0.16,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Tent front panel detail changes",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  709,
+                                                "y":  76,
+                                                "width":  87,
+                                                "height":  65
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.52,
+                                                      "y_norm":  0.1,
+                                                      "radius_norm":  0.03,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Small star is missing above the campsite",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  948,
+                                                "y":  625,
+                                                "width":  188,
+                                                "height":  163
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.72,
+                                                      "y_norm":  0.65,
+                                                      "width_norm":  0.13,
+                                                      "height_norm":  0.15,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Log pile arrangement changes beside the chair",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  58,
+                                                "y":  402,
+                                                "width":  260,
+                                                "height":  261
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.13,
+                                                      "y_norm":  0.49,
+                                                      "width_norm":  0.18,
+                                                      "height_norm":  0.24,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Backpack changes from plain to dotted",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  745,
+                                                "y":  560,
+                                                "width":  130,
+                                                "height":  98
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.56,
+                                                      "y_norm":  0.56,
+                                                      "radius_norm":  0.045,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "A campsite flame detail changes",
+                            "id":  5,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Hard",
+    "timeLimitSeconds":  60,
+    "levelId":  7,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  {
+                            "width":  1447,
+                            "height":  1087
+                        },
+    "imageSha256":  {
+                        "original":  "0eb118024cb88ccb9bcdfc955b7721c1bdb6a40f0e8babf26c455908369e54c7",
+                        "comparison":  "3d11b0b4890d0cee2bef938f4a5bbd873c6fe69fe083c08c3176249ca0328e73"
+                    },
+    "coordinateSystems":  {
+                              "boundingBox":  "pixel x,y,width,height",
+                              "geometryCandidate":  "normalized 0..1"
+                          }
+}

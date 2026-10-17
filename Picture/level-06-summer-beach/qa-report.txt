@@ -1,0 +1,10 @@
+Level: 6 - Summer Beach
+Difficulty: Medium
+---
+Asset files:
+  original.png
+  comparison.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the exact SHA-256 pair recorded in differences.json. Five visible changes were confirmed and mapped to normalized hit regions: Beach umbrella changes from red to green; Beach ball panel changes from yellow to purple; Shell detail changes on the sandcastle; Crab claw shape changes; Seagull is missing from the sky.
+Runtime duration: 75 seconds; satisfies the current database difficulty tier.

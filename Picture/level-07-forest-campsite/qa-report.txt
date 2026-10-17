@@ -1,0 +1,10 @@
+Level: 7 - Forest Campsite
+Difficulty: Hard
+---
+Asset files:
+  original.png
+  comparison.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the exact SHA-256 pair recorded in differences.json. Five visible changes were confirmed and mapped to normalized hit regions: Tent front panel detail changes; Small star is missing above the campsite; Log pile arrangement changes beside the chair; Backpack changes from plain to dotted; A campsite flame detail changes.
+Runtime duration: 60 seconds; satisfies the current database difficulty tier.

@@ -1,0 +1,59 @@
+﻿{
+    "levelName":  "Candy Kingdom",
+    "hints":  1,
+    "differences":  [
+                        {
+                            "boundingBox":  { "x": 25, "y": 125, "width": 390, "height": 390 },
+                            "geometryCandidate":  { "shape": "circle", "x_norm": 0.142, "y_norm": 0.290, "radius_norm": 0.130, "tolerance_norm": 0.025 },
+                            "status":  "verified",
+                            "description":  "Large lollipop changes from pink to blue",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 1240, "y": 380, "width": 190, "height": 440 },
+                            "geometryCandidate":  { "shape": "rectangle", "x_norm": 0.923, "y_norm": 0.552, "width_norm": 0.120, "height_norm": 0.390, "tolerance_norm": 0.010 },
+                            "status":  "verified",
+                            "description":  "Right candy cane gains a blue stripe",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 1090, "y": 525, "width": 100, "height": 110 },
+                            "geometryCandidate":  { "shape": "circle", "x_norm": 0.788, "y_norm": 0.529, "radius_norm": 0.040, "tolerance_norm": 0.020 },
+                            "status":  "verified",
+                            "description":  "Red cherry is missing from the cupcake",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 440, "y": 840, "width": 110, "height": 100 },
+                            "geometryCandidate":  { "shape": "circle", "x_norm": 0.339, "y_norm": 0.819, "radius_norm": 0.038, "tolerance_norm": 0.020 },
+                            "status":  "verified",
+                            "description":  "Upper red jelly candy is missing",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 400, "y": 960, "width": 120, "height": 110 },
+                            "geometryCandidate":  { "shape": "circle", "x_norm": 0.318, "y_norm": 0.934, "radius_norm": 0.040, "tolerance_norm": 0.020 },
+                            "status":  "verified",
+                            "description":  "Lower red jelly candy is missing",
+                            "id":  5,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Hard",
+    "timeLimitSeconds":  60,
+    "levelId":  8,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  { "width": 1447, "height": 1087 },
+    "imageSha256":  {
+        "original": "d71b21d887fb36ac59ffbbdecf5366c34a8bdeb5fa0a90d6778d22e695a6d89d",
+        "comparison": "8134ae53fbea5e981c6d9d50166d74b39d4f883291a13392461db8a56a36cf5a"
+    },
+    "coordinateSystems":  {
+        "boundingBox": "pixel x,y,width,height",
+        "geometryCandidate": "normalized 0..1"
+    }
+}

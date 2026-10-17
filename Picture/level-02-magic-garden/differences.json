@@ -1,0 +1,121 @@
+{
+    "levelName":  "Magic Garden",
+    "hints":  3,
+    "differences":  [
+                        {
+                            "boundingBox":  {
+                                                "x":  355,
+                                                "y":  766,
+                                                "width":  217,
+                                                "height":  163
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.32,
+                                                      "y_norm":  0.78,
+                                                      "radius_norm":  0.075,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Watering can changes from silver to blue",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  759,
+                                                "y":  695,
+                                                "width":  145,
+                                                "height":  109
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.574,
+                                                      "y_norm":  0.69,
+                                                      "radius_norm":  0.05,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "A flower pot appears on the garden path",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  899,
+                                                "y":  440,
+                                                "width":  101,
+                                                "height":  152
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.656,
+                                                      "y_norm":  0.475,
+                                                      "width_norm":  0.07,
+                                                      "height_norm":  0.14,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Garden gate is open instead of closed",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  320,
+                                                "y":  244,
+                                                "width":  130,
+                                                "height":  98
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.266,
+                                                      "y_norm":  0.27,
+                                                      "radius_norm":  0.045,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Orange butterfly is missing",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  1209,
+                                                "y":  380,
+                                                "width":  116,
+                                                "height":  87
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.875,
+                                                      "y_norm":  0.39,
+                                                      "radius_norm":  0.04,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Yellow butterfly is missing",
+                            "id":  5,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Easy",
+    "timeLimitSeconds":  120,
+    "levelId":  2,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  {
+                            "width":  1448,
+                            "height":  1086
+                        },
+    "imageSha256":  {
+                        "original":  "3bf0ff2dca8aaecd6cfe03e65bad0de8a80787b47a98f1991a28f11df5a05424",
+                        "comparison":  "b8225e129042d0d10a24cfdddeed9b9d5421f410f26b83237437f70b18b4a1ca"
+                    },
+    "sourceImageSha256":  {
+                             "comparison":  "e7c18f49c4909ce804448f7618e9e21d8c64a80ef1963dd9d2e8ae35d1b69c20"
+                         },
+    "coordinateSystems":  {
+                              "boundingBox":  "pixel x,y,width,height",
+                              "geometryCandidate":  "normalized 0..1"
+                          }
+}

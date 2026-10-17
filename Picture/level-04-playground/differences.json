@@ -1,0 +1,70 @@
+﻿{
+    "levelName":  "Playground",
+    "hints":  2,
+    "imageDimensions":  {
+                            "width":  1447,
+                            "height":  1087
+                        },
+    "imageSha256":  {
+                       "original":  "195ccd692833f5cd01f172fd2fb172050632d006dece52570fb440683061a7e4",
+                       "comparison":  "c6169d716b8125a46fa46f68b775ba187052346374b255f38f235338d5f8d20f"
+                   },
+    "coordinateSystems":  {
+                              "boundingBox":  "pixel x,y,width,height",
+                              "geometryCandidate":  "normalized 0..1"
+                          },
+    "differences":  [
+                        {
+                            "boundingBox":  { "x":  490, "y":  490, "width":  150, "height":  150 },
+                            "geometryCandidate":  { "shape":  "circle", "x_norm":  0.390, "y_norm":  0.520, "radius_norm":  0.055, "tolerance_norm":  0.025 },
+            "status":  "verified",
+                            "description":  "Slide changes from red to blue",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x":  738, "y":  539, "width":  109, "height":  80 },
+                            "geometryCandidate":  { "shape":  "rectangle", "x_norm":  0.548, "y_norm":  0.533, "width_norm":  0.075, "height_norm":  0.074, "tolerance_norm":  0.010 },
+            "status":  "verified",
+            "description":  "The blue seat on the left swing is present in Original and missing in Comparison",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x":  180, "y":  755, "width":  140, "height":  105 },
+                            "geometryCandidate":  { "shape":  "circle", "x_norm":  0.173, "y_norm":  0.743, "radius_norm":  0.048, "tolerance_norm":  0.025 },
+            "status":  "verified",
+                            "description":  "Multicolor ball is missing from its original lower-left position",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x":  1145, "y":  720, "width":  140, "height":  100 },
+                            "geometryCandidate":  { "shape":  "circle", "x_norm":  0.839, "y_norm":  0.708, "radius_norm":  0.048, "tolerance_norm":  0.025 },
+            "status":  "verified",
+                            "description":  "Multicolor ball appears beside the seesaw",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x":  1250, "y":  170, "width":  110, "height":  70 },
+                            "geometryCandidate":  { "shape":  "circle", "x_norm":  0.902, "y_norm":  0.189, "radius_norm":  0.045, "tolerance_norm":  0.025 },
+            "status":  "verified",
+                            "description":  "Clock hands show a different time",
+                            "id":  5,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x":  378, "y":  665, "width":  118, "height":  78 },
+                            "geometryCandidate":  { "shape":  "rectangle", "x_norm":  0.302, "y_norm":  0.647, "width_norm":  0.080, "height_norm":  0.070, "tolerance_norm":  0.010 },
+                            "status":  "verified",
+                            "description":  "Boy's shirt pattern changes from a single white star to white dots",
+                            "id":  6,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Medium",
+    "timeLimitSeconds":  75,
+    "levelId":  4,
+    "expectedDifferenceCount":  6
+}

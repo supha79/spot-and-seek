@@ -1,0 +1,118 @@
+{
+    "levelName":  "Summer Beach",
+    "hints":  2,
+    "differences":  [
+                        {
+                            "boundingBox":  {
+                                                "x":  0,
+                                                "y":  5,
+                                                "width":  608,
+                                                "height":  293
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.21,
+                                                      "y_norm":  0.14,
+                                                      "width_norm":  0.42,
+                                                      "height_norm":  0.27,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Beach umbrella changes from red to green",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  1042,
+                                                "y":  794,
+                                                "width":  260,
+                                                "height":  196
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.81,
+                                                      "y_norm":  0.82,
+                                                      "radius_norm":  0.09,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Beach ball panel changes from yellow to purple",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  984,
+                                                "y":  457,
+                                                "width":  145,
+                                                "height":  109
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.73,
+                                                      "y_norm":  0.47,
+                                                      "radius_norm":  0.05,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Shell detail changes on the sandcastle",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  521,
+                                                "y":  641,
+                                                "width":  174,
+                                                "height":  130
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.42,
+                                                      "y_norm":  0.65,
+                                                      "radius_norm":  0.06,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Crab claw shape changes",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  875,
+                                                "y":  168,
+                                                "width":  130,
+                                                "height":  98
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.65,
+                                                      "y_norm":  0.2,
+                                                      "radius_norm":  0.045,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Seagull is missing from the sky",
+                            "id":  5,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Medium",
+    "timeLimitSeconds":  75,
+    "levelId":  6,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  {
+                            "width":  1447,
+                            "height":  1087
+                        },
+    "imageSha256":  {
+                        "original":  "b4c73de484cc242db98eb638ad80caab5435c2753afd73fe07c0bd1ca672e6c2",
+                        "comparison":  "faab3a7704c04b8ab645c177b8882998d4c6939a7720ad1556a4359d180bf4a9"
+                    },
+    "coordinateSystems":  {
+                              "boundingBox":  "pixel x,y,width,height",
+                              "geometryCandidate":  "normalized 0..1"
+                          }
+}

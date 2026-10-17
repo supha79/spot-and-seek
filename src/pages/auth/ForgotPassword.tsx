@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Header } from '../../components/layout/Header';
 import AmbientBackground from '../../components/ui/AmbientBackground';
 import Button from '../../components/ui/Button';
@@ -52,9 +51,6 @@ export default function ForgotPassword() {
                 </Button>
               </form>
             )}
-            <div className="mt-6 text-center">
-              <Link to="/login" className="text-label-md text-primary">Back to login</Link>
-            </div>
           </Card>
         </section>
       </div>

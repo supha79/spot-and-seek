@@ -22,13 +22,13 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary-container text-on-primary-container border border-transparent shadow-[0_6px_0_#2B8BC6] active:shadow-[0_2px_0_#2B8BC6] active:translate-y-1',
+    'bg-primary-container text-on-primary-container border border-transparent shadow-[0_6px_0_#2B8BC6]',
   secondary:
-    'bg-secondary-fixed text-on-secondary-fixed border border-transparent shadow-[0_6px_0_#2BA678] active:shadow-[0_2px_0_#2BA678] active:translate-y-1',
+    'bg-secondary-fixed text-on-secondary-fixed border border-transparent shadow-[0_6px_0_#2BA678]',
   tertiary:
-    'bg-tertiary-fixed text-on-tertiary-fixed border border-transparent shadow-[0_6px_0_#E85B88] active:shadow-[0_2px_0_#E85B88] active:translate-y-1',
+    'bg-tertiary-fixed text-on-tertiary-fixed border border-transparent shadow-[0_6px_0_#E85B88]',
   ghost:
-    'bg-white text-on-surface-variant border-2 border-surface-container-low shadow-[0_4px_0_#E1EDF2] active:shadow-[0_2px_0_#E1EDF2] active:translate-y-1',
+    'bg-white text-on-surface-variant border-2 border-surface-container-low shadow-[0_4px_0_#E1EDF2]',
 };
 
 export function Button({
@@ -49,7 +49,9 @@ export function Button({
       disabled={disabled}
       className={`
         relative inline-flex items-center justify-center gap-2 rounded-full font-label-md tracking-wide
-        transition-all duration-200 ease-out active:duration-75 select-none overflow-hidden
+        transition-[transform,box-shadow,background-color,color] duration-150 ease-out active:scale-[0.97]
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+        disabled:active:scale-100 select-none overflow-hidden motion-reduce:transition-none motion-reduce:active:transform-none
         ${sizeClasses[size]} ${variantClasses[variant]} ${className}
         ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
       `}

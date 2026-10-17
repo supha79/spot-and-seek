@@ -1,0 +1,119 @@
+{
+    "levelName":  "Bakery",
+    "hints":  3,
+    "differences":  [
+                        {
+                            "boundingBox":  {
+                                                "x":  955,
+                                                "y":  87,
+                                                "width":  289,
+                                                "height":  152
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.76,
+                                                      "y_norm":  0.15,
+                                                      "width_norm":  0.2,
+                                                      "height_norm":  0.14,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Shop sign changes from a loaf to a cupcake",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  818,
+                                                "y":  332,
+                                                "width":  130,
+                                                "height":  98
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.61,
+                                                      "y_norm":  0.35,
+                                                      "radius_norm":  0.045,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Bell is missing from the shop doorway",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  260,
+                                                "y":  451,
+                                                "width":  145,
+                                                "height":  98
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.23,
+                                                      "y_norm":  0.46,
+                                                      "width_norm":  0.1,
+                                                      "height_norm":  0.09,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Pastry detail changes on the upper shelf",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  246,
+                                                "y":  565,
+                                                "width":  145,
+                                                "height":  109
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.22,
+                                                      "y_norm":  0.57,
+                                                      "radius_norm":  0.05,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "A blue cupcake appears on the lower shelf",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  593,
+                                                "y":  641,
+                                                "width":  116,
+                                                "height":  87
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.45,
+                                                      "y_norm":  0.63,
+                                                      "radius_norm":  0.04,
+                                                      "tolerance_norm":  0.02
+                                                  },
+                            "status":  "verified",
+                            "description":  "Berry decoration changes on the cake",
+                            "id":  5,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Easy",
+    "timeLimitSeconds":  120,
+    "levelId":  3,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  {
+                            "width":  1447,
+                            "height":  1087
+                        },
+    "imageSha256":  {
+                        "original":  "120866ea8f4146fcbaec80f6c11858b59bd1fcc41b084c928b60e9f152a2232e",
+                        "comparison":  "a97594a7ff2fb008ea37f13728823cd61b571b5e2fcd1914d9c43b965b49dbdc"
+                    },
+    "coordinateSystems":  {
+                              "boundingBox":  "pixel x,y,width,height",
+                              "geometryCandidate":  "normalized 0..1"
+                          }
+}

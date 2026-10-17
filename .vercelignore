@@ -1,0 +1,35 @@
+# Environment files and credentials
+.env*
+**/.env*
+**/*credentials*
+**/*secret*
+**/*token*
+**/*private-key*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Repository metadata and local-only configuration
+.git/
+.vercel/
+.github/
+.vscode/
+.idea/
+**/*.local
+*.log
+.DS_Store
+Thumbs.db
+
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Internal documentation, database assets, migration/test fixtures, and helper scripts
+/docs/
+/Picture/
+/supabase/
+/tests/

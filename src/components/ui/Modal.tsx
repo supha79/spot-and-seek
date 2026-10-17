@@ -1,13 +1,15 @@
 import { useEffect, type ReactNode } from 'react';
-import { Card } from './Card';
+import { Card, type CardSize } from './Card';
 
 export type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  className?: string;
+  size?: CardSize;
 };
 
-export function Modal({ isOpen, onClose, children }: ModalProps) {
+export function Modal({ isOpen, onClose, children, className = 'max-w-lg', size = 'lg' }: ModalProps) {
   useEffect(() => {
     if (!isOpen) return;
 
@@ -25,12 +27,12 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(35,65,79,0.35)] backdrop-blur"
+      className="ui-fade-in fixed inset-0 z-50 flex items-center justify-center bg-[rgba(35,65,79,0.35)] backdrop-blur"
       onClick={onClose}
       role="presentation"
     >
-      <div className="w-full max-w-lg px-4" onClick={(event) => event.stopPropagation()} role="dialog" aria-modal="true">
-        <Card className="overflow-hidden p-0" size="lg" style={{ boxShadow: '0 20px 40px -8px rgba(35,65,79,0.15)' }}>
+      <div className={`ui-pop-in w-full px-4 ${className}`} onClick={(event) => event.stopPropagation()} role="dialog" aria-modal="true">
+        <Card className="overflow-hidden p-0" size={size} style={{ boxShadow: '0 20px 40px -8px rgba(35,65,79,0.15)' }}>
           {children}
         </Card>
       </div>

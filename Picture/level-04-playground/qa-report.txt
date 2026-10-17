@@ -1,0 +1,15 @@
+﻿Level: 4 - Playground
+Difficulty: Medium
+---
+Asset files:
+  original.png -> level4-1.png
+  comparison.png -> level4-2.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the exact SHA-256 pair recorded in differences.json. All six intended changes were confirmed: slide color, missing left swing seat, ball removed from its original position, ball added beside the seesaw, changed clock hands, and boy's shirt pattern changing from a single white star to white dots. Database hit regions match all six annotated geometries.
+
+Verification update (2026-10-16): all six annotations in differences.json are verified against the recorded image hashes. The moved-ball change is represented by separate original-position and comparison-position targets.
+
+Correction: the second target identifies the blue seat on the left swing, which is present in Original and missing in Comparison.
+
+Update: the sixth target covers the boy's shirt pattern change from a white star in Original to white dots in Comparison.

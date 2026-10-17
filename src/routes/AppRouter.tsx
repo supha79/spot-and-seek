@@ -7,6 +7,7 @@ import BuddyPicker from '../pages/player/BuddyPicker';
 import ChooseDifficulty from '../pages/player/ChooseDifficulty';
 import EasyLevels from '../pages/player/EasyLevels';
 import History from '../pages/player/History';
+import HistoryDetail from '../pages/player/HistoryDetail';
 import Home from '../pages/player/Home';
 import HowToPlay from '../pages/player/HowToPlay';
 import LevelComplete from '../pages/game/LevelComplete';
@@ -46,9 +47,10 @@ export function AppRouter() {
         <Route path="play" element={<ChooseDifficulty />} />
         <Route path="easy-levels" element={<EasyLevels />} />
         <Route path="play/:routeParam" element={<PlayView />} />
-        <Route path="play/:levelId/complete" element={<LevelComplete />} />
-        <Route path="play/:levelId/times-up" element={<TimesUp />} />
+        <Route path="play/:runId/complete" element={<LevelComplete />} />
+        <Route path="play/:runId/times-up" element={<TimesUp />} />
         <Route path="history" element={<History />} />
+        <Route path="history/:sessionId" element={<HistoryDetail />} />
         <Route path="how-to-play" element={<HowToPlay />} />
         <Route path="profile" element={<Profile />} />
         <Route path="buddy" element={<BuddyPicker />} />

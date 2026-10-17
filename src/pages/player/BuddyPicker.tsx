@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useGameData } from '../../context/GameDataContext';
 import { Button } from '../../components/ui/Button';
+import { BuddyAvatar } from '../../components/ui/BuddyAvatar';
 
 export default function BuddyPicker() {
   const navigate = useNavigate();
-  const { selectedBuddy, setSelectedBuddy, buddyOptions } = useGameData();
+  const { selectedBuddy, setSelectedBuddy, buddyOptions, profileLoading } = useGameData();
 
   return (
     <div className="mx-auto max-w-4xl space-y-6 pb-8">
@@ -16,18 +17,16 @@ export default function BuddyPicker() {
         <p className="mt-2 text-body-md text-on-surface-variant">เลือกอวาตาร์ที่ชอบ เปลี่ยนภายหลังได้ที่หน้า Profile</p>
       </section>
 
-      {/* Mock state updates immediately; real persistence should wait for Confirm. */}
       <section className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {buddyOptions.map((buddy) => (
           <button
             key={buddy.id}
             type="button"
             onClick={() => setSelectedBuddy(buddy.id)}
-            className={`rounded-[24px] border p-4 text-center transition-all ${selectedBuddy === buddy.id ? 'border-primary bg-primary-fixed/40 shadow-[0_8px_24px_rgba(124,200,240,0.35)]' : 'border-transparent bg-surface-container-lowest shadow-[0_8px_24px_rgba(43,139,198,0.08)] hover:border-outline-variant'}`}
+            disabled={profileLoading}
+            className={`ui-pressable rounded-[24px] border p-4 text-center transition-all disabled:cursor-wait disabled:opacity-60 ${!profileLoading && selectedBuddy === buddy.id ? 'border-primary bg-primary-fixed/40 shadow-[0_8px_24px_rgba(124,200,240,0.35)]' : 'border-transparent bg-surface-container-lowest shadow-[0_8px_24px_rgba(43,139,198,0.08)] hover:border-outline-variant'}`}
           >
-            <div className={`mx-auto flex h-20 w-20 items-center justify-center rounded-full ${buddy.accent} text-headline-md text-on-surface`}>
-              {buddy.id.slice(0, 1)}
-            </div>
+            <BuddyAvatar emoji={buddy.emoji} accent={buddy.accent} size="xl" decorative />
             <div className="mt-3 text-label-md text-on-surface">{buddy.name}</div>
           </button>
         ))}
@@ -35,7 +34,7 @@ export default function BuddyPicker() {
 
       <div className="flex justify-center gap-3">
         <Button variant="ghost" onClick={() => navigate('/dashboard/home')}>Back</Button>
-        <Button variant="primary" disabled={!selectedBuddy} onClick={() => navigate('/dashboard/home')}>Confirm</Button>
+        <Button variant="primary" disabled={!selectedBuddy || profileLoading} onClick={() => navigate('/dashboard/home')}>Confirm</Button>
       </div>
     </div>
   );

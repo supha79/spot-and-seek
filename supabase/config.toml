@@ -1,3 +1,7 @@
+[storage.buckets.gameplay-assets]
+public = false
+file_size_limit = "5MiB"
+allowed_mime_types = ["image/png", "image/jpeg", "image/webp"]
 # Local-only configuration for Supabase CLI v2.119.0.
 # Reference: https://supabase.com/docs/guides/local-development/cli/config
 project_id = "spot-and-seek"

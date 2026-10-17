@@ -153,7 +153,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setAuthError(null);
     setIsLoading(true);
     try {
-      const { error } = await client.auth.signOut();
+      const { error } = await client.auth.signOut({ scope: 'local' });
       if (error) throw error;
       setUser(null);
       setIsRecoverySession(false);

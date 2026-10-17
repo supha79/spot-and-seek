@@ -1,0 +1,10 @@
+Level: 3 - Bakery
+Difficulty: Easy
+---
+Asset files:
+  original.png
+  comparison.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the exact SHA-256 pair recorded in differences.json. Five visible changes were confirmed and mapped to normalized hit regions: Shop sign changes from a loaf to a cupcake; Bell is missing from the shop doorway; Pastry detail changes on the upper shelf; A blue cupcake appears on the lower shelf; Berry decoration changes on the cake.
+Runtime duration: 120 seconds; satisfies the current database difficulty tier.

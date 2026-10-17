@@ -1,8 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/ui/Button';
+import { BrandMascot } from '../../components/ui/BrandMascot';
 import Card from '../../components/ui/Card';
+import LevelArtwork from '../../components/ui/LevelArtwork';
 import PlaceholderIllustration from '../../components/ui/PlaceholderIllustration';
 import { useGameData } from '../../context/GameDataContext';
+import { getGameRunReadinessNotice } from '../../services/compatibilityContracts';
 
 export default function Home() {
   const {
@@ -10,11 +14,46 @@ export default function Home() {
     profileLoading,
     profileAvailable,
     profileError,
+    dynamicGameplayGateState,
+    refreshDynamicGameplayGate,
+    games,
+    gamesLoading,
+    gamesError,
+    refreshGames,
     history,
     historyLoading,
     historyError,
+    refreshHistory,
+    levels,
+    levelsLoading,
+    levelsError,
+    refreshLevels,
   } = useGameData();
-  const profileStatsAvailable = profileAvailable && !profileLoading;
+  const recommendedTitles = {
+    easy: 'bakery',
+    medium: 'colorful market',
+    hard: 'candy kingdom',
+  } as const;
+  const recommendedLevels = (['easy', 'medium', 'hard'] as const)
+    .map((difficulty) => levels.find((level) => level.difficulty === difficulty && level.title.toLowerCase().includes(recommendedTitles[difficulty]))
+      ?? levels.find((level) => level.difficulty === difficulty))
+    .filter((level) => level !== undefined);
+  const [activeRecommendationIndex, setActiveRecommendationIndex] = useState(0);
+  const activeIndex = recommendedLevels.length ? activeRecommendationIndex % recommendedLevels.length : 0;
+  const featuredLevel = recommendedLevels[activeIndex];
+  const featuredLevelReadinessNotice = featuredLevel
+    ? getGameRunReadinessNotice(featuredLevel.identity, dynamicGameplayGateState)
+    : null;
+
+  useEffect(() => {
+    if (recommendedLevels.length < 2) return;
+
+    const interval = window.setInterval(() => {
+      setActiveRecommendationIndex((index) => (index + 1) % recommendedLevels.length);
+    }, 6000);
+    return () => window.clearInterval(interval);
+  }, [recommendedLevels.length]);
+  const profileStatsAvailable = profileAvailable && !profileLoading && profile.totalPlays > 0;
   const unavailableProfileValue = profileLoading ? '...' : '—';
   const stats = [
     {
@@ -49,125 +88,175 @@ export default function Home() {
 
   return (
     <div className="space-y-8 pb-6">
-      <section className="flex flex-col gap-5 rounded-[32px] bg-gradient-to-br from-[#ebf7fd] via-[#f3faff] to-[#e7f3ff] p-5 shadow-[0_12px_32px_-6px_rgba(43,139,198,0.18)] md:p-8">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/60 shadow-[0_8px_20px_rgba(43,139,198,0.15)]">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary-container to-primary-fixed">
-                <div className="flex h-10 w-10 flex-col items-center justify-center rounded-full bg-white">
-                  <div className="flex gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#23414F]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#23414F]" />
-                  </div>
-                  <div className="mt-1 h-1.5 w-6 rounded-b-full border-b-2 border-[#23414F]" />
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-display-hero-mobile text-on-primary-container">สวัสดี {profile.displayName}</h1>
-                <span className="rounded-full bg-primary-fixed px-2 py-1 text-label-sm text-on-primary-fixed-variant">พร้อมเล่น</span>
-              </div>
-              <p className="mt-2 max-w-xl text-body-md text-on-surface-variant">
-                วันนี้พร้อมหาจุดต่างหรือยัง? มีมุมอบอุ่นรอให้ค้นพบอีกเพียบเลยนะ ✨
-              </p>
-            </div>
+      <section className="flex flex-col gap-4 py-2 sm:flex-row sm:items-center">
+        <BrandMascot className="h-16 w-16 shrink-0" />
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <h1 className="text-display-hero-mobile text-on-primary-container">สวัสดี {profile.displayName}</h1>
+            <span className="rounded-full bg-primary-fixed px-2 py-1 text-label-sm text-on-primary-fixed-variant">พร้อมเล่น</span>
           </div>
-
-          <div className="flex items-center gap-2 rounded-full bg-surface-container-lowest px-4 py-2 shadow-[0_4px_16px_rgba(43,139,198,0.08)]">
-            <span className="material-symbols-outlined text-secondary">wb_sunny</span>
-            <div className="text-left">
-              <div className="text-label-sm text-secondary">โหมดผ่อนคลาย</div>
-              <div className="text-body-sm text-on-surface-variant">ไม่มีจำกัดเวลา</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="overflow-hidden rounded-[24px] border border-white/40 bg-surface-container-lowest/70 p-3 shadow-[0_20px_40px_rgba(43,139,198,0.08)]">
-            <div className="relative overflow-hidden rounded-[20px]">
-              <PlaceholderIllustration className="h-[240px] w-full md:h-[280px]" label="greenhouse" />
-              <div className="absolute left-3 top-3 rounded-full bg-surface-container-lowest/90 px-3 py-1 text-label-sm text-on-primary-container shadow-sm">ค้นพบแล้ว 2/5</div>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-between rounded-[28px] bg-surface-container-lowest/70 p-5 shadow-[0_12px_28px_rgba(43,139,198,0.08)]">
-            <div className="space-y-3">
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary-fixed px-3 py-1 text-label-sm text-on-primary-fixed-variant">
-                <span className="material-symbols-outlined text-[16px]">palette</span>
-                Medium
-              </span>
-
-              <div>
-                <h2 className="text-headline-lg text-on-primary-container">Level 3 — Greenhouse Garden</h2>
-                <p className="mt-2 text-body-md text-on-surface-variant">
-                  เล่นค้างไว้ล่าสุด มาหาจุดต่างต่อกันเลย! ใบไม้ระเบียงและกระถางต้นกระบองเพชรกำลังรอให้คุณค้นหาด้วยสายตาเฉียบแหลม
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              <span className="rounded-full bg-surface-container px-3 py-1 text-label-sm text-on-surface">5 differences</span>
-              <span className="rounded-full bg-surface-container px-3 py-1 text-label-sm text-on-surface">90 sec</span>
-              <span className="rounded-full bg-secondary-fixed px-3 py-1 text-label-sm text-on-secondary-fixed">Cozy Vibe</span>
-            </div>
-
-            <div className="mt-5">
-              <Link to="/dashboard/play/medium">
-                <Button variant="primary" size="lg" leftIcon="play_circle" className="w-full justify-center">
-                  Play now
-                </Button>
-              </Link>
-            </div>
-          </div>
+          <p className="mt-2 max-w-2xl text-body-md text-on-surface-variant">
+            วันนี้พร้อมหาจุดต่างหรือยัง? มีมุมอบอุ่นรอให้ค้นพบอีกเพียบเลยนะ ✨
+          </p>
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {stats.map((stat) => (
-          <Card key={stat.title} className="p-5">
-            <div className="flex items-center justify-between">
-              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${stat.tone === 'secondary' ? 'bg-secondary-fixed text-on-secondary-fixed' : stat.tone === 'tertiary' ? 'bg-tertiary-fixed text-on-tertiary-fixed' : stat.tone === 'primary' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-secondary-container text-on-secondary-container'}`}>
-                <span className="material-symbols-outlined text-[26px]">{stat.icon}</span>
-              </div>
-              <span className="text-label-sm text-secondary uppercase">{stat.title === 'Levels Completed' ? 'Progress' : stat.title === 'Best Score' ? 'Top' : stat.title === 'Total Plays' ? 'Games' : 'Time'}</span>
+      <section aria-label="Recommended level carousel" className="grid gap-5 overflow-hidden rounded-[28px] bg-gradient-to-br from-surface-container-low via-surface to-primary-fixed/40 p-3 shadow-[0_12px_32px_-6px_rgba(43,139,198,0.14)] md:p-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <div key={featuredLevel?.id ?? 'empty'} className="recommendation-slide-in overflow-hidden rounded-[24px] bg-surface-container-lowest p-2 shadow-[0_8px_24px_rgba(35,65,79,0.12)]">
+          {featuredLevel ? (
+            <LevelArtwork levelId={featuredLevel.id} title={featuredLevel.title} resolution="full" className="h-[240px] w-full rounded-[20px] md:h-[300px]">
+              <div className="absolute left-3 top-3 rounded-full bg-surface-container-lowest/90 px-3 py-1 text-label-sm text-on-primary-container shadow-sm">{featuredLevel.difficulty.toUpperCase()}</div>
+            </LevelArtwork>
+          ) : (
+            <div className="flex h-[240px] items-center justify-center rounded-[20px] bg-surface-container-low md:h-[300px]">
+              <span className="material-symbols-outlined text-[48px] text-outline-variant" aria-hidden="true">sports_esports</span>
             </div>
+          )}
+        </div>
 
-            <div className="mt-4">
-              <div className="text-label-md text-on-surface-variant">{stat.title}</div>
-              <div className="mt-1 flex items-baseline gap-1">
-                <span className="text-headline-lg text-on-surface">{stat.value}</span>
-                {stat.suffix ? <span className="text-headline-sm text-outline">{stat.suffix}</span> : null}
+        <div className="flex min-w-0 flex-col justify-between gap-5 p-2 md:p-4 lg:py-6">
+            {gamesLoading ? <p role="status" className="text-body-md text-on-surface-variant">Loading published games...</p> : null}
+            {gamesError ? (
+              <div role="alert" className="space-y-3">
+                <p className="text-body-sm text-error">{gamesError}</p>
+                <Button variant="ghost" leftIcon="refresh" onClick={() => void refreshGames()}>Retry</Button>
               </div>
-            </div>
-          </Card>
-        ))}
+            ) : null}
+            {!gamesLoading && !gamesError && levelsLoading ? <p role="status" className="text-body-md text-on-surface-variant">Loading published levels...</p> : null}
+            {levelsError ? (
+              <div role="alert" className="space-y-3">
+                <p className="text-body-sm text-error">{levelsError}</p>
+                <Button variant="ghost" leftIcon="refresh" onClick={() => void refreshLevels()}>Retry</Button>
+              </div>
+            ) : null}
+            {!gamesLoading && !gamesError && games.length === 0 ? (
+              <div role="status" className="space-y-3">
+                <h2 className="text-headline-md text-on-surface">No published games yet</h2>
+                <p className="text-body-md text-on-surface-variant">Games will appear here when they are ready to play.</p>
+                <Button variant="ghost" leftIcon="refresh" onClick={() => void refreshGames()}>Refresh</Button>
+              </div>
+            ) : null}
+            {!gamesLoading && !gamesError && games.length > 0 && !levelsLoading && !levelsError && levels.length === 0 ? (
+              <div role="status" className="space-y-3">
+                <h2 className="text-headline-md text-on-surface">No published levels yet</h2>
+                <p className="text-body-md text-on-surface-variant">Check back after a level has been published.</p>
+                <Button variant="ghost" leftIcon="refresh" onClick={() => void refreshLevels()}>Refresh</Button>
+              </div>
+            ) : null}
+            {featuredLevel ? (
+              <>
+                <div key={featuredLevel.id} className="recommendation-slide-in">
+                  <div className="space-y-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary-container/70 px-space-sm py-1 text-label-sm text-on-secondary-container">
+                    <span className="material-symbols-outlined text-[15px]" aria-hidden="true">auto_awesome</span>
+                    Recommended level
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-primary-fixed px-3 py-1 text-label-sm text-on-primary-fixed-variant">
+                    <span className="material-symbols-outlined text-[16px]">palette</span>
+                    {featuredLevel.difficulty}
+                  </span>
+
+                  <div>
+                    <h2 className="text-headline-lg text-on-primary-container">{featuredLevel.title}</h2>
+                    <p className="mt-2 text-body-md text-on-surface-variant">{featuredLevel.description || featuredLevel.subtitle}</p>
+                  </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    <span className="rounded-full bg-surface-container px-3 py-1 text-label-sm text-on-surface">{featuredLevel.time} sec</span>
+                    <span className="rounded-full bg-secondary-fixed px-3 py-1 text-label-sm text-on-secondary-fixed">Published</span>
+                  </div>
+
+                  <div className="mt-5">
+                    {featuredLevelReadinessNotice ? (
+                      <div className="space-y-2">
+                        <Button variant="primary" size="lg" disabled className="w-full justify-center sm:w-fit">Not ready to play</Button>
+                        {dynamicGameplayGateState === 'unknown' ? <Button variant="ghost" leftIcon="refresh" onClick={() => void refreshDynamicGameplayGate()}>Retry check</Button> : null}
+                        <p role="status" className="text-body-sm text-on-surface-variant">{featuredLevelReadinessNotice}</p>
+                      </div>
+                    ) : (
+                      <Link to={`/dashboard/play/${featuredLevel.id}`} state={{ openReadyModal: true }} className="block w-full sm:w-fit">
+                        <Button variant="primary" size="lg" leftIcon="play_circle" rightIcon="arrow_forward" className="w-full justify-center">
+                          Play now
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                {recommendedLevels.length > 1 ? (
+                  <div className="mt-space-md flex flex-wrap items-center gap-space-xs">
+                    <span className="mr-1 text-label-sm text-on-surface-variant">Browse levels</span>
+                    <div role="tablist" aria-label="Recommended levels" className="flex flex-wrap items-center gap-space-xs">
+                      {recommendedLevels.map((level, index) => {
+                        const isActive = index === activeIndex;
+                        const selectedTone = level.difficulty === 'easy'
+                          ? 'bg-secondary-container text-on-secondary-container'
+                          : level.difficulty === 'medium'
+                            ? 'bg-primary-fixed text-on-primary-fixed-variant'
+                            : 'bg-tertiary-fixed text-on-tertiary-fixed-variant';
+                        return (
+                          <button
+                            key={level.id}
+                            type="button"
+                            role="tab"
+                            aria-selected={isActive}
+                            aria-label={`Show ${level.difficulty} recommendation: ${level.title}`}
+                            onClick={() => setActiveRecommendationIndex(index)}
+                            className={`rounded-full px-space-sm py-1 text-label-sm transition-colors ${isActive ? selectedTone : 'bg-surface-container-lowest/80 text-on-surface-variant hover:bg-surface-container-low'}`}
+                          >
+                            {level.difficulty}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <span aria-live="polite" className="ml-auto text-label-sm text-on-surface-variant">{activeIndex + 1} / {recommendedLevels.length}</span>
+                  </div>
+                ) : null}
+              </>
+            ) : null}
+        </div>
+      </section>
+
+      <section>
+        {profileAvailable && !profileLoading && profile.totalPlays === 0 ? (
+          <p className="rounded-2xl bg-surface-container-low p-5 text-body-md text-on-surface-variant">No game history yet</p>
+        ) : (
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {stats.map((stat) => (
+              <Card key={stat.title} className="p-5">
+                <div className="flex items-center justify-between">
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${stat.tone === 'secondary' ? 'bg-secondary-fixed text-on-secondary-fixed' : stat.tone === 'tertiary' ? 'bg-tertiary-fixed text-on-tertiary-fixed' : stat.tone === 'primary' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-secondary-container text-on-secondary-container'}`}>
+                    <span className="material-symbols-outlined text-[26px]">{stat.icon}</span>
+                  </div>
+                  <span className="text-label-sm text-secondary uppercase">{stat.title === 'Levels Completed' ? 'Progress' : stat.title === 'Best Score' ? 'Top' : stat.title === 'Total Plays' ? 'Games' : 'Time'}</span>
+                </div>
+
+                <div className="mt-4">
+                  <div className="text-label-md text-on-surface-variant">{stat.title}</div>
+                  <div className="mt-1 flex items-baseline gap-1">
+                    <span className="text-headline-lg text-on-surface">{stat.value}</span>
+                    {stat.suffix ? <span className="text-headline-sm text-outline">{stat.suffix}</span> : null}
+                  </div>
+                </div>
+                {stat.title === 'Levels Completed' && profileStatsAvailable && profile.totalLevels > 0 ? (
+                  <div className="mt-4">
+                    <div className="h-2 overflow-hidden rounded-full bg-surface-container-high">
+                      <div className="h-full rounded-full bg-secondary" style={{ width: `${Math.min(100, Math.round((profile.levelsCompleted / profile.totalLevels) * 100))}%` }} />
+                    </div>
+                    <p className="mt-1 text-label-sm text-on-surface-variant">{Math.min(100, Math.round((profile.levelsCompleted / profile.totalLevels) * 100))}% complete</p>
+                  </div>
+                ) : null}
+              </Card>
+            ))}
+          </div>
+        )}
       </section>
       {profileError ? (
-        <p role="alert" className="text-body-sm text-error">Dashboard stats could not be loaded.</p>
+        <p role="alert" className="break-words text-body-sm text-error">{profileError}</p>
       ) : null}
 
       <section className="space-y-4">
-        <div className="rounded-[28px] border border-outline-variant/60 bg-surface-container-lowest p-4 shadow-[0_12px_28px_rgba(43,139,198,0.08)]">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
-                <span className="material-symbols-outlined text-[20px]">help_center</span>
-              </div>
-              <div>
-                <h3 className="text-headline-md text-on-surface">Need a quick refresher?</h3>
-                <p className="text-body-sm text-on-surface-variant">Learn the basics before your next cozy spotting round.</p>
-              </div>
-            </div>
-            <Link to="/dashboard/how-to-play">
-              <Button variant="ghost" size="md" leftIcon="school" className="justify-center">
-                How to Play
-              </Button>
-            </Link>
-          </div>
-        </div>
-
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
@@ -182,24 +271,55 @@ export default function Home() {
           {historyLoading ? (
             <p role="status" className="text-body-sm text-on-surface-variant">Loading recent plays...</p>
           ) : historyError ? (
-            <p role="alert" className="text-body-sm text-error">Recent plays could not be loaded.</p>
+            <div className="space-y-3">
+              <p role="alert" className="break-words text-body-sm text-error">{historyError}</p>
+              <Button variant="ghost" leftIcon="refresh" onClick={refreshHistory}>Retry</Button>
+            </div>
           ) : history.length === 0 ? (
-            <p className="text-body-sm text-on-surface-variant">No recent plays yet.</p>
-          ) : history.slice(0, 3).map((entry) => (
-            <Card key={entry.id} className="p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-label-sm text-primary">{entry.difficulty}</span>
-                <span className={`rounded-full px-2 py-1 text-label-sm ${entry.status === 'Cleared' ? 'bg-secondary-container text-on-secondary-container' : 'bg-primary-fixed text-on-primary-fixed'}`}>{entry.status}</span>
-              </div>
-              <h4 className="mt-3 text-headline-sm text-on-surface">{entry.title}</h4>
-              <p className="mt-1 text-body-sm text-on-surface-variant">{entry.date}</p>
-              <div className="mt-4 flex items-center justify-between border-t border-outline-variant/70 pt-3">
-                <span className="text-body-sm text-on-surface-variant">Score</span>
-                <span className="text-label-lg text-on-surface">{entry.score}</span>
-              </div>
-            </Card>
-          ))}
+            <p className="text-body-sm text-on-surface-variant">No game history yet</p>
+          ) : history.slice(0, 3).map((entry) => {
+            const artworkLevelId = entry.playableLevelId ?? entry.identity.contentLevelId;
+            return (
+            <Link key={entry.id} to={`/dashboard/history/${entry.id}`} className="block rounded-[28px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+              <Card className="overflow-hidden p-3 transition-transform duration-200 hover:-translate-y-1">
+                {artworkLevelId ? (
+                  <LevelArtwork levelId={artworkLevelId} title={entry.title} className="h-40 w-full rounded-[20px]">
+                    <span className={`absolute left-3 top-3 rounded-full px-3 py-1 text-label-sm ${entry.difficulty === 'easy' ? 'bg-secondary-fixed text-on-secondary-fixed' : entry.difficulty === 'medium' ? 'bg-primary-fixed text-on-primary-fixed-variant' : 'bg-tertiary-fixed text-on-tertiary-fixed'}`}>{entry.difficulty}</span>
+                    <span className={`absolute right-3 top-3 rounded-full px-3 py-1 text-label-sm ${entry.status === 'Cleared' ? 'bg-secondary-container text-on-secondary-container' : entry.status === 'Lost' ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-surface-container text-on-surface-variant'}`}>{entry.status}</span>
+                  </LevelArtwork>
+                ) : (
+                  <PlaceholderIllustration className="h-40 w-full rounded-[20px]" label={entry.title} />
+                )}
+                <div className="px-1 pb-1 pt-3">
+                  <h4 className="text-headline-sm text-on-surface">{entry.title}</h4>
+                  <p className="mt-1 text-body-sm text-on-surface-variant">{entry.date}</p>
+                  <div className="mt-3 flex items-center justify-between rounded-xl bg-surface-container-low px-3 py-2">
+                    <span className="text-body-sm text-on-surface-variant">Score</span>
+                    <span className="text-label-lg text-on-surface">{entry.score?.toLocaleString() ?? '—'}</span>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+            );
+          })}
         </div>
+      </section>
+
+      <section className="flex flex-col gap-4 rounded-[28px] bg-surface-container-low p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+        <div className="flex items-center gap-3">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary-container text-on-secondary-container">
+            <span className="material-symbols-outlined text-[24px]">coffee</span>
+          </div>
+          <div>
+            <h3 className="text-headline-sm text-on-surface">พักสายตาสักนิด แล้วเลือกด่านต่อไป</h3>
+            <p className="text-body-sm text-on-surface-variant">ทุกระดับเปิดให้เล่นได้ตามจังหวะของคุณ</p>
+          </div>
+        </div>
+        <Link to="/dashboard/play" className="block shrink-0">
+          <Button variant="ghost" rightIcon="arrow_forward" className="w-full justify-center">
+            Levels Map
+          </Button>
+        </Link>
       </section>
     </div>
   );

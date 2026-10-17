@@ -1,0 +1,9 @@
+﻿Level: 8 - Candy Kingdom
+Difficulty: Hard
+---
+Asset files:
+  original.png -> level8-1.png
+  comparison.png -> level8-2.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the recorded SHA-256 pair. Five visible changes were confirmed and annotated: the large lollipop changes from pink to blue; the right candy cane gains a blue stripe; the cupcake loses its red cherry; and two red jelly candies are missing from the lower-left candy patch.

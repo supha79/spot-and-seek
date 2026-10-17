@@ -1,0 +1,11 @@
+Level: 2 - Magic Garden
+Difficulty: Easy
+---
+Asset files:
+  original.png (1448x1086)
+  comparison.png (normalized upload copy, 1448x1086)
+---
+Status: VERIFIED
+Evidence: The final 1448x1086 Original/Comparison pair was reviewed side-by-side. Five visible changes remain confirmed and mapped to the recorded normalized hit regions: Watering can changes from silver to blue; A flower pot appears on the garden path; Garden gate is open instead of closed; Orange butterfly is missing; Yellow butterfly is missing.
+Normalization: comparison.png was resampled from the raw source at ../level2-2.png (1447x1087, SHA-256 e7c18f49c4909ce804448f7618e9e21d8c64a80ef1963dd9d2e8ae35d1b69c20) to 1448x1086 using HighQualityBicubic. The raw source was preserved. differences.json records both the normalized Comparison hash and raw-source hash.
+Runtime duration: 120 seconds; satisfies the current database difficulty tier.

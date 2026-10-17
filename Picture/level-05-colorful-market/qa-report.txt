@@ -1,0 +1,10 @@
+Level: 5 - Colorful Market
+Difficulty: Medium
+---
+Asset files:
+  original.png
+  comparison.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the exact SHA-256 pair recorded in differences.json. Five visible changes were confirmed and mapped to normalized hit regions: Left stall awning changes from red to blue; Leaf-pattern shopping bag is missing; Chalkboard price changes from 3 to 8; Vendor shirt changes from plain to dotted; Apple arrangement changes at the center produce stall.
+Runtime duration: 75 seconds; satisfies the current database difficulty tier.

@@ -1,0 +1,59 @@
+﻿{
+    "levelName":  "Fantasy Castle",
+    "hints":  1,
+    "differences":  [
+                        {
+                            "boundingBox":  { "x": 705, "y": 85, "width": 150, "height": 160 },
+                            "geometryCandidate":  { "shape": "rectangle", "x_norm": 0.539, "y_norm": 0.152, "width_norm": 0.104, "height_norm": 0.147, "tolerance_norm": 0.010 },
+                            "status":  "verified",
+                            "description":  "Main tower roof changes from purple to blue",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 780, "y": 20, "width": 100, "height": 60 },
+                            "geometryCandidate":  { "shape": "rectangle", "x_norm": 0.574, "y_norm": 0.046, "width_norm": 0.069, "height_norm": 0.055, "tolerance_norm": 0.010 },
+                            "status":  "verified",
+                            "description":  "Main tower flag changes from pointed to rectangular",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 670, "y": 355, "width": 190, "height": 145 },
+                            "geometryCandidate":  { "shape": "circle", "x_norm": 0.525, "y_norm": 0.394, "radius_norm": 0.066, "tolerance_norm": 0.020 },
+                            "status":  "verified",
+                            "description":  "Central stained-glass window detail changes",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 678, "y": 490, "width": 170, "height": 170 },
+                            "geometryCandidate":  { "shape": "rectangle", "x_norm": 0.527, "y_norm": 0.529, "width_norm": 0.118, "height_norm": 0.156, "tolerance_norm": 0.010 },
+                            "status":  "verified",
+                            "description":  "Main entrance door changes from brown to red",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  { "x": 5, "y": 900, "width": 160, "height": 145 },
+                            "geometryCandidate":  { "shape": "circle", "x_norm": 0.059, "y_norm": 0.894, "radius_norm": 0.052, "tolerance_norm": 0.020 },
+                            "status":  "verified",
+                            "description":  "Lower-left flower changes from pink to yellow",
+                            "id":  5,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Hard",
+    "timeLimitSeconds":  60,
+    "levelId":  9,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  { "width": 1447, "height": 1087 },
+    "imageSha256":  {
+        "original": "6a2cc23ccbe55ef240bb0fa36fc1b1489fb8b1bd84f6043833f2ba2e7b5f0d0f",
+        "comparison": "9ec631d601e94042c2e31b272c4c846e3c1c570c1f5ded1ac21a17924bb78c3b"
+    },
+    "coordinateSystems":  {
+        "boundingBox": "pixel x,y,width,height",
+        "geometryCandidate": "normalized 0..1"
+    }
+}

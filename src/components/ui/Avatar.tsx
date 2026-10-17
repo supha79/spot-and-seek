@@ -1,12 +1,14 @@
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 export type AvatarProps = {
   src?: string;
   alt?: string;
   size?: 'sm' | 'md' | 'lg';
   status?: 'online' | 'offline' | 'busy';
+  fallbackContent?: ReactNode;
   onClick?: () => void;
   dropdownOpen?: boolean;
+  onDropdownClose?: () => void;
   children?: ReactNode;
 };
 
@@ -27,23 +29,66 @@ export function Avatar({
   alt = 'User avatar',
   size = 'md',
   status,
+  fallbackContent,
   onClick,
   dropdownOpen = false,
+  onDropdownClose,
   children,
 }: AvatarProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const closeTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!dropdownOpen || !onDropdownClose) return;
+
+    const closeOnOutsidePointer = (event: PointerEvent) => {
+      if (event.target instanceof Node && !rootRef.current?.contains(event.target)) {
+        onDropdownClose();
+      }
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onDropdownClose();
+    };
+
+    document.addEventListener('pointerdown', closeOnOutsidePointer);
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutsidePointer);
+      window.removeEventListener('keydown', closeOnEscape);
+      if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    };
+  }, [dropdownOpen, onDropdownClose]);
+
+  const cancelScheduledClose = () => {
+    if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = null;
+  };
+
+  const scheduleMouseClose = () => {
+    if (!dropdownOpen || !onDropdownClose) return;
+    cancelScheduledClose();
+    closeTimerRef.current = window.setTimeout(() => {
+      closeTimerRef.current = null;
+      onDropdownClose();
+    }, 180);
+  };
+
   return (
-    <div className="relative inline-block">
+    <div ref={rootRef} className="relative inline-block" onMouseEnter={cancelScheduledClose} onMouseLeave={scheduleMouseClose}>
       <button
         type="button"
         onClick={onClick}
-        className={`relative overflow-hidden rounded-full border-2 border-white bg-surface-container-low object-cover shadow-sm ${sizeMap[size]} ${onClick ? 'cursor-pointer' : 'cursor-default'}`}
+        className={`relative overflow-hidden rounded-full object-cover ${fallbackContent ? 'border-0 bg-transparent shadow-none' : 'border-2 border-white bg-surface-container-low shadow-sm'} ${sizeMap[size]} ${onClick ? 'ui-pressable cursor-pointer' : 'cursor-default'}`}
         aria-label={alt}
       >
         {src ? (
           <img src={src} alt={alt} className="h-full w-full object-cover" />
+        ) : fallbackContent ? (
+          fallbackContent
         ) : (
           <span className="flex h-full w-full items-center justify-center text-body-md font-semibold text-on-surface-variant">
-            A
+            <span className="material-symbols-outlined" aria-hidden="true">person</span>
           </span>
         )}
       </button>

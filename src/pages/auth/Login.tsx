@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../../components/layout/Header';
 import AmbientBackground from '../../components/ui/AmbientBackground';
+import { BrandMascot } from '../../components/ui/BrandMascot';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import Chip from '../../components/ui/Chip';
@@ -33,7 +34,7 @@ export default function Login() {
         ? requestedPath === '/admin' || requestedPath?.startsWith('/admin/')
         : requestedPath?.startsWith('/dashboard/');
       const defaultDestination = authenticatedUser.isAdmin ? '/admin/dashboard' : '/dashboard/home';
-      const returnTo = isSafeReturnPath && isRoleCompatibleReturnPath
+      const returnTo = authenticatedUser.isAdmin && isSafeReturnPath && isRoleCompatibleReturnPath
         ? `${requestedPath}${from?.search ?? ''}${from?.hash ?? ''}`
         : defaultDestination;
       navigate(returnTo, { replace: true });
@@ -71,29 +72,9 @@ export default function Login() {
             </div>
           </div>
 
-          <aside className="hidden lg:flex lg:w-[220px] lg:flex-col lg:items-center lg:justify-center lg:gap-4">
-            <Card className="w-[180px] rotate-[-6deg] p-3" size="sm">
-              <div className="h-28 rounded-lg bg-gradient-to-br from-tertiary-fixed via-tertiary-container/40 to-surface-container" />
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-label-sm text-on-surface">Stage 12-A</span>
-                <Chip variant="secondary">FOUND!</Chip>
-              </div>
-            </Card>
-          </aside>
-
           <div className="relative w-full max-w-[470px]">
-            <div className="relative mb-[-2rem] flex justify-center">
-              <div className="flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-b from-primary-container to-primary-fixed p-2.5 shadow-md">
-                <div className="flex h-full w-full items-center justify-center rounded-full bg-white">
-                  <div className="flex flex-col items-center justify-center">
-                    <div className="flex gap-3">
-                      <span className="h-3.5 w-3.5 rounded-full bg-[#23414F]" />
-                      <span className="h-3.5 w-3.5 rounded-full bg-[#23414F]" />
-                    </div>
-                    <div className="mt-1 h-2 w-8 rounded-b-full border-b-2 border-[#23414F]" />
-                  </div>
-                </div>
-              </div>
+            <div className="relative mb-[-1rem] flex justify-center sm:mb-[-2rem]">
+              <BrandMascot className="h-40 w-40" />
             </div>
 
             <Card className="w-full overflow-hidden p-6 sm:p-10" size="lg" style={{ boxShadow: '0 20px 50px rgba(124, 200, 240, 0.22)' }}>
@@ -170,17 +151,19 @@ export default function Login() {
                 </p>
               </div>
             </Card>
-          </div>
 
-          <aside className="hidden lg:flex lg:w-[220px] lg:flex-col lg:items-center lg:justify-center lg:gap-4">
-            <Card className="w-[180px] rotate-[6deg] p-3" size="sm">
-              <div className="h-28 rounded-lg bg-gradient-to-br from-primary-fixed via-primary-container/40 to-surface-container" />
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-label-sm text-on-surface">Difference</span>
-                <span className="text-label-sm text-on-surface">4 / 5</span>
-              </div>
-            </Card>
-          </aside>
+            <div className="mt-space-lg flex items-center justify-center gap-space-lg" aria-hidden="true">
+              <span className="material-symbols-outlined text-label-lg text-tertiary">visibility</span>
+              <span className="flex items-center gap-space-sm">
+                <span className="h-space-sm w-space-sm rounded-full bg-tertiary-fixed-dim" />
+                <span className="h-space-sm w-space-sm rounded-full bg-secondary-container" />
+                <span className="h-space-sm w-space-sm rounded-full bg-primary-container" />
+                <span className="h-space-sm w-space-sm rounded-full bg-primary-fixed" />
+                <span className="h-space-sm w-space-sm rounded-full bg-tertiary-container" />
+              </span>
+              <span className="material-symbols-outlined text-label-lg text-primary">search</span>
+            </div>
+          </div>
         </section>
       </div>
     </main>

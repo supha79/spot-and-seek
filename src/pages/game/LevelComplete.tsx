@@ -1,16 +1,9 @@
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
+import { getGameRunResult, type GameRunResult } from '../../services/gameRunResults';
 
-type LocationState = {
-  timeTaken?: number;
-  mistakes?: number;
-  hintsUsed?: number;
-  score?: number;
-  found?: number;
-  totalDifferences?: number;
-};
-
-function formatTime(totalSeconds: number = 0) {
+function formatTime(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60)
     .toString()
     .padStart(2, '0');
@@ -20,18 +13,54 @@ function formatTime(totalSeconds: number = 0) {
 
 export default function LevelComplete() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const state = location.state as LocationState | null;
-  if (!state || typeof state.score !== 'number') {
-    return <Navigate to="/dashboard/easy-levels" replace />;
+  const { runId } = useParams();
+  const [gameResult, setGameResult] = useState<GameRunResult | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+
+  useEffect(() => {
+    let isMounted = true;
+    setIsLoading(true);
+    setHasError(false);
+    setGameResult(null);
+
+    void getGameRunResult(runId ?? '')
+      .then((result) => {
+        if (!isMounted) return;
+        if (result.status !== 'won') {
+          setHasError(true);
+          return;
+        }
+        setGameResult(result);
+      })
+      .catch(() => {
+        if (isMounted) setHasError(true);
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [retryCount, runId]);
+
+  if (isLoading || (!hasError && gameResult?.run_id !== runId)) {
+    return <p role="status" className="py-12 text-center text-body-md text-on-surface-variant">Loading game result...</p>;
   }
 
-  const timeTaken = state.timeTaken ?? 0;
-  const mistakes = state.mistakes ?? 0;
-  const hintsUsed = state.hintsUsed ?? 0;
-  const score = state.score;
-  const found = state.found ?? 0;
-  const totalDifferences = state.totalDifferences ?? 0;
+  if (hasError || !gameResult || gameResult.run_id !== runId) {
+    return (
+      <div role="alert" className="mx-auto max-w-xl space-y-4 py-12 text-center">
+        <p className="text-headline-sm text-on-surface">This game result is unavailable.</p>
+        <Button variant="ghost" leftIcon="refresh" onClick={() => setRetryCount((count) => count + 1)}>Retry</Button>
+        <Link to="/dashboard/history" className="block text-label-md text-primary">Back to history</Link>
+      </div>
+    );
+  }
+
+  const replayLevelId = gameResult.level.content_level_id ?? gameResult.level.id;
 
   return (
     <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 py-8">
@@ -60,6 +89,8 @@ export default function LevelComplete() {
 
           <h1 className="text-headline-lg text-on-surface tracking-tight">Level Complete!</h1>
           <p className="mt-1 text-headline-sm text-secondary font-medium">เก่งมาก! คุณหาจุดต่างครบแล้ว</p>
+          <p className="mt-2 text-body-sm text-on-surface-variant">{gameResult.level.title ?? gameResult.level.id} · {gameResult.level.difficulty ?? 'Legacy'}</p>
+          <p className="mt-1 text-body-sm text-on-surface-variant">Completed {new Date(gameResult.played_at).toLocaleString()}</p>
         </div>
 
         <div className="mb-6 flex items-center justify-center gap-3 sm:gap-4">
@@ -78,7 +109,7 @@ export default function LevelComplete() {
         <div className="mb-4 text-center">
           <div className="text-label-md uppercase tracking-wider text-on-surface-variant">Score</div>
           <div className="text-display-hero text-primary leading-none tracking-tight drop-shadow-[0_2px_4px_rgba(0,102,136,0.15)]">
-            {score.toLocaleString()}
+            {gameResult.score.toLocaleString()}
           </div>
         </div>
 
@@ -93,7 +124,7 @@ export default function LevelComplete() {
               <span className="material-symbols-outlined text-[22px] text-primary">timer</span>
             </div>
             <div className="text-label-sm text-on-surface-variant">Time</div>
-            <div className="text-headline-sm text-on-surface">{formatTime(timeTaken)}</div>
+            <div className="text-headline-sm text-on-surface">{formatTime(Math.round(gameResult.elapsed_active_seconds))}</div>
           </div>
 
           <div className="rounded-DEFAULT bg-surface-container-low p-3 text-center shadow-[0_4px_12px_rgba(0,102,136,0.04)]">
@@ -101,7 +132,7 @@ export default function LevelComplete() {
               <span className="material-symbols-outlined text-[22px] text-tertiary">close</span>
             </div>
             <div className="text-label-sm text-on-surface-variant">Wrong clicks</div>
-            <div className="text-headline-sm text-on-surface">{mistakes}</div>
+            <div className="text-headline-sm text-on-surface">{gameResult.wrong_clicks}</div>
           </div>
 
           <div className="rounded-DEFAULT bg-surface-container-low p-3 text-center shadow-[0_4px_12px_rgba(0,102,136,0.04)]">
@@ -111,7 +142,7 @@ export default function LevelComplete() {
               </span>
             </div>
             <div className="text-label-sm text-on-surface-variant">Hints used</div>
-            <div className="text-headline-sm text-on-surface">{hintsUsed}</div>
+            <div className="text-headline-sm text-on-surface">{gameResult.hints_used}</div>
           </div>
 
           <div className="rounded-DEFAULT bg-surface-container-low p-3 text-center shadow-[0_4px_12px_rgba(0,102,136,0.04)]">
@@ -119,13 +150,13 @@ export default function LevelComplete() {
               <span className="material-symbols-outlined text-[22px] text-secondary">check</span>
             </div>
             <div className="text-label-sm text-on-surface-variant">Found</div>
-            <div className="text-headline-sm text-secondary font-bold">{found} / {totalDifferences}</div>
+            <div className="text-headline-sm text-secondary font-bold">{gameResult.found_count} / {gameResult.total_spots}</div>
           </div>
         </div>
 
         <div className="flex flex-col gap-3">
-          <Button variant="primary" size="lg" onClick={() => navigate('/dashboard/easy-levels')} className="w-full justify-center">
-            Next level
+          <Button variant="primary" size="lg" onClick={() => navigate(`/dashboard/play/${replayLevelId}`)} className="w-full justify-center">
+            Play again
           </Button>
           <Button variant="ghost" size="lg" onClick={() => navigate('/dashboard/easy-levels')} className="w-full justify-center">
             Back to levels

@@ -1,0 +1,120 @@
+{
+    "levelName":  "Cozy House",
+    "hints":  3,
+    "differences":  [
+                        {
+                            "boundingBox":  {
+                                                "x":  484,
+                                                "y":  105,
+                                                "width":  290,
+                                                "height":  152
+                                            },
+                            "status":  "verified",
+                            "description":  "Cloud above the left roof is missing",
+                            "id":  1,
+                            "type":  "custom",
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.434,
+                                                      "y_norm":  0.167,
+                                                      "width_norm":  0.2,
+                                                      "height_norm":  0.14,
+                                                      "tolerance_norm":  0.01
+                                                  }
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  623,
+                                                "y":  570,
+                                                "width":  203,
+                                                "height":  228
+                                            },
+                            "status":  "verified",
+                            "description":  "Front door changes from red to blue",
+                            "id":  2,
+                            "type":  "custom",
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.5,
+                                                      "y_norm":  0.63,
+                                                      "width_norm":  0.14,
+                                                      "height_norm":  0.21,
+                                                      "tolerance_norm":  0.01
+                                                  }
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  442,
+                                                "y":  538,
+                                                "width":  159,
+                                                "height":  185
+                                            },
+                            "status":  "verified",
+                            "description":  "Lower-left window is missing",
+                            "id":  3,
+                            "type":  "custom",
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.36,
+                                                      "y_norm":  0.58,
+                                                      "width_norm":  0.11,
+                                                      "height_norm":  0.17,
+                                                      "tolerance_norm":  0.01
+                                                  }
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  1180,
+                                                "y":  60,
+                                                "width":  130,
+                                                "height":  98
+                                            },
+                            "status":  "verified",
+                            "description":  "Smoke appears above the chimney",
+                            "id":  4,
+                            "type":  "custom",
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.86,
+                                                      "y_norm":  0.1,
+                                                      "radius_norm":  0.045,
+                                                      "tolerance_norm":  0.02
+                                                  }
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  398,
+                                                "y":  733,
+                                                "width":  130,
+                                                "height":  98
+                                            },
+                            "status":  "verified",
+                            "description":  "Small flower detail changes in the left flower bed",
+                            "id":  5,
+                            "type":  "custom",
+                            "geometryCandidate":  {
+                                                      "shape":  "circle",
+                                                      "x_norm":  0.32,
+                                                      "y_norm":  0.72,
+                                                      "radius_norm":  0.045,
+                                                      "tolerance_norm":  0.02
+                                                  }
+                        }
+                    ],
+    "difficulty":  "Easy",
+    "timeLimitSeconds":  120,
+    "levelId":  1,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  {
+                            "width":  1448,
+                            "height":  1086
+                        },
+    "imageSha256":  {
+                        "original":  "3d1d9155375234cf00f21a265c2afc94f8a2d804257fe3fd97a8bdf62ac0a6fe",
+                        "comparison":  "8fe1cd320b4dacbdae484b329ef43336e9527c7d818df19ba061266afb474dcd"
+                    },
+    "coordinateSystems":  {
+                              "boundingBox":  "pixel x,y,width,height",
+                              "geometryCandidate":  "normalized 0..1"
+                          }
+}

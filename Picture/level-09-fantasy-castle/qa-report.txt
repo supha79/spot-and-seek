@@ -1,0 +1,9 @@
+﻿Level: 9 - Fantasy Castle
+Difficulty: Hard
+---
+Asset files:
+  original.png -> level9-1.png
+  comparison.png -> level9-2.png
+---
+Status: VERIFIED
+Evidence: Original and Comparison were reviewed side-by-side for the recorded SHA-256 pair. Five visible changes were confirmed and annotated: the main tower roof changes from purple to blue; the flag changes shape; the central stained-glass window detail changes; the main entrance door changes from brown to red; and the lower-left flower changes from pink to yellow.

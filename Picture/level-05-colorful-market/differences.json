@@ -1,0 +1,122 @@
+{
+    "levelName":  "Colorful Market",
+    "hints":  2,
+    "differences":  [
+                        {
+                            "boundingBox":  {
+                                                "x":  0,
+                                                "y":  54,
+                                                "width":  579,
+                                                "height":  261
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.2,
+                                                      "y_norm":  0.17,
+                                                      "width_norm":  0.4,
+                                                      "height_norm":  0.24,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Left stall awning changes from red to blue",
+                            "id":  1,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  463,
+                                                "y":  701,
+                                                "width":  174,
+                                                "height":  207
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.38,
+                                                      "y_norm":  0.74,
+                                                      "width_norm":  0.12,
+                                                      "height_norm":  0.19,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Leaf-pattern shopping bag is missing",
+                            "id":  2,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  43,
+                                                "y":  484,
+                                                "width":  116,
+                                                "height":  163
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.07,
+                                                      "y_norm":  0.52,
+                                                      "width_norm":  0.08,
+                                                      "height_norm":  0.15,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Chalkboard price changes from 3 to 8",
+                            "id":  3,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  246,
+                                                "y":  342,
+                                                "width":  145,
+                                                "height":  185
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.22,
+                                                      "y_norm":  0.4,
+                                                      "width_norm":  0.1,
+                                                      "height_norm":  0.17,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Vendor shirt changes from plain to dotted",
+                            "id":  4,
+                            "type":  "custom"
+                        },
+                        {
+                            "boundingBox":  {
+                                                "x":  767,
+                                                "y":  527,
+                                                "width":  145,
+                                                "height":  98
+                                            },
+                            "geometryCandidate":  {
+                                                      "shape":  "rectangle",
+                                                      "x_norm":  0.58,
+                                                      "y_norm":  0.53,
+                                                      "width_norm":  0.1,
+                                                      "height_norm":  0.09,
+                                                      "tolerance_norm":  0.01
+                                                  },
+                            "status":  "verified",
+                            "description":  "Apple arrangement changes at the center produce stall",
+                            "id":  5,
+                            "type":  "custom"
+                        }
+                    ],
+    "difficulty":  "Medium",
+    "timeLimitSeconds":  75,
+    "levelId":  5,
+    "expectedDifferenceCount":  5,
+    "imageDimensions":  {
+                            "width":  1447,
+                            "height":  1087
+                        },
+    "imageSha256":  {
+                        "original":  "142785ab209156a0e8e8fe3b5cc44d5e86085d998b09035a89828f485928bc70",
+                        "comparison":  "974a9b289ff5a0508fa7cd9b625c175bd1e296841b25330617cc6e0f9158c903"
+                    },
+    "coordinateSystems":  {
+                              "boundingBox":  "pixel x,y,width,height",
+                              "geometryCandidate":  "normalized 0..1"
+                          }
+}

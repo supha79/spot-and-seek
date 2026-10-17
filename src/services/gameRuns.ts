@@ -1,21 +1,8 @@
 import { supabase, supabaseConfigError } from '../supabaseClient';
+import { buildGameRunStartRequest, parseGameRunSnapshot } from './compatibilityContracts';
+import type { LevelIdentity } from './compatibilityContracts';
 
-export type GameRunStatus = 'active' | 'paused' | 'completed' | 'won' | 'lost' | 'abandoned';
-
-export type GameRunSnapshot = {
-  run_id: string;
-  level_id: string;
-  status: GameRunStatus;
-  result: 'win' | 'loss' | null;
-  elapsed_active_seconds: number;
-  time_remaining_seconds: number;
-  wrong_clicks: number;
-  hints_used: number;
-  found_count: number;
-  total_spots: number;
-  score: number | null;
-  session_id: string | null;
-};
+export type { GameRunSnapshot, GameRunStatus } from './compatibilityContracts';
 
 function getClient() {
   if (!supabase) {
@@ -29,39 +16,6 @@ function isAuthenticationError(error: { code?: string; status?: number; message:
   return error.status === 401
     || error.code === '28000'
     || /jwt.*expired|invalid.*jwt|authentication required/i.test(error.message);
-}
-
-function parseSnapshot(value: unknown): GameRunSnapshot {
-  if (!value || typeof value !== 'object') {
-    throw new Error('Supabase returned an invalid game run response.');
-  }
-
-  const snapshot = value as Partial<GameRunSnapshot>;
-  const validStatuses: GameRunStatus[] = ['active', 'paused', 'completed', 'won', 'lost', 'abandoned'];
-  if (
-    typeof snapshot.run_id !== 'string'
-    || typeof snapshot.level_id !== 'string'
-    || !snapshot.status
-    || !validStatuses.includes(snapshot.status)
-    || typeof snapshot.time_remaining_seconds !== 'number'
-  ) {
-    throw new Error('Supabase returned an incomplete game run response.');
-  }
-
-  return {
-    run_id: snapshot.run_id,
-    level_id: snapshot.level_id,
-    status: snapshot.status,
-    result: snapshot.result ?? null,
-    elapsed_active_seconds: Number(snapshot.elapsed_active_seconds ?? 0),
-    time_remaining_seconds: snapshot.time_remaining_seconds,
-    wrong_clicks: Number(snapshot.wrong_clicks ?? 0),
-    hints_used: Number(snapshot.hints_used ?? 0),
-    found_count: Number(snapshot.found_count ?? 0),
-    total_spots: Number(snapshot.total_spots ?? 0),
-    score: snapshot.score ?? null,
-    session_id: snapshot.session_id ?? null,
-  };
 }
 
 async function callGameRunRpc(name: string, args: Record<string, unknown>) {
@@ -80,18 +34,16 @@ async function callGameRunRpc(name: string, args: Record<string, unknown>) {
   }
 
   if (error) throw new Error(error.message);
-  return parseSnapshot(data);
+  return parseGameRunSnapshot(data);
 }
 
 export function createGameRequestId() {
   return globalThis.crypto.randomUUID();
 }
 
-export function startGameRun(levelId: string, requestId: string) {
-  return callGameRunRpc('start_game_run', {
-    p_level_id: levelId,
-    p_request_id: requestId,
-  });
+export function startGameRun(identity: LevelIdentity, requestId: string, expectedRuleVersionId?: string) {
+  const { rpcName, args } = buildGameRunStartRequest(identity, requestId, expectedRuleVersionId);
+  return callGameRunRpc(rpcName, args);
 }
 
 export function recordGameRunEvent(
