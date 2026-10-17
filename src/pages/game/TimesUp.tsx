@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 import { getGameRunResult, type GameRunResult } from '../../services/gameRunResults';
+import { getDifficultyLevelsRoute } from '../../utils/gameplayRoutes';
 
 function formatTime(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
@@ -134,7 +135,7 @@ export default function TimesUp() {
           <Button variant="primary" size="lg" onClick={() => navigate(`/dashboard/play/${replayLevelId}`)} className="w-full justify-center">
             Try again
           </Button>
-          <Button variant="ghost" size="lg" onClick={() => navigate('/dashboard/easy-levels')} className="w-full justify-center">
+          <Button variant="ghost" size="lg" onClick={() => navigate(getDifficultyLevelsRoute(gameResult.level.difficulty))} className="w-full justify-center">
             Back to levels
           </Button>
         </div>

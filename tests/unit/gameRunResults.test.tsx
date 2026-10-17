@@ -1,5 +1,5 @@
-import { cleanup, render, screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import LevelComplete from '../../src/pages/game/LevelComplete';
 import TimesUp from '../../src/pages/game/TimesUp';
@@ -45,9 +45,15 @@ function renderResult(path: string, page: JSX.Element, state?: unknown) {
       <Routes>
         <Route path="/dashboard/play/:runId/complete" element={page} />
         <Route path="/dashboard/play/:runId/times-up" element={page} />
+        <Route path="/dashboard/easy-levels" element={<CurrentPath />} />
+        <Route path="/dashboard/play/:routeParam" element={<CurrentPath />} />
       </Routes>
     </MemoryRouter>,
   );
+}
+
+function CurrentPath() {
+  return <p>{useLocation().pathname}</p>;
 }
 
 beforeEach(() => {
@@ -90,5 +96,33 @@ describe('server-backed game results', () => {
 
     expect(await screen.findByText('This game result is unavailable.')).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'Level Complete!' })).toBeNull();
+  });
+
+  it('returns a completed medium level to the medium level list', async () => {
+    getGameRunResultMock.mockResolvedValueOnce({
+      ...baseResult,
+      level: { ...baseResult.level, difficulty: 'medium' },
+    });
+    renderResult(`/dashboard/play/${runId}/complete`, <LevelComplete />);
+
+    await screen.findByRole('heading', { name: 'Level Complete!' });
+    fireEvent.click(screen.getByRole('button', { name: 'Back to levels' }));
+
+    expect(await screen.findByText('/dashboard/play/medium')).toBeTruthy();
+  });
+
+  it('returns a timed-out hard level to the hard level list', async () => {
+    getGameRunResultMock.mockResolvedValueOnce({
+      ...baseResult,
+      status: 'lost',
+      result: 'loss',
+      level: { ...baseResult.level, difficulty: 'hard' },
+    });
+    renderResult(`/dashboard/play/${runId}/times-up`, <TimesUp />);
+
+    await screen.findByRole('heading', { name: "Time's Up" });
+    fireEvent.click(screen.getByRole('button', { name: 'Back to levels' }));
+
+    expect(await screen.findByText('/dashboard/play/hard')).toBeTruthy();
   });
 });
