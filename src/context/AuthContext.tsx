@@ -112,7 +112,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsRecoverySession(false);
       return authUser;
     } catch (error) {
-      const message = getErrorMessage(error);
+      const originalMessage = getErrorMessage(error);
+      const message = /^invalid login credentials$/i.test(originalMessage)
+        ? 'Wrong account or password.'
+        : originalMessage;
       setAuthError(message);
       throw new Error(message);
     } finally {
@@ -140,6 +143,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       if (error) throw error;
       if (!data.user) throw new Error('Account registration did not return a user.');
+      if (data.user.identities?.length === 0) {
+        throw new Error('This email is already registered. Log in or reset your password.');
+      }
     } catch (error) {
       const message = getErrorMessage(error);
       setAuthError(message);

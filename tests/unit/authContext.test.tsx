@@ -100,6 +100,18 @@ describe('AuthProvider local contract', () => {
     expect(authValue.user).toMatchObject({ id: 'user-id', username: 'Player', isAdmin: false });
   });
 
+  it('shows a friendly message for incorrect login credentials', async () => {
+    await renderAuthProvider();
+    supabaseMock.auth.signInWithPassword.mockResolvedValueOnce({
+      data: { user: null },
+      error: new Error('Invalid login credentials'),
+    });
+
+    await expect(authValue.login('player@example.test', 'wrong-password'))
+      .rejects.toThrow('Wrong account or password.');
+    await waitFor(() => expect(authValue.authError).toBe('Wrong account or password.'));
+  });
+
   it('registers with normalized email and username', async () => {
     await renderAuthProvider();
 
@@ -115,6 +127,17 @@ describe('AuthProvider local contract', () => {
         emailRedirectTo: `${window.location.origin}/login?verified=1`,
       },
     });
+  });
+
+  it('rejects an email that is already registered', async () => {
+    await renderAuthProvider();
+    supabaseMock.auth.signUp.mockResolvedValueOnce({
+      data: { user: { ...confirmedUser, identities: [] } },
+      error: null,
+    });
+
+    await expect(authValue.register('player@example.test', 'Player', 'test-password', 'test-password'))
+      .rejects.toThrow(/email is already registered/i);
   });
 
   it('rejects registration passwords shorter than six characters', async () => {
