@@ -124,6 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!email.trim()) throw new Error('Email is required.');
     if (!username.trim()) throw new Error('Username is required.');
     if (!password) throw new Error('Password is required.');
+    if (password.length < 6) throw new Error('Password must be at least 6 characters.');
     if (password !== confirmPassword) throw new Error('Passwords do not match.');
     const client = getClient();
     setAuthError(null);

@@ -38,6 +38,11 @@ export default function Register() {
       return;
     }
 
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return;
@@ -67,86 +72,90 @@ export default function Register() {
           <div className="relative w-full max-w-[480px]">
             <Card className="w-full overflow-hidden p-6 sm:p-10" size="lg" style={{ boxShadow: '0 20px 45px -10px rgba(124, 200, 240, 0.28)' }}>
               <div className="mb-6 text-center">
-                <h1 className="text-headline-md text-on-surface">Create your account</h1>
-                <p className="mt-2 text-body-sm text-on-surface-variant">สมัครสมาชิกใช้เวลาไม่ถึงหนึ่งนาที</p>
+                <h1 className="text-headline-md text-on-surface">{registrationSent ? 'Check your email' : 'Create your account'}</h1>
+                <p className="mt-2 text-body-sm text-on-surface-variant">
+                  {registrationSent ? 'ยืนยันอีเมลเพื่อเริ่มเข้าเล่นได้เลย' : 'สมัครสมาชิกใช้เวลาไม่ถึงหนึ่งนาที'}
+                </p>
               </div>
 
               {registrationSent ? (
-                <div role="status" className="mb-4 space-y-3 rounded-lg bg-secondary-container px-3 py-2 text-label-sm text-on-secondary-container">
-                  <p>Check your inbox and confirm your email before logging in.</p>
-                  <Button variant="ghost" onClick={() => navigate('/login')}>Go to login</Button>
+                <div role="status" className="space-y-5 rounded-2xl bg-secondary-container p-6 text-center text-on-secondary-container">
+                  <span aria-hidden="true" className="material-symbols-outlined text-5xl text-secondary">mark_email_read</span>
+                  <p className="text-body-md">Check your inbox and confirm your email before logging in.</p>
+                  <Button variant="primary" onClick={() => navigate('/login')}>Go to login</Button>
                 </div>
-              ) : null}
-
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                <div>
-                  <div className="mb-2 flex items-center justify-between px-1">
-                    <label htmlFor="reg-email" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
-                      Email
-                    </label>
-                  </div>
-                  <Input
-                    id="reg-email"
-                    type="email"
-                    value={email}
-                    onChange={setEmail}
-                    placeholder="you@example.com"
-                  />
-                </div>
-                <div>
-                  <div className="mb-2 flex items-center justify-between px-1">
-                    <label htmlFor="reg-username" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
-                      Username
-                    </label>
-                    <span className="text-xs text-on-surface-variant/70">Profile name</span>
-                  </div>
-                  <div className={`relative ${error ? 'rounded-lg border border-error bg-[#FFE8EF]' : ''}`}>
-                    <Input
-                      id="reg-username"
-                      type="text"
-                      value={username}
-                      onChange={setUsername}
-                      placeholder="seeker_sam"
-                      className={error ? 'border border-error bg-[#FFE8EF] text-error' : ''}
-                    />
-                  </div>
+              ) : (
+                <>
                   {error || configError ? (
-                    <div className="mt-2 flex items-center gap-2 rounded-lg bg-[#FFE8EF] px-3 py-2 text-error">
+                    <div role="alert" className="mb-4 flex items-center gap-2 rounded-lg bg-[#FFE8EF] px-3 py-2 text-error">
                       <span className="material-symbols-outlined text-base">info</span>
                       <span className="text-label-sm font-semibold">{error || configError}</span>
                     </div>
                   ) : null}
-                </div>
 
-                <div>
-                  <div className="mb-2 flex items-center justify-between px-1">
-                    <label htmlFor="reg-password" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
-                      Password
-                    </label>
-                  </div>
-                  <Input id="reg-password" type="password" value={password} onChange={setPassword} placeholder="••••••••" />
-                </div>
+                  <form className="space-y-4" onSubmit={handleSubmit}>
+                    <div>
+                      <div className="mb-2 flex items-center justify-between px-1">
+                        <label htmlFor="reg-email" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
+                          Email
+                        </label>
+                      </div>
+                      <Input
+                        id="reg-email"
+                        type="email"
+                        value={email}
+                        onChange={setEmail}
+                        placeholder="you@example.com"
+                      />
+                    </div>
+                    <div>
+                      <div className="mb-2 flex items-center justify-between px-1">
+                        <label htmlFor="reg-username" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
+                          Username
+                        </label>
+                        <span className="text-xs text-on-surface-variant/70">Profile name</span>
+                      </div>
+                      <Input
+                        id="reg-username"
+                        type="text"
+                        value={username}
+                        onChange={setUsername}
+                        placeholder="seeker_sam"
+                      />
+                    </div>
 
-                <div>
-                  <div className="mb-2 flex items-center justify-between px-1">
-                    <label htmlFor="reg-confirm-password" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
-                      Confirm Password
-                    </label>
-                  </div>
-                  <Input id="reg-confirm-password" type="password" value={confirmPassword} onChange={setConfirmPassword} placeholder="Re-enter your password" />
-                </div>
+                    <div>
+                      <div className="mb-2 flex items-center justify-between px-1">
+                        <label htmlFor="reg-password" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
+                          Password
+                        </label>
+                      </div>
+                      <Input id="reg-password" type="password" value={password} onChange={setPassword} placeholder="••••••••" />
+                      <p className="mt-2 px-1 text-xs text-on-surface-variant">Use at least 6 characters.</p>
+                    </div>
 
-                <Button type="submit" variant="primary" size="lg" className="w-full" leftIcon="celebration" disabled={isLoading}>
-                  {isLoading ? 'Creating account...' : 'Create account'}
-                </Button>
-              </form>
+                    <div>
+                      <div className="mb-2 flex items-center justify-between px-1">
+                        <label htmlFor="reg-confirm-password" className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
+                          Confirm Password
+                        </label>
+                      </div>
+                      <Input id="reg-confirm-password" type="password" value={confirmPassword} onChange={setConfirmPassword} placeholder="Re-enter your password" />
+                    </div>
 
-              <div className="mt-6 text-center">
+                    <Button type="submit" variant="primary" size="lg" className="w-full" leftIcon="celebration" disabled={isLoading}>
+                      {isLoading ? 'Creating account...' : 'Create account'}
+                    </Button>
+                  </form>
+                </>
+              )}
+
+              {!registrationSent ? <div className="mt-6 text-center">
                 <span className="text-body-md text-on-surface-variant">มีบัญชีอยู่แล้ว? </span>
                 <Link to="/login" className="ml-1 font-bold text-[#FF85A2] hover:text-[#e85b88]">
                   Log in
                 </Link>
-              </div>
+              </div> : null}
             </Card>
           </div>
         </section>

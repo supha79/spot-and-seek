@@ -117,6 +117,14 @@ describe('AuthProvider local contract', () => {
     });
   });
 
+  it('rejects registration passwords shorter than six characters', async () => {
+    await renderAuthProvider();
+
+    await expect(authValue.register('player@example.test', 'Player', 'short', 'short'))
+      .rejects.toThrow(/at least 6 characters/i);
+    expect(supabaseMock.auth.signUp).not.toHaveBeenCalled();
+  });
+
   it('trims login email and rejects an unconfirmed account after signing it out', async () => {
     await renderAuthProvider();
     supabaseMock.auth.signInWithPassword.mockResolvedValueOnce({

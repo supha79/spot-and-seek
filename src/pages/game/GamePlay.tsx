@@ -290,6 +290,7 @@ function ActiveGamePlay({ level, comparisonImageUrl, assetPair, spots, artworkNo
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [operationError, setOperationError] = useState<string | null>(null);
   const [pendingOperation, setPendingOperation] = useState<PendingOperation | null>(null);
+  const feedbackAudioContextRef = useRef<AudioContext | null>(null);
   const [imageReadiness, setImageReadiness] = useState<Record<GameplayImageName, GameplayImageReadiness>>({
     Original: 'loading',
     Comparison: 'loading',
@@ -443,6 +444,47 @@ function ActiveGamePlay({ level, comparisonImageUrl, assetPair, spots, artworkNo
     if (runId) submitRequest('Resume game', (requestId) => resumeGameRun(runId, requestId));
   };
 
+  const playFeedbackSound = (isCorrect: boolean) => {
+    if (!window.AudioContext) return;
+    const audioContext = feedbackAudioContextRef.current ?? new window.AudioContext();
+    feedbackAudioContextRef.current = audioContext;
+
+    const play = () => {
+      const startAt = audioContext.currentTime;
+      const playTone = (frequency: number, offset: number, duration: number) => {
+        const oscillator = audioContext.createOscillator();
+        const volume = audioContext.createGain();
+        const toneStart = startAt + offset;
+        oscillator.type = isCorrect ? 'sine' : 'triangle';
+        oscillator.frequency.setValueAtTime(frequency, toneStart);
+        if (!isCorrect) oscillator.frequency.exponentialRampToValueAtTime(140, toneStart + duration);
+        volume.gain.setValueAtTime(0.0001, toneStart);
+        volume.gain.exponentialRampToValueAtTime(0.16, toneStart + 0.015);
+        volume.gain.exponentialRampToValueAtTime(0.0001, toneStart + duration);
+        oscillator.connect(volume);
+        volume.connect(audioContext.destination);
+        oscillator.start(toneStart);
+        oscillator.stop(toneStart + duration);
+      };
+
+      if (isCorrect) {
+        playTone(660, 0, 0.12);
+        playTone(880, 0.1, 0.18);
+      } else {
+        playTone(240, 0, 0.2);
+      }
+    };
+
+    if (audioContext.state === 'suspended') {
+      void audioContext.resume().then(play).catch((error: unknown) => {
+        console.warn('Could not play spot feedback sound.', error);
+      });
+      return;
+    }
+
+    play();
+  };
+
   const handleExit = () => {
     const runId = runIdRef.current;
     if (runId) submitRequest('Abandon game', (requestId) => abandonGameRun(runId, requestId));
@@ -462,6 +504,7 @@ function ActiveGamePlay({ level, comparisonImageUrl, assetPair, spots, artworkNo
     const runId = runIdRef.current;
     if (!runId || state.status !== 'playing' || state.foundSpots.some((item) => item.id === spot.id)) return;
 
+    playFeedbackSound(true);
     submitRequest(
       'Record found spot',
       (requestId) => recordGameRunEvent(runId, requestId, 'spot_found', spot.id),
@@ -472,6 +515,7 @@ function ActiveGamePlay({ level, comparisonImageUrl, assetPair, spots, artworkNo
   const handleWrongClick = () => {
     const runId = runIdRef.current;
     if (!runId || state.status !== 'playing') return;
+    playFeedbackSound(false);
     submitRequest('Record wrong click', (requestId) => recordGameRunEvent(runId, requestId, 'wrong_click'));
     setWrongFlash(true);
     window.setTimeout(() => setWrongFlash(false), 600);
