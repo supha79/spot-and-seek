@@ -142,13 +142,15 @@ SELECT ok(
     'authenticated', 'public.publish_level_with_runtime_rules(uuid)', 'EXECUTE'
   )
   AND has_function_privilege('authenticated', 'public.unpublish_level(uuid)', 'EXECUTE')
-  AND has_function_privilege('authenticated', 'public.archive_level(uuid)', 'EXECUTE'),
-  'authenticated can execute the three level lifecycle RPCs'
+  AND has_function_privilege('authenticated', 'public.archive_level(uuid)', 'EXECUTE')
+  AND has_function_privilege('authenticated', 'public.restore_archived_level(uuid)', 'EXECUTE'),
+  'authenticated can execute the level lifecycle RPCs'
 );
 SELECT ok(
   NOT has_function_privilege('anon', 'public.publish_level_with_runtime_rules(uuid)', 'EXECUTE')
   AND NOT has_function_privilege('anon', 'public.unpublish_level(uuid)', 'EXECUTE')
-  AND NOT has_function_privilege('anon', 'public.archive_level(uuid)', 'EXECUTE'),
+  AND NOT has_function_privilege('anon', 'public.archive_level(uuid)', 'EXECUTE')
+  AND NOT has_function_privilege('anon', 'public.restore_archived_level(uuid)', 'EXECUTE'),
   'anon cannot execute the level lifecycle RPCs'
 );
 
@@ -216,6 +218,12 @@ SELECT throws_ok(
   '42501',
   'Administrator role required.',
   'non-admin cannot archive a level'
+);
+SELECT throws_ok(
+  format('SELECT public.restore_archived_level(%L::uuid)', current_setting('spot_seek_test.level_id')),
+  '42501',
+  'Administrator role required.',
+  'non-admin cannot restore an archived level'
 );
 
 RESET ROLE;
@@ -766,6 +774,27 @@ SELECT is(
    FROM public.levels WHERE id = current_setting('spot_seek_test.level_id')::uuid),
   true,
   'archive RPC clears published_at'
+);
+SELECT set_config(
+  'spot_seek_test.restored_level',
+  public.restore_archived_level(current_setting('spot_seek_test.level_id')::uuid)::text,
+  true
+);
+SELECT is(
+  current_setting('spot_seek_test.restored_level')::jsonb ->> 'rule_version_id',
+  current_setting('spot_seek_test.second_publish')::jsonb ->> 'rule_version_id',
+  'restore reuses the unchanged archived level rule version'
+);
+SELECT is(
+  (SELECT status FROM public.levels WHERE id = current_setting('spot_seek_test.level_id')::uuid),
+  'published',
+  'restore makes the unchanged level available again'
+);
+SELECT is(
+  (SELECT count(*)::integer FROM public.game_run_rule_versions
+   WHERE content_level_id = current_setting('spot_seek_test.level_id')::uuid),
+  2,
+  'restore does not create another immutable gameplay version'
 );
 
 SELECT * FROM finish();

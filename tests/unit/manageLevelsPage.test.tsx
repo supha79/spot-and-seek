@@ -43,6 +43,7 @@ beforeEach(() => {
     publishLevel: vi.fn(),
     unpublishLevel: vi.fn(),
     archiveLevel: vi.fn(),
+    restoreLevel: vi.fn(),
     refreshCatalog: vi.fn(),
     isLoading: false,
     error: null,
@@ -71,5 +72,30 @@ describe('Manage Levels page', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Easy (7)' }));
     expect(screen.getByText('Page 1 of 2 · 7 levels in current filter')).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Level 1' })).toBeTruthy();
+  });
+
+  it('lets an admin restore and publish an archived level', () => {
+    const restoreLevel = vi.fn().mockResolvedValue(undefined);
+    useAdminDataMock.mockReturnValue({
+      games: [{ id: 'game-1', name: 'Spot & Seek Playground', status: 'published' }],
+      levels: [{ ...levels[0], status: 'archived', title: 'Cozy House' }],
+      questions: [],
+      addLevel: vi.fn(),
+      deleteLevel: vi.fn(),
+      updateLevel: vi.fn(),
+      publishLevel: vi.fn(),
+      unpublishLevel: vi.fn(),
+      archiveLevel: vi.fn(),
+      restoreLevel,
+      refreshCatalog: vi.fn(),
+      isLoading: false,
+      error: null,
+      catalogWarnings: [],
+    });
+
+    render(<MemoryRouter><ManageLevels /></MemoryRouter>);
+    fireEvent.click(screen.getByRole('button', { name: 'Restore & publish' }));
+
+    expect(restoreLevel).toHaveBeenCalledWith('level-1');
   });
 });

@@ -367,6 +367,11 @@ export async function archiveLevel(id: string): Promise<LevelLifecycleResponse> 
   return callLevelLifecycleRpc({ rpc: (name, args) => client.rpc(name, args) }, 'archive', id);
 }
 
+export async function restoreLevel(id: string): Promise<LevelLifecycleResponse> {
+  const client = getClient();
+  return callLevelLifecycleRpc({ rpc: (name, args) => client.rpc(name, args) }, 'restore', id);
+}
+
 export async function deleteLevelById(id: string) {
   const client = getClient();
   const { data: level, error: levelError } = await client

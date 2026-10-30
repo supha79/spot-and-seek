@@ -48,6 +48,7 @@ test('lifecycle actions call migration RPCs with the UUID argument and validate 
     ['publish', 'publish_level_with_runtime_rules', 'published'],
     ['unpublish', 'unpublish_level', 'draft'],
     ['archive', 'archive_level', 'archived'],
+    ['restore', 'restore_archived_level', 'published'],
   ];
 
   for (const [action, rpcName, status] of cases) {
@@ -58,7 +59,7 @@ test('lifecycle actions call migration RPCs with the UUID argument and validate 
           call = { name, args };
           return {
             error: null,
-            data: action === 'publish'
+            data: action === 'publish' || action === 'restore'
               ? {
                   level_id: 'level-uuid',
                   level_key: 'spring-garden',

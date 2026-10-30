@@ -30,7 +30,11 @@ Only a publishable/anon key belongs in a `VITE_` variable. Never put a service-r
 
 ## Release blockers
 
-Passing the Vite build proves only that the frontend bundle can be produced. A read-only Production snapshot on 2026-10-17 shows all 16 migrations synchronized and the Dynamic Gameplay gate already enabled with 9 Published Levels. No Remote migration or gate change was made during this audit. A future deployment must target the approved Vercel project and preserve the current Production state unless a separate release decision authorizes a change.
+Passing the Vite build proves only that the frontend bundle can be produced. A read-only Production snapshot on 2026-10-17 showed all 16 migrations synchronized and the Dynamic Gameplay gate already enabled with 9 Published Levels. No Remote migration or gate change was made during that audit. The 2026-10-31 archived-level recovery migration is documented below; it does not change the Dynamic Gameplay gate.
+
+## Archived level recovery (2026-10-31)
+
+The Admin Levels page can restore an archived level only when its parent game is published and the existing published rule snapshot, pinned private artwork pair, spots, and approved score policy still satisfy the normal publish checks. The restore RPC delegates to the existing publish workflow and verifies that it reused the same immutable rule version and content hash; any content drift aborts the transaction. This preserves existing run history and does not silently create a replacement level version.
 
 Local asset inventory update (2026-10-17): all nine `Picture/level-*/qa-report.txt` files report `VERIFIED`, and each `differences.json` hash matches the final per-level Original/Comparison files with verified difference entries. The `level-02-magic-garden` Comparison was normalized to the Original's 1448x1086 dimensions; the raw source remains preserved as `Picture/level2-2.png` and its SHA-256 is recorded separately. Local pair/manifest verification does not prove content rights, database records, private Storage objects, or published rule versions are ready. Do not treat local files as published production content.
 

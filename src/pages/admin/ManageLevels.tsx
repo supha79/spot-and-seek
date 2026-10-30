@@ -36,6 +36,7 @@ export default function ManageLevels() {
     publishLevel,
     unpublishLevel,
     archiveLevel,
+    restoreLevel,
     refreshCatalog,
     isLoading,
     error,
@@ -269,6 +270,7 @@ export default function ManageLevels() {
               <div className="flex w-full min-w-0 flex-wrap items-center gap-space-xs sm:w-auto sm:justify-end">
                 {level.status === 'draft' ? <Button variant="secondary" leftIcon="publish" disabled={busyLevelId !== null || parentGameBlockReason !== null} onClick={() => void handlePublish(level)}>Publish</Button> : null}
                 {level.status === 'published' ? <Button variant="ghost" leftIcon="unpublished" disabled={busyLevelId !== null} onClick={() => void handleLevelAction(level.id, unpublishLevel)}>Unpublish</Button> : null}
+                {level.status === 'archived' ? <Button variant="secondary" leftIcon="restore" disabled={busyLevelId !== null || parentGameBlockReason !== null} onClick={() => void handleLevelAction(level.id, restoreLevel)}>Restore &amp; publish</Button> : null}
                 {level.status !== 'archived' ? <Button variant="tertiary" leftIcon="archive" disabled={busyLevelId !== null} onClick={() => void handleLevelAction(level.id, archiveLevel)}>Archive</Button> : null}
                 <Button variant="ghost" leftIcon="edit" disabled={busyLevelId !== null} className="!h-10 !w-10 !rounded-full !px-0 !py-0" onClick={() => openEditModal(level)}>
                   <span className="sr-only">Edit level</span>

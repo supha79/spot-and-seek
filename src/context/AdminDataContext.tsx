@@ -16,6 +16,7 @@ import {
   publishGame,
   publishLevel,
   reactivateLevelSpot,
+  restoreLevel,
   unpublishGame,
   unpublishLevel,
   updateGameById,
@@ -95,6 +96,7 @@ type AdminDataContextValue = {
   publishLevel: (id: string) => Promise<void>;
   unpublishLevel: (id: string) => Promise<void>;
   archiveLevel: (id: string) => Promise<void>;
+  restoreLevel: (id: string) => Promise<void>;
   addQuestion: (draft: AdminSpotDraft) => Promise<void>;
   updateQuestion: (id: string, draft: AdminSpotDraft) => Promise<void>;
   deleteQuestion: (id: string) => Promise<void>;
@@ -516,6 +518,20 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const restoreLevelRecord = async (id: string) => {
+    try {
+      if (!supabase) {
+        throw new Error('Supabase is not configured. Restore level is unavailable until the project is configured.');
+      }
+
+      await runContentMutation(() => restoreLevel(id));
+    } catch (caughtError) {
+      const message = getErrorMessage(caughtError);
+      setError(message);
+      throw new Error(message);
+    }
+  };
+
   const addQuestion = async (draft: AdminSpotDraft) => {
     try {
       if (!supabase) {
@@ -635,6 +651,7 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
       publishLevel: publishLevelRecord,
       unpublishLevel: unpublishLevelRecord,
       archiveLevel: archiveLevelRecord,
+      restoreLevel: restoreLevelRecord,
       addQuestion,
       updateQuestion,
       deleteQuestion,

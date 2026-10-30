@@ -25,7 +25,7 @@ export type GameRunSnapshot = {
   session_id: string | null;
 };
 
-export type LevelLifecycleAction = 'publish' | 'unpublish' | 'archive';
+export type LevelLifecycleAction = 'publish' | 'unpublish' | 'archive' | 'restore';
 export type LevelLifecycleStatus = 'published' | 'draft' | 'archived';
 
 export type LevelLifecycleResponse = {
@@ -184,11 +184,13 @@ const lifecycleRpcNames: Record<LevelLifecycleAction, string> = {
   publish: 'publish_level_with_runtime_rules',
   unpublish: 'unpublish_level',
   archive: 'archive_level',
+  restore: 'restore_archived_level',
 };
 const lifecycleStatuses: Record<LevelLifecycleAction, LevelLifecycleStatus> = {
   publish: 'published',
   unpublish: 'draft',
   archive: 'archived',
+  restore: 'published',
 };
 
 function normalizeIdentityValue(value: unknown) {
@@ -402,7 +404,7 @@ function parseLifecycleResponse(value: unknown, action: LevelLifecycleAction, re
     throw new Error('Supabase returned an incomplete level lifecycle response.');
   }
 
-  if (action === 'publish') {
+  if (action === 'publish' || action === 'restore') {
     if (
       typeof response.rule_version_id !== 'string'
       || !response.rule_version_id.trim()

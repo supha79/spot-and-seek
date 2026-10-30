@@ -27,6 +27,10 @@ const authenticatedAssetSelectMigration = readFileSync(
   join(migrationsDirectory, '20261016150000_private_asset_authenticated_select.sql'),
   'utf8',
 );
+const restoreArchivedLevelMigration = readFileSync(
+  join(migrationsDirectory, '20261030000000_restore_unchanged_archived_level.sql'),
+  'utf8',
+);
 const dynamicRunTest = readFileSync(
   join(root, 'supabase/tests/dynamic_run_dual_path_test.sql'),
   'utf8',
@@ -127,4 +131,16 @@ test('published private assets are readable by authenticated users without an ap
   assert.match(authenticatedAssetSelectMigration, /rule_version\.id = \([\s\S]*?ORDER BY latest\.version DESC/);
   assert.match(authenticatedAssetSelectMigration, /asset\.id IN \(rule_version\.original_asset_id, rule_version\.comparison_asset_id\)/);
   assert.doesNotMatch(authenticatedAssetSelectMigration, /app_metadata[^\n]*'player'/);
+});
+
+test('archived level restore is Admin-only and reuses the unchanged pinned rule', () => {
+  assert.match(restoreArchivedLevelMigration, /FUNCTION public\.restore_archived_level\(p_level_id uuid\)/);
+  assert.match(restoreArchivedLevelMigration, /Administrator role required/);
+  assert.match(restoreArchivedLevelMigration, /Only archived levels can be restored/);
+  assert.match(restoreArchivedLevelMigration, /The parent game must be published/);
+  assert.match(restoreArchivedLevelMigration, /v_rule\.original_asset_id IS NULL OR v_rule\.comparison_asset_id IS NULL/);
+  assert.match(restoreArchivedLevelMigration, /public\.publish_level_with_runtime_rules\(v_level\.id\)/);
+  assert.match(restoreArchivedLevelMigration, /v_publish_result ->> 'rule_version_id' IS DISTINCT FROM v_rule\.id::text/);
+  assert.match(restoreArchivedLevelMigration, /REVOKE ALL ON FUNCTION public\.restore_archived_level\(uuid\) FROM PUBLIC, anon, authenticated/);
+  assert.match(restoreArchivedLevelMigration, /GRANT EXECUTE ON FUNCTION public\.restore_archived_level\(uuid\) TO authenticated/);
 });
